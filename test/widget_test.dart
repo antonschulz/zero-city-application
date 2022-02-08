@@ -10,6 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:zero_city/main.dart';
 
+// The following code is a test case for the counter app which is the initialized
+// code when creating the flutter app.
+
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
