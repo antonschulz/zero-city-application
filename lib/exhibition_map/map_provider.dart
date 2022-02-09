@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 
-class MapProvider with ChangeNotifier {
+class ExhibitionMapProvider with ChangeNotifier {
   late Mission selectedMission;
 
   get getSelectedMission => selectedMission;
