@@ -3,11 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 
 import 'exhibition_map/map.dart';
+import 'exhibition_map/map_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
-      providers: [],
+      providers: [
+        ChangeNotifierProvider(create: (_) => ExhibitionMapProvider()),
+      ],
       child: MyApp(),
     )
   );
