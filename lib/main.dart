@@ -21,8 +21,15 @@ class ExampleStartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Hello there"),
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/map");
+          },
+          child: const Text("Map Page"),
+        ),
+      ),
     );
   }
 }
