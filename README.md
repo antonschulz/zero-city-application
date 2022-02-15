@@ -4,7 +4,7 @@ Application for Tekniska Museet's "Zero-City"-exhibition
 ## Git commits
 When making commits please try to avoid huge commits doing lots of things. Try to split them up into
 smaller bits so the changes you made are more easy to follow. Avoid big commits like "Added entire 
-feature", instead splitting it into the different subfeatures or problems solved". Cherry picking
+feature", instead splitting it into the different subfeatures or problems solved. Cherry picking
 is very useful for this since you can pick out the lines you want in the commit instead of the whole
 file. If you're unsure how to use cherry picking in the terminal a git gui client is recommended 
 (would kind of recommend this anyways since it eases use of git). 
