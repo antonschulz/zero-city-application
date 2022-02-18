@@ -32,7 +32,7 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
       - name: debug
-        run: flutter doctor -v
+        run: flutter doctor -v; ls -la ./
       #- name: Flutter Analyze
       #  run: flutter analyze --no-pub
       - name: Check Flutter Formatting
