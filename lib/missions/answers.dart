@@ -7,7 +7,7 @@ class Answer extends StatelessWidget {
 
   final Color textColor;
 
-  Answer(this.pressAction, this.textColor);
+  const Answer(this.pressAction, this.textColor, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

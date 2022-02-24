@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
                   'Välkomna $groupName!',
                   style: const TextStyle(fontSize: 65, fontWeight: FontWeight.bold, color: Color.fromRGBO(151,144,187,1)),
                 ),
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                   style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all<Size>(const Size(250,80)),
