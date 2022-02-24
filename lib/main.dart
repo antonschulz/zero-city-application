@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'startsida.dart';
+import 'route-testing.dart';
 
 void main() {
   runApp(const MyApp());

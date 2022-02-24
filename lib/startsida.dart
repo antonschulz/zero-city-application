@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'route-testing.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -61,7 +62,12 @@ class MyHomePage extends StatelessWidget {
                   ),
                   child: Text('Börja här!',
                       style: Theme.of(context).textTheme.headline3),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const FirstRoute()),
+                    );
+                  },
                 ),
               ],
             ),
