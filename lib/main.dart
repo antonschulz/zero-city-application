@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './missions/questions.dart';
+import './missions/answers.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Zero City Interactive Tool'),
     );
   }
 }
@@ -50,6 +53,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  // Index to pick question from array questions
+  int _index = 0;
+
+  // TODO: make questions in the array
+  var questions = ["Hello", "Goodbye"];
+
+  // Increment _index/change question text when an answer button is pressed
+  void _answerQ() {
+    if (_index < questions.length - 1) {
+      setState(() {
+        _index++;
+      });
+
+      // Just to see if _answerQ works properly
+    }
+    print("index number: $_index");
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -60,6 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
+  // Color codes from TM
+  var dandelion = const Color.fromARGB(255, 241, 219, 110);
+  var lilac = const Color.fromARGB(255, 151, 144, 187);
+  var heaven = const Color.fromARGB(255, 152, 180, 187);
+  var oyster = const Color.fromARGB(255, 231, 211, 192);
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +122,22 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // Added images for fun
+            Image.asset(
+              "assets/images/tm.png",
+              width: 200,
+            ),
+            Image.asset(
+              "assets/images/code.gif",
+              width: 180,
+            ),
+            Question(questions[_index], dandelion),
+            // TODO: see answers.dart
+            Answer(_answerQ, heaven),
+            ElevatedButton(
+                onPressed: _answerQ, child: const Text("This works")),
+            const Icon(Icons.sentiment_satisfied_alt_sharp),
+
             const Text(
               'You have pushed the button this many times:',
             ),
