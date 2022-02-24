@@ -12,7 +12,7 @@ class FirstRoute extends StatelessWidget {
           child: const Text('Open route'),
           onPressed: () {
             Navigator.pop(context);
-            },
+          },
         ),
       ),
     );

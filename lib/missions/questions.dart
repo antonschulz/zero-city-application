@@ -5,7 +5,8 @@ class Question extends StatelessWidget {
   final String questionText;
   final Color textColor;
 
-  const Question(this.questionText, this.textColor, {Key? key}) : super(key: key);
+  const Question(this.questionText, this.textColor, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

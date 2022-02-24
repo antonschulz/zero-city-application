@@ -13,8 +13,10 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Stack(
           alignment: Alignment.topCenter,
-          children: <Widget>[ // takes a container widget (background image) and a column widget with text + button
-            Container( //Container for the background  
+          children: <Widget>[
+            // takes a container widget (background image) and a column widget with text + button
+            Container(
+              //Container for the background
               alignment: Alignment.center,
               child: const Image(
                 image: AssetImage('assets/images/startsida.png'),
@@ -24,40 +26,49 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Container(
-            margin: const EdgeInsets.only(top: 60.0, bottom: 50.0),
-            child: Column( //Column with text and button
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(
-                  'Välkomna $groupName!',
-                  style: const TextStyle(fontSize: 65, fontWeight: FontWeight.bold, color: Color.fromRGBO(151,144,187,1)),
-                ),
-                const Spacer(),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all<Size>(const Size(250,80)),
-                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromRGBO(152, 180, 187, 1)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+              margin: const EdgeInsets.only(top: 60.0, bottom: 50.0),
+              child: Column(
+                //Column with text and button
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text(
+                    'Välkomna $groupName!',
+                    style: const TextStyle(
+                        fontSize: 65,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(151, 144, 187, 1)),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      fixedSize:
+                          MaterialStateProperty.all<Size>(const Size(250, 80)),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromRGBO(152, 180, 187, 1)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
                       ),
                     ),
+                    child: const Text('Börja här!',
+                        style: TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.bold)),
+                    onPressed: () {
+                      //when pressed move to class "FirstRoute"
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FirstRoute()),
+                      );
+                    },
                   ),
-                  child: const Text('Börja här!',
-                      style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-                  onPressed: () { //when pressed move to class "FirstRoute"
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const FirstRoute()),
-                    );
-                  },
-                ),
-              ],
-            ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-    ); 
+    );
   }
 }
