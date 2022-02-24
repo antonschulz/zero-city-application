@@ -16,10 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 30.0, fontStyle: FontStyle.italic),
-        ),
-        primarySwatch: Colors.green,
+        primaryColor: Color.fromRGBO(152, 180, 187, 0.7),
       ),
       home: const MyHomePage(title: 'Zero City'),
     );
