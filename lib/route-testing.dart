@@ -1,3 +1,4 @@
+// This class is only used for testing purposes. TODO: Replace this routing page with the map-view on a later date.
 import 'package:flutter/material.dart';
 
 class FirstRoute extends StatelessWidget {
