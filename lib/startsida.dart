@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'route-testing.dart';
+import 'route_testing.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -16,7 +16,7 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[ // takes a container widget (background image) and a column widget with text + button
             Container( //Container for the background  
               alignment: Alignment.center,
-              child: Image(
+              child: const Image(
                 image: AssetImage('assets/images/startsida.png'),
                 height: 1000,
                 width: double.infinity,
@@ -24,26 +24,26 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Container(
-            margin: EdgeInsets.only(top: 60.0, bottom: 50.0),
+            margin: const EdgeInsets.only(top: 60.0, bottom: 50.0),
             child: Column( //Column with text and button
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Text(
                   'Välkomna $groupName!',
-                  style: TextStyle(fontSize: 65, fontWeight: FontWeight.bold, color: Color.fromRGBO(151,144,187,1)),
+                  style: const TextStyle(fontSize: 65, fontWeight: FontWeight.bold, color: Color.fromRGBO(151,144,187,1)),
                 ),
                 Spacer(),
                 ElevatedButton(
                   style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all<Size>(Size(250,80)),
-                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(152, 180, 187, 1)),
+                    fixedSize: MaterialStateProperty.all<Size>(const Size(250,80)),
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromRGBO(152, 180, 187, 1)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
                   ),
-                  child: Text('Börja här!',
+                  child: const Text('Börja här!',
                       style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
                   onPressed: () { //when pressed move to class "FirstRoute"
                     Navigator.push(
