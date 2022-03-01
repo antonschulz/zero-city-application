@@ -14,7 +14,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => ExhibitionMapProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     )
   );
 }
@@ -85,8 +85,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   // Index to pick question from array questions
   int _index = 0;
 
