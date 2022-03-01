@@ -46,6 +46,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      routes: {
+        '/': (context) => MyHomePage(title: 'Zero City Interactive Tool'),
+        '/map': (context) => ExhibitionMap(),
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -58,7 +62,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Zero City Interactive Tool'),
+      ),
     );
   }
 }
@@ -100,17 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // Just to see if _answerQ works properly
     }
     print("index number: $_index");
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
   }
 
   // Color codes from TM
@@ -167,23 +160,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Answer(_answerQ, heaven),
             ElevatedButton(
                 onPressed: _answerQ, child: const Text("This works")),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/map");
+              },
+              child: const Text("Map Page"),
+            ),
             const Icon(Icons.sentiment_satisfied_alt_sharp),
-
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
