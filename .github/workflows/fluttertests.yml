@@ -1,0 +1,37 @@
+# Workflow to test and analyze flutter project
+name: Flutter Tests
+
+# Run the workflow on pushes and pull requests to main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+env:
+  FLUTTER_VERSION: "2.10.1"
+jobs:
+  build:
+    # Run on an up to date ubuntu vm
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        # Flutter installation
+      - name: Install Flutter
+        run: git clone https://github.com/flutter/flutter.git --depth 1 -b $FLUTTER_VERSION flutter
+      - name: Add Flutter to Path
+        run: echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
+      - name: Install Dependencies
+        run: flutter pub get
+        # Check code and run tests
+      - name: Flutter Analyze
+        run: flutter analyze --no-pub
+      - name: Check Flutter Formatting
+        run: flutter format lib/** --set-exit-if-changed
+      - name: Run Flutter Tests
+        run: flutter test --no-pub
