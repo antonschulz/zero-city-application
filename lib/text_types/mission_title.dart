@@ -14,7 +14,7 @@ class MissionTitle extends StatelessWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black45,
-            fontSize:40
+            fontSize:52
         )
     );
   }

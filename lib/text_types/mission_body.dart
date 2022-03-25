@@ -12,8 +12,9 @@ class MissionBody extends StatelessWidget {
       text,
       textAlign: TextAlign.left,
       style: const TextStyle(
-        fontSize: 12,
-        color: Colors.black12,
+        fontSize: 22,
+        color: Colors.black26,
+        fontStyle: FontStyle.italic
       )
     );
   }
