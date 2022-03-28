@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'route_testing.dart';
+import 'package:zero_city/exhibition_map/map.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -59,7 +59,7 @@ class MyHomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FirstRoute()),
+                            builder: (context) => const ExhibitionMap()),
                       );
                     },
                   ),
