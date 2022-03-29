@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/zones/planning_lab/mission1b.dart';
 // import 'package:zero_city/const text_types/mission_body.dart';
 // import 'package:zero_city/const text_types/mission_title.dart';
 
@@ -6,38 +7,78 @@ class Mission1A extends StatefulWidget {
   Mission1A({Key? key}) : super(key: key);
 
   @override
-  State<Mission1A> createState() => _Mission1AState();
+  State<Mission1A> createState() => Mission1AState();
 }
 
-class _Mission1AState extends State<Mission1A> {
-  List<bool> clicked = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
+class Mission1AState extends State<Mission1A> {
+  // For future use, to link a string to if it has been clicked or not
+  // Makes it easier to pass it on to the summary page
+  // Map<String, bool> elements = {
+  //   "Egen bil som drivs med fossila bränslen": false,
+  //   "Att köpa nya kläder": false,
+  //   "Att äta kött": false,
+  //   "En ny smartphone": false,
+  //   "En ny dator": false,
+  //   "Flygresor": false,
+  //   "Nya möbler": false,
+  //   "Sociala medier": false,
+  //   "Nytt tv-spel": false,
+  //   "Julklappar": false,
+  //   "Stort boende": false,
+  //   "Husdjur, som katt eller hund": false,
+  //   "Att äga en egen bil": false,
+  //   "Varma bostäder (max 19 grader)": false,
+  //   "Shoppinggallerior": false,
+  //   "Swimmingpool": false,
+  //   "E-handel": false,
+  //   "Eget rum": false,
+  //   "Fotbollsplaner med konstgräs": false,
+  //   "Mat och godis som innehåller palmolja": false,
+  //   "Snabbmat": false,
+  //   "Sommarstuga": false,
+  //   "Avokado och exotiska frukter": false,
+  //   "Bubbelvatten och sportdrycker": false,
+  // };
+
+  // Strings for the boxes
+  List<String> strs = [
+    "Egen bil som drivs med fossila bränslen",
+    "Att köpa nya kläder",
+    "Att äta kött",
+    "En ny smartphone",
+    "En ny dator",
+    "Flygresor",
+    "Nya möbler",
+    "Sociala medier",
+    "Nytt tv-spel",
+    "Julklappar",
+    "Stort boende",
+    "Husdjur, som katt eller hund",
+    "Att äga en egen bil",
+    "Varma bostäder (max 19 grader)",
+    "Shoppinggallerior",
+    "Swimmingpool",
+    "E-handel",
+    "Eget rum",
+    "Fotbollsplaner med konstgräs",
+    "Mat och godis som innehåller palmolja",
+    "Snabbmat",
+    "Sommarstuga",
+    "Avokado och exotiska frukter",
+    "Bubbelvatten och sportdrycker",
   ];
 
-  var count = 0;
+  // Does not compile for some reason
+  // int length = strs.length;
+
+  // Corresponding list of booleans to keep track if the button is clicked
+  List<bool> clicked = List.filled(24, false);
+
+  // Count number of buttos pressed
+  var _count = 0;
+
+  // Color for continue button
+  Color color = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -47,424 +88,69 @@ class _Mission1AState extends State<Mission1A> {
         // MissionTitle("Planning Lab 1a"),
         // MissionBody(
         //     "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
+        // Has to be flexible to avoid endless scroll error
         Flexible(
-            child: GridView.count(
-          primary: false,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          crossAxisCount: 6,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[0] && count < 5) {
-                    clicked[0] = !clicked[0];
-                    count++;
-                  } else if (clicked[0]) {
-                    clicked[0] = !clicked[0];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Egen bil som drivs med fossila bränslen"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[0] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[1] && count < 5) {
-                    clicked[1] = !clicked[1];
-                    count++;
-                  } else if (clicked[1]) {
-                    clicked[1] = !clicked[1];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Att köpa nya kläder."),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[1] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[2] && count < 5) {
-                    clicked[2] = !clicked[2];
-                    count++;
-                  } else if (clicked[2]) {
-                    clicked[2] = !clicked[2];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Att äta kött"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[2] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[3] && count < 5) {
-                    clicked[3] = !clicked[3];
-                    count++;
-                  } else if (clicked[3]) {
-                    clicked[3] = !clicked[3];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("En ny smartphone"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[3] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[4] && count < 5) {
-                    clicked[4] = !clicked[4];
-                    count++;
-                  } else if (clicked[4]) {
-                    clicked[4] = !clicked[4];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("En ny dator"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[4] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[5] && count < 5) {
-                    clicked[5] = !clicked[5];
-                    count++;
-                  } else if (clicked[5]) {
-                    clicked[5] = !clicked[5];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Flygresor"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[5] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[6] && count < 5) {
-                    clicked[6] = !clicked[6];
-                    count++;
-                  } else if (clicked[6]) {
-                    clicked[6] = !clicked[6];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Nya möbler"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[6] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[7] && count < 5) {
-                    clicked[7] = !clicked[7];
-                    count++;
-                  } else if (clicked[7]) {
-                    clicked[7] = !clicked[7];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Sociala medier"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[7] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[8] && count < 5) {
-                    clicked[8] = !clicked[8];
-                    count++;
-                  } else if (clicked[8]) {
-                    clicked[8] = !clicked[8];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Nytt tv-spel"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[8] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[9] && count < 5) {
-                    clicked[9] = !clicked[9];
-                    count++;
-                  } else if (clicked[9]) {
-                    clicked[9] = !clicked[9];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Julklappar"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[9] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[10] && count < 5) {
-                    clicked[10] = !clicked[10];
-                    count++;
-                  } else if (clicked[10]) {
-                    clicked[10] = !clicked[10];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Stort boende"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[10] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[11] && count < 5) {
-                    clicked[11] = !clicked[11];
-                    count++;
-                  } else if (clicked[11]) {
-                    clicked[11] = !clicked[11];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Husdjur, som katt eller hund"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[11] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[12] && count < 5) {
-                    clicked[12] = !clicked[12];
-                    count++;
-                  } else if (clicked[12]) {
-                    clicked[12] = !clicked[12];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Att äga en egen bil"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[12] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[13] && count < 5) {
-                    clicked[13] = !clicked[13];
-                    count++;
-                  } else if (clicked[13]) {
-                    clicked[13] = !clicked[13];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Varma bostäder (max 19 grader)"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[13] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[14] && count < 5) {
-                    clicked[14] = !clicked[14];
-                    count++;
-                  } else if (clicked[14]) {
-                    clicked[14] = !clicked[14];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Shoppinggallerior"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[14] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[15] && count < 5) {
-                    clicked[15] = !clicked[15];
-                    count++;
-                  } else if (clicked[15]) {
-                    clicked[15] = !clicked[15];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Swimmingpool"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[15] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[16] && count < 5) {
-                    clicked[16] = !clicked[16];
-                    count++;
-                  } else if (clicked[16]) {
-                    clicked[16] = !clicked[16];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("E-handel"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[16] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[17] && count < 5) {
-                    clicked[17] = !clicked[17];
-                    count++;
-                  } else if (clicked[17]) {
-                    clicked[17] = !clicked[17];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Eget rum"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[17] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[18] && count < 5) {
-                    clicked[18] = !clicked[18];
-                    count++;
-                  } else if (clicked[18]) {
-                    clicked[18] = !clicked[18];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Fotbollsplaner med konstgräs"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[18] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[19] && count < 5) {
-                    clicked[19] = !clicked[19];
-                    count++;
-                  } else if (clicked[19]) {
-                    clicked[19] = !clicked[19];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Mat och godis som innehåller palmolja"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[19] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[20] && count < 5) {
-                    clicked[20] = !clicked[20];
-                    count++;
-                  } else if (clicked[20]) {
-                    clicked[20] = !clicked[20];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Snabbmat"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[20] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[21] && count < 5) {
-                    clicked[21] = !clicked[21];
-                    count++;
-                  } else if (clicked[21]) {
-                    clicked[21] = !clicked[21];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Sommarstuga"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[21] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[22] && count < 5) {
-                    clicked[22] = !clicked[22];
-                    count++;
-                  } else if (clicked[22]) {
-                    clicked[22] = !clicked[22];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Avokado och exotiska frukter"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[22] ? Colors.blue : Colors.grey,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                setState(() {
-                  if (!clicked[23] && count < 5) {
-                    clicked[23] = !clicked[23];
-                    count++;
-                  } else if (clicked[23]) {
-                    clicked[23] = !clicked[23];
-                    count--;
-                  }
-                })
-              },
-              child: const Text("Bubbelvatten och sportdrycker"),
-              style: ElevatedButton.styleFrom(
-                primary: clicked[23] ? Colors.blue : Colors.grey,
-              ),
-            ),
-          ],
-        )),
+          child: GridView.count(
+            primary: false,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            crossAxisCount: 6,
+            // All option buttons are produced through this code
+            // Creates a list of length 24
+            // For every index of said list: creates a button with text from
+            // Corresponding index of list strs
+            children: List.generate(24, (index) {
+              return ElevatedButton(
+                onPressed: () => {
+                  setState(() {
+                    // If clicked is false <=> button isn't currently pressed
+                    // Now set clicked to true and increment _counter
+                    // If 5 options are already picked: do nothing
+                    if (!clicked[index] && _count < 5) {
+                      clicked[index] = !clicked[index];
+                      _count++;
+                      if (_count == 5) {
+                        // Sets continue button colour for UI help
+                        color = Colors.green;
+                      }
+                    // User can deselect an option
+                    } else if (clicked[index]) {
+                      clicked[index] = !clicked[index];
+                      _count--;
+                      color = Colors.grey;
+                    }
+                  }),
+                },
+                child: Text(
+                  strs[index],
+                ),
+                // Different colour if clicked
+                style: ElevatedButton.styleFrom(
+                  primary: clicked[index]
+                      ? const Color.fromRGBO(151, 144, 187, 1)
+                      : Colors.grey[400],
+                  onPrimary: Colors.black,
+                ),
+              );
+            }),
+          ),
+        ),
+        // Navigator button to next mission page, mission 1b
+        ElevatedButton(
+          onPressed: () {
+            if (_count == 5) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Mission1B()),
+              );
+            }
+          },
+          child: const Text("Fortsätt till uppdrag 1b"),
+          style: ElevatedButton.styleFrom(
+            primary: color,
+          ),
+        ),
       ],
     ));
   }
