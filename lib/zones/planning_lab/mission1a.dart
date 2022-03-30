@@ -4,44 +4,15 @@ import 'package:zero_city/zones/planning_lab/mission1b.dart';
 // import 'package:zero_city/const text_types/mission_title.dart';
 
 class Mission1A extends StatefulWidget {
-  Mission1A({Key? key}) : super(key: key);
+  const Mission1A({Key? key}) : super(key: key);
 
   @override
   State<Mission1A> createState() => Mission1AState();
 }
 
 class Mission1AState extends State<Mission1A> {
-  // For future use, to link a string to if it has been clicked or not
-  // Makes it easier to pass it on to the summary page
-  // Map<String, bool> elements = {
-  //   "Egen bil som drivs med fossila bränslen": false,
-  //   "Att köpa nya kläder": false,
-  //   "Att äta kött": false,
-  //   "En ny smartphone": false,
-  //   "En ny dator": false,
-  //   "Flygresor": false,
-  //   "Nya möbler": false,
-  //   "Sociala medier": false,
-  //   "Nytt tv-spel": false,
-  //   "Julklappar": false,
-  //   "Stort boende": false,
-  //   "Husdjur, som katt eller hund": false,
-  //   "Att äga en egen bil": false,
-  //   "Varma bostäder (max 19 grader)": false,
-  //   "Shoppinggallerior": false,
-  //   "Swimmingpool": false,
-  //   "E-handel": false,
-  //   "Eget rum": false,
-  //   "Fotbollsplaner med konstgräs": false,
-  //   "Mat och godis som innehåller palmolja": false,
-  //   "Snabbmat": false,
-  //   "Sommarstuga": false,
-  //   "Avokado och exotiska frukter": false,
-  //   "Bubbelvatten och sportdrycker": false,
-  // };
-
-  // Strings for the boxes
-  List<String> strs = [
+   // Strings for the boxes
+  final List<String> strs = [
     "Egen bil som drivs med fossila bränslen",
     "Att köpa nya kläder",
     "Att äta kött",
@@ -68,9 +39,9 @@ class Mission1AState extends State<Mission1A> {
     "Bubbelvatten och sportdrycker",
   ];
 
-  // Does not compile for some reason
-  // int length = strs.length;
-
+  // List to keep answers
+  List<String> answers = [];
+  
   // Corresponding list of booleans to keep track if the button is clicked
   List<bool> clicked = List.filled(24, false);
 
@@ -83,75 +54,78 @@ class Mission1AState extends State<Mission1A> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        // MissionTitle("Planning Lab 1a"),
-        // MissionBody(
-        //     "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
-        // Has to be flexible to avoid endless scroll error
-        Flexible(
-          child: GridView.count(
-            primary: false,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            crossAxisCount: 6,
-            // All option buttons are produced through this code
-            // Creates a list of length 24
-            // For every index of said list: creates a button with text from
-            // Corresponding index of list strs
-            children: List.generate(24, (index) {
-              return ElevatedButton(
-                onPressed: () => {
-                  setState(() {
-                    // If clicked is false <=> button isn't currently pressed
-                    // Now set clicked to true and increment _counter
-                    // If 5 options are already picked: do nothing
-                    if (!clicked[index] && _count < 5) {
-                      clicked[index] = !clicked[index];
-                      _count++;
-                      if (_count == 5) {
-                        // Sets continue button colour for UI help
-                        color = Colors.green;
+      body: Column(
+        children: [
+          // MissionTitle("Planning Lab 1a"),
+          // MissionBody(
+          //     "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
+          // Has to be flexible to avoid endless scroll error
+          Flexible(
+            child: GridView.count(
+              primary: false,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              crossAxisCount: 6,
+              // All option buttons are produced through this code
+              // Creates a list of length 24
+              // For every index of said list: creates a button with text from
+              // Corresponding index of list strs
+              children: List.generate(24, (index) {
+                return ElevatedButton(
+                  onPressed: () => {
+                    setState(() {
+                      // If clicked is false <=> button isn't currently pressed
+                      // Now set clicked to true and increment _counter
+                      // If 5 options are already picked: do nothing
+                      if (!clicked[index] && _count < 5) {
+                        clicked[index] = !clicked[index];
+                        answers.add(strs[index]);
+                        _count++;
+                        if (_count == 5) {
+                          // Sets continue button colour for UI help
+                          color = Colors.green;
+                        }
+                        // User can deselect an option
+                      } else if (clicked[index]) {
+                        clicked[index] = !clicked[index];
+                        answers.remove(strs[index].toString());
+                        _count--;
+                        color = Colors.grey;
                       }
-                    // User can deselect an option
-                    } else if (clicked[index]) {
-                      clicked[index] = !clicked[index];
-                      _count--;
-                      color = Colors.grey;
-                    }
-                  }),
-                },
-                child: Text(
-                  strs[index],
-                ),
-                // Different colour if clicked
-                style: ElevatedButton.styleFrom(
-                  primary: clicked[index]
-                      ? const Color.fromRGBO(151, 144, 187, 1)
-                      : Colors.grey[400],
-                  onPrimary: Colors.black,
-                ),
-              );
-            }),
+                    }),
+                  },
+                  child: Text(
+                    strs[index],
+                  ),
+                  // Different colour if clicked
+                  style: ElevatedButton.styleFrom(
+                    primary: clicked[index]
+                        ? const Color.fromRGBO(151, 144, 187, 1)
+                        : Colors.grey[400],
+                    onPrimary: Colors.black,
+                  ),
+                );
+              }),
+            ),
           ),
-        ),
-        // Navigator button to next mission page, mission 1b
-        ElevatedButton(
-          onPressed: () {
-            if (_count == 5) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Mission1B()),
-              );
-            }
-          },
-          child: const Text("Fortsätt till uppdrag 1b"),
-          style: ElevatedButton.styleFrom(
-            primary: color,
+          // Navigator button to next mission page, mission 1b
+          ElevatedButton(
+            onPressed: () {
+              if (_count == 5) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Mission1B(answers)),
+                );
+              }
+            },
+            child: const Text("Fortsätt till uppdrag 1b"),
+            style: ElevatedButton.styleFrom(
+              primary: color,
+            ),
           ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }
