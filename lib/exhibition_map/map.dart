@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/zones/planning_lab/mission1a.dart';
 
 class Mission {
   final String name;
@@ -8,14 +9,12 @@ class Mission {
 }
 
 class MissionButton extends StatelessWidget {
-
   MissionButton({
     required this.mission,
     required this.left,
     required this.top,
     required this.width,
     required this.height,
-
   }) : super(key: ObjectKey(mission));
 
   final Mission mission;
@@ -23,7 +22,6 @@ class MissionButton extends StatelessWidget {
   final double top;
   final double width;
   final double height;
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +33,12 @@ class MissionButton extends StatelessWidget {
         height: height,
         child: Text("Hello ${mission.name}"),
         decoration: BoxDecoration(
-            color: const Color(0xff7c94b6),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-                color: Colors.black,
-                width: 1
-            )
+          color: const Color(0xff7c94b6),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
         ),
       ),
     );
@@ -49,12 +47,15 @@ class MissionButton extends StatelessWidget {
 
 List<Mission> missions = [
   Mission("The High Street", 1),
+  Mission("Planning Lab", 1),
 ];
 
 List<MissionButton> missionButtons = [
-  MissionButton(mission: missions[0], left: 100.0, top: 0, width: 100.0, height: 100.0)
+  MissionButton(
+      mission: missions[0], left: 100.0, top: 0, width: 100.0, height: 100.0),
+  MissionButton(
+      mission: missions[1], left: 200.0, top: 500, width: 100.0, height: 100.0)
 ];
-
 
 Mission noMissionSelected = Mission("No mission selected", 0);
 
@@ -63,12 +64,25 @@ class ExhibitionMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: missionButtons,
-      )
+    return Column(
+      children: [
+        // TODO: Decide on how to create the map page
+        // With buttons or something else?
+        // Scaffold(
+        //   body: Stack(
+        //     children: missionButtons,
+        //   ),
+        // ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Mission1A()),
+            );
+          },
+          child: const Text("Planning Lab"),
+        )
+      ],
     );
   }
 }
-
-
