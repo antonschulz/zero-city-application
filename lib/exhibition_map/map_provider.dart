@@ -5,10 +5,14 @@ class ExhibitionMapProvider with ChangeNotifier {
   late Mission selectedMission;
 
   get getSelectedMission => selectedMission;
-  set setMission(mission) => selectedMission = mission;
 
   void reset() {
     selectedMission = noMissionSelected;
+    notifyListeners();
+  }
+
+  void setMission(Mission mission) {
+    selectedMission = mission;
     notifyListeners();
   }
 }

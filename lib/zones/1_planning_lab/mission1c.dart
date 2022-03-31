@@ -55,7 +55,7 @@ class _Mission1CState extends State<Mission1C> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ExhibitionMap()),
+                      builder: (context) => ExhibitionMap()),
                 );
               }
             },

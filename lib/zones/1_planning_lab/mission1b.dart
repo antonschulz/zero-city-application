@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/zones/planning_lab/mission1c.dart';
+import 'package:zero_city/zones/1_planning_lab/mission1c.dart';
 // import 'package:zero_city/const text_types/mission_body.dart';
 // import 'package:zero_city/const text_types/mission_title.dart';
 

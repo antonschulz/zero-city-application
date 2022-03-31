@@ -59,3 +59,14 @@ Guide follows steps from (Flutter's installation page)[https://docs.flutter.dev/
 6. Create Virtual device by clicking device manager (Icon in top-right which looks like a mobile phone)
 7. Follow steps, more detailed steps to come.
 8. Open device, and start the app by clicking run (green play button).
+
+
+## Zone Numbering
+1 - Planning Lab
+2 - City Port
+3 - Power Plant
+4 - Main Street
+5 - The City
+6 - The Park
+7 - Backstreet
+8 - The Square

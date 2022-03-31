@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
-import 'package:zero_city/zones/zone1/zone1_mission1.dart';
 
 import 'exhibition_map/map.dart';
 import 'exhibition_map/map_provider.dart';
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(title: 'Zero City Interactive Tool'),
         '/map': (context) => ExhibitionMap(),
-        '/zone/1/mission/1': (context) => ZoneOneMissionOne(),
       },
       //theme: ThemeData(
         // This is the theme of your application.

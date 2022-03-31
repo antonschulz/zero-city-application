@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 
-class MissionBody extends StatelessWidget {
+class ZoneBody extends StatelessWidget {
   late String text;
 
-  MissionBody(this.text, {Key? key}) : super(key: key);
+  ZoneBody(this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
