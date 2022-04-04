@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/zones/planning_lab/mission1a.dart';
+import 'package:zero_city/zones/power-plant/mission1a.dart';
 
 class Mission {
   final String name;
@@ -81,6 +82,16 @@ class ExhibitionMap extends StatelessWidget {
             );
           },
           child: const Text("Planning Lab"),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Power_plant_Mission1a()),
+            );
+          },
+          child: const Text("Power Plant"),
         )
       ],
     );
