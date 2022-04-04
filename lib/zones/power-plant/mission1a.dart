@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/missions/container_dropdown.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-class Mission1a extends StatefulWidget {
-  const Mission1a({Key? key}) : super(key: key);
+class Power_plant_Mission1a extends StatefulWidget {
+  const Power_plant_Mission1a({Key? key}) : super(key: key);
 
   @override
-  State<Mission1a> createState() => Mission1aState();
+  State<Power_plant_Mission1a> createState() => Power_plant_Mission1aState();
 }
 
-class Mission1aState extends State<Mission1a> {
+class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
   var dropdownValue = "1";
   var alternatives = ["1", "2"];
   var picture1 = Text("Generator", style: TextStyle(fontSize: 32));
@@ -49,7 +50,7 @@ class Mission1aState extends State<Mission1a> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Mission1a()),
+                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
                     );
                   },
                   child: const Text("Fortsätt till nästa uppdrag"),
