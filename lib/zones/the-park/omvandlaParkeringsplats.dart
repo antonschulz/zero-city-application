@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/missions/input.dart';
+import 'package:zero_city/exhibition_map/map.dart';
 
 class omvandlaParkering extends StatelessWidget {
 
@@ -68,7 +69,7 @@ class omvandlaParkering extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const omvandlaParkering()),
+                                builder: (context) => const ExhibitionMap()),
                           );
                         },
                       ),

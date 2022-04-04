@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/zones/planning_lab/mission1a.dart';
+import 'package:zero_city/zones/the-park/introPage.dart';
+
 
 class Mission {
   final String name;
@@ -48,13 +50,16 @@ class MissionButton extends StatelessWidget {
 List<Mission> missions = [
   Mission("The High Street", 1),
   Mission("Planning Lab", 1),
+  Mission("The Park",1),
 ];
 
 List<MissionButton> missionButtons = [
   MissionButton(
       mission: missions[0], left: 100.0, top: 0, width: 100.0, height: 100.0),
   MissionButton(
-      mission: missions[1], left: 200.0, top: 500, width: 100.0, height: 100.0)
+      mission: missions[1], left: 200.0, top: 500, width: 100.0, height: 100.0),
+  MissionButton(
+      mission: missions[2], left: 200.0, top: 500, width: 100.0, height: 100.0)
 ];
 
 Mission noMissionSelected = Mission("No mission selected", 0);
@@ -73,6 +78,12 @@ class ExhibitionMap extends StatelessWidget {
         //     children: missionButtons,
         //   ),
         // ),
+
+        const Divider(
+          height: 100,
+          color: Color.fromRGBO(255, 255, 255, 1),
+        ),
+
         ElevatedButton(
           onPressed: () {
             Navigator.push(
@@ -81,6 +92,21 @@ class ExhibitionMap extends StatelessWidget {
             );
           },
           child: const Text("Planning Lab"),
+        ),
+
+        const Divider(
+          height: 100,
+          color: Color.fromRGBO(255, 255, 255, 1),
+        ),
+
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const introPageThePark()),
+            );
+          },
+          child: const Text("The Park"),
         )
       ],
     );
