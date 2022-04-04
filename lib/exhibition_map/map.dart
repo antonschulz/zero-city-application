@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/zones/planning_lab/mission1a.dart';
+
 import 'package:zero_city/zones/the-park/introPage.dart';
+
+
+import 'package:zero_city/zones/power-plant/mission1a.dart';
 
 
 class Mission {
@@ -107,6 +111,17 @@ class ExhibitionMap extends StatelessWidget {
             );
           },
           child: const Text("The Park"),
+          ),
+          ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const Power_plant_Mission1a()),
+            );
+          },
+          child: const Text("Power Plant"),
+
         )
       ],
     );
