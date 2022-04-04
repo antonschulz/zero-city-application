@@ -25,12 +25,12 @@ class Container_dropdownState extends State<Container_dropdown> {
             Expanded(
                 child: DropdownButton<String>(
               value: widget.dropdownValue,
-              icon: const Icon(Icons.arrow_downward),
+              icon: const Icon(Icons.arrow_downward, color: Colors.black),
               elevation: 16,
               style: TextStyle(color: Colors.black),
               underline: Container(
-                height: 2,
-                color: Colors.amber[300],
+                height: 3,
+                color: Colors.black,
               ),
               onChanged: (String? newValue) {
                 setState(() {
@@ -41,7 +41,7 @@ class Container_dropdownState extends State<Container_dropdown> {
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: Text(value, style: TextStyle(fontSize: 20)),
                 );
               }).toList(),
             )),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/missions/container_dropdown.dart';
+import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
 class Mission1a extends StatefulWidget {
@@ -20,44 +21,43 @@ class Mission1aState extends State<Mission1a> {
     // TODO: implement build
     return Scaffold(
         body: Container(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Column(
-            children: [
-              MissionTitle(
-                  "\nPara ihop vindkraftverkets olika delar med den \nfunktion som de utför"),
-              Column(children: [
-                Divider(height: 50),
-                Text("1. Omvandlar/Genererar rörelseenergin till ström.",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
-                Divider(height: 50),
-                Text("2. Snurrar runt när det blåser.",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
-                Divider(height: 50),
-                Row(children: [
-                  Container_dropdown(picture1, alternatives),
-                  Container_dropdown(picture2, alternatives)
+            alignment: Alignment.center,
+            color: Color.fromRGBO(255, 200, 100, 0.5),
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                MissionTitle(
+                    "\nPara ihop vindkraftverkets olika delar med den \nfunktion som de utför"),
+                Column(children: [
+                  Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
+                  MissionBody(
+                      "1. Omvandlar/Genererar rörelseenergin till ström.\n\n\n2. Snurrar runt när det blåser."),
+                  Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
+                  /*
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: MissionBody("2. Snurrar runt när det blåser.")),
+                 */
+                  Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Container_dropdown(picture1, alternatives),
+                    Container_dropdown(picture2, alternatives)
+                  ]),
                 ]),
-              ]),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Mission1a()),
-                  );
-                },
-                child: const Text("Fortsätt till nästa uppdrag"),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Mission1a()),
+                    );
+                  },
+                  child: const Text("Fortsätt till nästa uppdrag"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
-      ),
-    ));
+              ],
+            )));
   }
 }
