@@ -33,8 +33,23 @@ class _InputState extends State<Input> {
           },
           controller: textController,
         ),
+        const Divider(
+          height: 50,
+          thickness: 5,
+          indent: 20,
+          endIndent: 0,
+          color: Color.fromRGBO(241, 216, 234, 1),
+        ),
         // Show submitted String under the input box
-        Text("Your answer: \n" + inputStr),
+        Text(
+            "Your answer: \n" + inputStr,
+            textAlign: TextAlign.left,
+            style: const TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+                fontStyle: FontStyle.italic
+            )
+        ),
       ],
     ));
   }

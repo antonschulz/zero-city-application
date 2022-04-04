@@ -20,9 +20,25 @@ class dansaFramParken extends StatelessWidget {
               child: Column(
                 children: [
                   MissionTitle("Dansa fram staden!"),
+                  const Divider(
+                    height: 50,
+                    thickness: 5,
+                    indent: 20,
+                    endIndent: 0,
+                    color: Color.fromRGBO(241, 216, 234, 1),
+                  ),
                   MissionBody("Hittar ni dansmattorna? Bra! Nu är det dags att ta fram era bästa moves och dansa staden grön. Här "
                       "handlar det inte om att hitta svaret på någon fråga eller så, bara att röra på sig. Let’s dance!"
                       " (Tips: Ni måste nog hjälpas åt.)"),
+
+                  const Divider(
+                    height: 100,
+                    thickness: 5,
+                    indent: 20,
+                    endIndent: 0,
+                    color: Color.fromRGBO(241, 216, 234, 1),
+                  ),
+
 
                   ElevatedButton(
                     style: ButtonStyle(

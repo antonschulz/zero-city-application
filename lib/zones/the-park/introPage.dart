@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/missions/input.dart';
+import 'package:zero_city/zones/the-park/dansaFramParken.dart';
 
-class omvandlaParkering extends StatelessWidget {
+class introPageThePark extends StatelessWidget {
 
-  const omvandlaParkering({Key? key}) : super(key: key);
+  const introPageThePark({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class omvandlaParkering extends StatelessWidget {
               Expanded(
                   child: Column(
                     children: [
-                      MissionTitle("Omvandla en parkeringsplats!"),
+                      MissionTitle("The Park"),
                       const Divider(
                         height: 50,
                         thickness: 5,
@@ -27,21 +27,13 @@ class omvandlaParkering extends StatelessWidget {
                         endIndent: 0,
                         color: Color.fromRGBO(241, 216, 234, 1),
                       ),
-                      MissionBody("Har vi inte lika många bilar i staden, så finns det mer yta till annat, till exempel parker. Kan ni "
-                          "komma på en annan ny sak som en före detta parkeringsplats skulle kunna bli?"),
+                      MissionBody("En stad är beroende av grönområden för att människorna som bor där ska trivas och må bra! I "
+                          "parker kan man umgås och växterna ger syre åt staden. Om en del av de platser som idag används "
+                          "till parkeringar och trafiklösningar för bilar kan omvandlas till grönområden, kan vi göra staden mer"
+                          " trivsam för alla som bor där"),
 
                       const Divider(
-                        height: 70,
-                        thickness: 5,
-                        indent: 20,
-                        endIndent: 0,
-                        color: Color.fromRGBO(241, 216, 234, 1),
-                      ),
-
-                      Input(),
-
-                      const Divider(
-                        height: 70,
+                        height: 100,
                         thickness: 5,
                         indent: 20,
                         endIndent: 0,
@@ -68,7 +60,7 @@ class omvandlaParkering extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const omvandlaParkering()),
+                                builder: (context) => const dansaFramParken()),
                           );
                         },
                       ),
