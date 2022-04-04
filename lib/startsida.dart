@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/zones/zone1/zone1_mission1.dart';
+import 'package:zero_city/zones/the-park/dansaFramParken.dart';
+import 'package:zero_city/zones/the-park/omvandlaParkeringsplats.dart';
+import 'package:zero_city/zones/the-park/introPage.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -68,7 +71,7 @@ class MyHomePage extends StatelessWidget {
                   ElevatedButton(onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ZoneOneMissionOne())
+                      MaterialPageRoute(builder: (context) => introPageThePark())
                     );
                   }, child: const Text('Exempel uppgragssida',
                       style: TextStyle(
