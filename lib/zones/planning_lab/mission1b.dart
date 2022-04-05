@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/zones/planning_lab/mission1c.dart';
-// import 'package:zero_city/const text_types/mission_body.dart';
-// import 'package:zero_city/const text_types/mission_title.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 
 class Mission1B extends StatefulWidget {
   List<String> inputList;
@@ -26,12 +26,10 @@ class _Mission1BState extends State<Mission1B> {
     return Scaffold(
       body: Column(
         children: [
-          // MissionTitle("Planning Lab 1b"),
-          // MissionBody(
-          //     "Välj ett av alternativen nedan som ni valde i fråga 1a
-          // att avstå ifrån.
-          // Försök att komma på något miljösmart det kan ersättas med.")
-
+          MissionTitle("Planning Lab 1b"),
+          MissionBody(
+              "Välj ett av alternativen nedan som ni valde i fråga 1a att avstå "
+              "ifrån. Försök att komma på något miljösmart det kan ersättas med."),
           Column(
             children: List.generate(
               5,

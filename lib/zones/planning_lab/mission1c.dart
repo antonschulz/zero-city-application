@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/exhibition_map/map.dart';
-// import 'package:zero_city/const text_types/mission_body.dart';
-// import 'package:zero_city/const text_types/mission_title.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 
 class Mission1C extends StatefulWidget {
   const Mission1C({Key? key}) : super(key: key);
@@ -22,9 +22,9 @@ class _Mission1CState extends State<Mission1C> {
     return Scaffold(
       body: Column(
         children: [
-          // MissionTitle("Planning Lab 1c"),
-          // MissionBody("Hur många procent av tiden står en bil stilla?
-          //Svaret hittar ni i utställningen."),
+          MissionTitle("Planning Lab 1c"),
+          MissionBody("Hur många procent av tiden står en bil stilla? "
+          "Svaret hittar ni i utställningen."),
           TextField(
             decoration: InputDecoration(
               hintText: _hint,

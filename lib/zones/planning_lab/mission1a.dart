@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/zones/planning_lab/mission1b.dart';
-// import 'package:zero_city/const text_types/mission_body.dart';
-// import 'package:zero_city/const text_types/mission_title.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 
 class Mission1A extends StatefulWidget {
   const Mission1A({Key? key}) : super(key: key);
@@ -56,10 +56,9 @@ class Mission1AState extends State<Mission1A> {
     return Scaffold(
       body: Column(
         children: [
-          // MissionTitle("Planning Lab 1a"),
-          // MissionBody(
-          //     "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
-          // Has to be flexible to avoid endless scroll error
+          MissionTitle("Planning Lab 1a"),
+          MissionBody(
+              "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
           Flexible(
             child: GridView.count(
               primary: false,
