@@ -68,14 +68,16 @@ class MyHomePage extends StatelessWidget {
                       );
                     },
                   ),
-                  ElevatedButton(onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => introPageThePark())
-                    );
-                  }, child: const Text('Exempel uppgragssida',
-                      style: TextStyle(
-                          fontSize: 35, fontWeight: FontWeight.bold)))
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => introPageThePark()));
+                      },
+                      child: const Text('Exempel uppgragssida',
+                          style: TextStyle(
+                              fontSize: 35, fontWeight: FontWeight.bold)))
                 ],
               ),
             ),

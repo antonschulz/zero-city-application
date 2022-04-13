@@ -27,8 +27,8 @@ class _InputState extends State<Input> {
               inputStr = str;
             });
             // Set textController to ""
-            // In essence, removes the typed string from 
-            // the input box when submitted 
+            // In essence, removes the typed string from
+            // the input box when submitted
             textController.text = "";
           },
           controller: textController,
@@ -41,15 +41,12 @@ class _InputState extends State<Input> {
           color: Color.fromRGBO(241, 216, 234, 1),
         ),
         // Show submitted String under the input box
-        Text(
-            "Your answer: \n" + inputStr,
+        Text("Your answer: \n" + inputStr,
             textAlign: TextAlign.left,
             style: const TextStyle(
                 fontSize: 22,
                 color: Colors.black,
-                fontStyle: FontStyle.italic
-            )
-        ),
+                fontStyle: FontStyle.italic)),
       ],
     ));
   }
