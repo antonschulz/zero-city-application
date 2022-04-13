@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class MissionBody extends StatelessWidget {
@@ -8,15 +7,9 @@ class MissionBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: TextAlign.left,
-      style: const TextStyle(
-        fontSize: 22,
-        color: Colors.black26,
-        fontStyle: FontStyle.italic
-      )
-    );
+    return Text(text,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+            fontSize: 22, color: Colors.black26, fontStyle: FontStyle.italic));
   }
-  
 }

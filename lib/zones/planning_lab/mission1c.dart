@@ -24,7 +24,7 @@ class _Mission1CState extends State<Mission1C> {
         children: [
           MissionTitle("Planning Lab 1c"),
           MissionBody("Hur många procent av tiden står en bil stilla? "
-          "Svaret hittar ni i utställningen."),
+              "Svaret hittar ni i utställningen."),
           TextField(
             decoration: InputDecoration(
               hintText: _hint,

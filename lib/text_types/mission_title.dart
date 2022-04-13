@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class MissionTitle extends StatelessWidget {
@@ -8,15 +7,9 @@ class MissionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-        text,
+    return Text(text,
         textAlign: TextAlign.left,
         style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black45,
-            fontSize:52
-        )
-    );
+            fontWeight: FontWeight.bold, color: Colors.black45, fontSize: 52));
   }
-
 }

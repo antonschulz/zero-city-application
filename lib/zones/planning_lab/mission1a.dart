@@ -11,7 +11,7 @@ class Mission1A extends StatefulWidget {
 }
 
 class Mission1AState extends State<Mission1A> {
-   // Strings for the boxes
+  // Strings for the boxes
   final List<String> strs = [
     "Egen bil som drivs med fossila bränslen",
     "Att köpa nya kläder",
@@ -41,7 +41,7 @@ class Mission1AState extends State<Mission1A> {
 
   // List to keep answers
   List<String> answers = [];
-  
+
   // Corresponding list of booleans to keep track if the button is clicked
   List<bool> clicked = List.filled(24, false);
 
