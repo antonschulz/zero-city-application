@@ -62,7 +62,6 @@ List<MissionButton> missionButtons = [
       mission: missions[1], left: 200.0, top: 500, width: 100.0, height: 100.0),
   MissionButton(
       mission: missions[2], left: 200.0, top: 500, width: 100.0, height: 100.0),
-  
 ];
 
 Mission noMissionSelected = Mission("No mission selected", 0);
