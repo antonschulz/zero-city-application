@@ -3,9 +3,7 @@ import 'package:zero_city/zones/planning_lab/mission1a.dart';
 import 'package:zero_city/zones/city_port/packa_container.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
 
-
 import 'package:zero_city/zones/power-plant/mission1a.dart';
-
 
 class Mission {
   final String name;
@@ -54,7 +52,7 @@ class MissionButton extends StatelessWidget {
 List<Mission> missions = [
   Mission("The High Street", 1),
   Mission("Planning Lab", 1),
-  Mission("The Park",1),
+  Mission("The Park", 1),
 ];
 
 List<MissionButton> missionButtons = [
@@ -64,7 +62,6 @@ List<MissionButton> missionButtons = [
       mission: missions[1], left: 200.0, top: 500, width: 100.0, height: 100.0),
   MissionButton(
       mission: missions[2], left: 200.0, top: 500, width: 100.0, height: 100.0),
-  
 ];
 
 Mission noMissionSelected = Mission("No mission selected", 0);
@@ -122,8 +119,8 @@ class ExhibitionMap extends StatelessWidget {
             );
           },
           child: const Text("The Park"),
-          ),
-          ElevatedButton(
+        ),
+        ElevatedButton(
           onPressed: () {
             Navigator.push(
               context,
@@ -132,7 +129,6 @@ class ExhibitionMap extends StatelessWidget {
             );
           },
           child: const Text("Power Plant"),
-
         )
       ],
     );

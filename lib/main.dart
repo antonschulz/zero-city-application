@@ -9,16 +9,13 @@ import 'missions/answers.dart';
 import 'missions/questions.dart';
 import 'startsida.dart';
 
-
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ExhibitionMapProvider()),
-      ],
-      child: const MyApp(),
-    )
-  );
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => ExhibitionMapProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,10 +31,9 @@ class MyApp extends StatelessWidget {
         '/zone/1/mission/1': (context) => ZoneOneMissionOne(),
       },
       //theme: ThemeData(
-        // This is the theme of your application.
-        // primaryColor: const Color.fromRGBO(152, 180, 187, 0.7),
+      // This is the theme of your application.
+      // primaryColor: const Color.fromRGBO(152, 180, 187, 0.7),
       // ),
     );
   }
 }
-
