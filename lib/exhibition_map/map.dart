@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/zones/planning_lab/mission1a.dart';
-import 'package:zero_city/zones/city_port/packa_container.dart';
+import 'package:zero_city/zones/city_port/city_port_intro.dart';
+import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
 
 import 'package:zero_city/zones/power-plant/mission1a.dart';
@@ -90,7 +90,7 @@ class ExhibitionMap extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Mission1A()),
+              MaterialPageRoute(builder: (context) => const PlanningLabIntro()),
             );
           },
           child: const Text("Planning Lab"),
@@ -100,7 +100,7 @@ class ExhibitionMap extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const PackaContainer()),
+              MaterialPageRoute(builder: (context) => const CityPortIntro()),
             );
           },
           child: const Text("City Port"),
