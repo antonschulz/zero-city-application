@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/zones/planning_lab/mission1c.dart';
+import 'package:zero_city/zones/planning_lab/planning_lab3.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-class Mission1B extends StatefulWidget {
+class PlanningLab2 extends StatefulWidget {
   List<String> inputList;
 
-  Mission1B(this.inputList, {Key? key}) : super(key: key);
+  PlanningLab2(this.inputList, {Key? key}) : super(key: key);
 
   @override
-  State<Mission1B> createState() => _Mission1BState(inputList);
+  State<PlanningLab2> createState() => _PlanningLab2State(inputList);
 }
 
-class _Mission1BState extends State<Mission1B> {
+class _PlanningLab2State extends State<PlanningLab2> {
   final List<String> inputList;
 
-  _Mission1BState(this.inputList);
+  _PlanningLab2State(this.inputList);
 
   int _group = 0;
   Color color = Colors.grey;
@@ -24,9 +24,10 @@ class _Mission1BState extends State<Mission1B> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
       body: Column(
         children: [
-          MissionTitle("Planning Lab 1b"),
+          MissionTitle("Ohållbara vanor"),
           MissionBody(
               "Välj ett av alternativen nedan som ni valde i fråga 1a att avstå "
               "ifrån. Försök att komma på något miljösmart det kan ersättas med."),
@@ -68,11 +69,11 @@ class _Mission1BState extends State<Mission1B> {
                 if (correct) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Mission1C()),
+                    MaterialPageRoute(builder: (context) => const PlanningLab3()),
                   );
                 }
               },
-              child: const Text("Fortsätt till uppdrag 1c"),
+              child: const Text("Gå vidare"),
               style: ElevatedButton.styleFrom(
                 primary: color,
               ),

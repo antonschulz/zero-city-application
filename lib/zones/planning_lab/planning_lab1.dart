@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/zones/planning_lab/mission1b.dart';
+import 'package:zero_city/zones/planning_lab/planning_lab2.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-class Mission1A extends StatefulWidget {
-  const Mission1A({Key? key}) : super(key: key);
+class PlanningLab1 extends StatefulWidget {
+  const PlanningLab1({Key? key}) : super(key: key);
 
   @override
-  State<Mission1A> createState() => Mission1AState();
+  State<PlanningLab1> createState() => PlanningLab1State();
 }
 
-class Mission1AState extends State<Mission1A> {
+class PlanningLab1State extends State<PlanningLab1> {
   // Strings for the boxes
   final List<String> strs = [
     "Egen bil som drivs med fossila bränslen",
@@ -54,18 +54,23 @@ class Mission1AState extends State<Mission1A> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
       body: Column(
         children: [
-          MissionTitle("Planning Lab 1a"),
+          MissionTitle("Ohållbara vanor"),
           MissionBody(
               "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
           Flexible(
             child: GridView.count(
               primary: false,
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              // 6 buttons per row
               crossAxisCount: 6,
+              // 4 pixels between each button
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
+              // AspectRatio needed to shrink the grid-buttons vertically to fit sceen
+              childAspectRatio: 2,
               // All option buttons are produced through this code
               // Creates a list of length 24
               // For every index of said list: creates a button with text from
@@ -108,17 +113,17 @@ class Mission1AState extends State<Mission1A> {
               }),
             ),
           ),
-          // Navigator button to next mission page, mission 1b
+          // Navigator button to next mission page, planning_lab2
           ElevatedButton(
             onPressed: () {
               if (_count == 5) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Mission1B(answers)),
+                  MaterialPageRoute(builder: (context) => PlanningLab2(answers)),
                 );
               }
             },
-            child: const Text("Fortsätt till uppdrag 1b"),
+            child: const Text("Fortsätt"),
             style: ElevatedButton.styleFrom(
               primary: color,
             ),
