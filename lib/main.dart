@@ -6,8 +6,6 @@ import 'package:zero_city/zones/zone1/zone1_mission1.dart';
 
 import 'exhibition_map/map.dart';
 import 'exhibition_map/map_provider.dart';
-import 'missions/answers.dart';
-import 'missions/questions.dart';
 import 'startsida.dart';
 
 void main() {
