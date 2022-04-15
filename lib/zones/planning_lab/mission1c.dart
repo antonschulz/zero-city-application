@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/state/planning_lab_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'dart:developer';
 
-class Mission1C extends StatefulWidget {
-  const Mission1C({Key? key}) : super(key: key);
-
-  @override
-  State<Mission1C> createState() => _Mission1CState();
-}
-
-class _Mission1CState extends State<Mission1C> {
-  Color color = Colors.grey;
+class PlanningLabMission1C extends StatelessWidget {
   final TextEditingController textController = TextEditingController();
-  bool correct = false;
-  String correctProcent = "123";
-  String _hint = "Skriv 123";
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +19,10 @@ class _Mission1CState extends State<Mission1C> {
               "Svaret hittar ni i utställningen."),
           TextField(
             decoration: InputDecoration(
-              hintText: _hint,
+              hintText: context.read<PlanningLabState>().hint,
             ),
             onSubmitted: (String str) {
-              setState(() {
-                // Assign the typed str to inputStr
-                if (str == correctProcent) {
-                  correct = true;
-                  _hint = correctProcent + " är rätt svar!";
-                  color = Colors.green;
-                } else {
-                  _hint = "Försök igen";
-                }
-              });
+              context.read<PlanningLabState>().assing1c(str);
               // Set textController to ""
               // In essence, removes the typed string from
               // the input box when submitted
@@ -51,7 +34,7 @@ class _Mission1CState extends State<Mission1C> {
           ),
           ElevatedButton(
             onPressed: () {
-              if (correct) {
+              if (context.read<PlanningLabState>().correct) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -61,7 +44,7 @@ class _Mission1CState extends State<Mission1C> {
             },
             child: const Text("Gå tillbaka till kartan"),
             style: ElevatedButton.styleFrom(
-              primary: color,
+              primary: context.watch<PlanningLabState>().color,
             ),
           ),
         ],
