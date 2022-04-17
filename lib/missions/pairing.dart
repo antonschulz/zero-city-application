@@ -30,17 +30,20 @@ class _PairingWidgetState extends State<PairingWidget> {
     List<Widget> list = [];
     for (var i = 0; i < col.length; i++) {
       list.add(Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: SizedBox(
-              width: 200.0,
-              height: 100.0,
-              child: ElevatedButton(
-                  onPressed: null,
-                  child: Text(col[i]),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.grey[400],
-                    onPrimary: Colors.black,
-                  )))));
+        padding: const EdgeInsets.all(15.0),
+        child: SizedBox(
+          width: 200.0,
+          height: 100.0,
+          child: ElevatedButton(
+            child: Text(col[i]),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.grey[400],
+              onPrimary: Colors.black,
+            ),
+            onPressed: null,
+          ),
+        ),
+      ));
     }
     return Column(children: list);
   }
