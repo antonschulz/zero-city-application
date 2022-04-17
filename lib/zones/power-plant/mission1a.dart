@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/missions/container_dropdown.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/zones/power-plant/mission1aX.dart';
 
 class Power_plant_Mission1a extends StatefulWidget {
   const Power_plant_Mission1a({Key? key}) : super(key: key);
@@ -55,7 +55,8 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
                         .setCompleteMission("Power Plant");
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+                      MaterialPageRoute(
+                          builder: (context) => Power_plant_Mission1aX()),
                     );
                   },
                   child: const Text("Fortsätt till nästa uppdrag"),
