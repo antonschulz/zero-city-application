@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/missions/container_dropdown.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
@@ -48,6 +50,7 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
                 Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
                 ElevatedButton(
                   onPressed: () {
+                    context.read<ExhibitionMapProvider>().setCompleteMission("Power Plant");
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => ExhibitionMap()),

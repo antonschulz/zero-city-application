@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/missions/input.dart';
@@ -62,10 +64,11 @@ class omvandlaParkering extends StatelessWidget {
                         TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
+                  context.read<ExhibitionMapProvider>().setCompleteMission("The Park");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ExhibitionMap()),
+                        builder: (context) => ExhibitionMap()),
                   );
                 },
               ),
