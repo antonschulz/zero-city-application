@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
+import 'package:zero_city/state/the_park_state.dart';
 import 'package:zero_city/zones/zone1/zone1_mission1.dart';
 
 import 'exhibition_map/map.dart';
@@ -13,6 +14,7 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (_) => ExhibitionMapProvider()),
       ChangeNotifierProvider(create: (_) => PlanningLabState()),
+      ChangeNotifierProvider(create: (_) => TheParkState()),
     ],
     child: const MyApp(),
   ));

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+import 'package:zero_city/state/the_park_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/missions/input.dart';
@@ -6,6 +8,7 @@ import 'package:zero_city/exhibition_map/map.dart';
 
 class omvandlaParkering extends StatelessWidget {
   const omvandlaParkering({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +40,28 @@ class omvandlaParkering extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-              Input(),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: "Skriv här",
+                ),
+                onChanged: (String str) {
+                  context.read<TheParkState>().setText(str);
+                },
+              ),
               const Divider(
-                height: 70,
+                height: 50,
                 thickness: 5,
                 indent: 20,
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
+              ),
+              // Show submitted String under the input box
+              Text("Erat svar: \n" + context.watch<TheParkState>().parkingAnswer,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontStyle: FontStyle.italic)
               ),
               ElevatedButton(
                 style: ButtonStyle(
