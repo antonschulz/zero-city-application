@@ -74,7 +74,7 @@ class _PairingWidgetState extends State<PairingWidget> {
     selectedRight = List.generate(widget.left.length, (index) => false);
 
     Widget leftCol = _PairingColumnWidget(texts: widget.left);
-    Widget rightCol = _PairingColumnWidget(texts: widget.left);
+    Widget rightCol = _PairingColumnWidget(texts: widget.right);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
