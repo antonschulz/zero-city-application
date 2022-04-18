@@ -53,14 +53,14 @@ class PairingProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  get left => _selectedLeft;
+  List<bool> get left => _selectedLeft;
 
   set left(newValue) {
     _selectedLeft = newValue;
     notifyListeners();
   }
 
-  get right => _selectedRight;
+  List<bool> get right => _selectedRight;
 
   set right(newValue) {
     _selectedRight = newValue;
