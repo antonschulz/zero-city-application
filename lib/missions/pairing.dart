@@ -86,7 +86,9 @@ class _PairingColumnWidget extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               primary: (side ? provider.left[i] : provider.right[i])
                   ? const Color.fromRGBO(151, 144, 187, 1)
-                  : Colors.grey[400],
+                  : provider.isPaired(side, i)
+                      ? Colors.green
+                      : Colors.grey[400],
               onPrimary: Colors.black,
             ),
             onPressed: () => {provider.setSelected(side, i)},
