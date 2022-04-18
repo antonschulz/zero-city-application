@@ -52,6 +52,17 @@ class PairingProvider with ChangeNotifier {
     _selectedRight = newValue;
     notifyListeners();
   }
+
+  bool isPaired(bool side, int index) {
+    if (side) {
+      return _pairs[index].active;
+    } else {
+      for (var pair in _pairs) {
+        if (pair == Pair(true, index)) return true;
+      }
+      return false;
+    }
+  }
 }
 
 class _PairingColumnWidget extends StatelessWidget {
