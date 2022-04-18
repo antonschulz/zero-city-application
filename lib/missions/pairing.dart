@@ -67,6 +67,8 @@ class PairingProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  List<Pair> get pairs => _pairs;
+
   bool isPaired(bool side, int index) {
     if (side) {
       return _pairs[index].active;
