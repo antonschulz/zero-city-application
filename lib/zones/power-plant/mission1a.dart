@@ -6,14 +6,14 @@ import 'package:zero_city/missions/pairing.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-class Power_plant_Mission1aX extends StatefulWidget {
-  const Power_plant_Mission1aX({Key? key}) : super(key: key);
+class Power_plant_Mission1a extends StatefulWidget {
+  const Power_plant_Mission1a({Key? key}) : super(key: key);
 
   @override
-  State<Power_plant_Mission1aX> createState() => Power_plant_Mission1aXState();
+  State<Power_plant_Mission1a> createState() => Power_plant_Mission1aState();
 }
 
-class Power_plant_Mission1aXState extends State<Power_plant_Mission1aX> {
+class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
   final List<String> left = [
     "Omvandlar rörelseenergin till ström",
     "Snurrar när det blåser",
