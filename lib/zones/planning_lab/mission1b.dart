@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/zones/planning_lab/mission1c.dart';
+import 'package:provider/src/provider.dart';
+import 'package:zero_city/state/planning_lab_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-class Mission1B extends StatefulWidget {
-  List<String> inputList;
+import 'mission1c.dart';
 
-  Mission1B(this.inputList, {Key? key}) : super(key: key);
-
-  @override
-  State<Mission1B> createState() => _Mission1BState(inputList);
-}
-
-class _Mission1BState extends State<Mission1B> {
-  final List<String> inputList;
-
-  _Mission1BState(this.inputList);
-
-  int _group = 0;
-  Color color = Colors.grey;
-  bool correct = false;
+class PlanningLabMission1B extends StatelessWidget {
+  const PlanningLabMission1B({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<String> inputList = context.watch<PlanningLabState>().answers;
+    print(context.read<PlanningLabState>().answer1b);
     return Scaffold(
       body: Column(
         children: [
@@ -37,11 +27,9 @@ class _Mission1BState extends State<Mission1B> {
                 return RadioListTile(
                   title: Text(inputList[index]),
                   value: index,
-                  groupValue: _group,
+                  groupValue: context.watch<PlanningLabState>().group,
                   onChanged: (value) {
-                    setState(() {
-                      _group = index;
-                    });
+                    context.read<PlanningLabState>().setGroup(index);
                   },
                 );
               },
@@ -52,29 +40,25 @@ class _Mission1BState extends State<Mission1B> {
               hintText: "Miljösmart ersättning",
             ),
             onSubmitted: (String str) {
-              setState(() {
-                // Assign the typed str to inputStr
-                if (str != "") {
-                  correct = true;
-                  color = Colors.green;
-                }
-              });
+              context.read<PlanningLabState>().assign1b(str);
             },
           ),
           Container(
             margin: const EdgeInsets.only(top: 10.0),
             child: ElevatedButton(
               onPressed: () {
-                if (correct) {
+                if (context.read<PlanningLabState>().correct) {
+                  context.read<PlanningLabState>().resetContinueButton();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Mission1C()),
+                    MaterialPageRoute(
+                        builder: (context) => PlanningLabMission1C()),
                   );
                 }
               },
               child: const Text("Fortsätt till uppdrag 1c"),
               style: ElevatedButton.styleFrom(
-                primary: color,
+                primary: context.watch<PlanningLabState>().color,
               ),
             ),
           ),

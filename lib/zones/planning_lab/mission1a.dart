@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/zones/planning_lab/mission1b.dart';
+import 'package:provider/src/provider.dart';
+import 'package:zero_city/state/planning_lab_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+
+import 'mission1b.dart';
 
 class Mission1A extends StatefulWidget {
   const Mission1A({Key? key}) : super(key: key);
@@ -11,46 +14,6 @@ class Mission1A extends StatefulWidget {
 }
 
 class Mission1AState extends State<Mission1A> {
-  // Strings for the boxes
-  final List<String> strs = [
-    "Egen bil som drivs med fossila bränslen",
-    "Att köpa nya kläder",
-    "Att äta kött",
-    "En ny smartphone",
-    "En ny dator",
-    "Flygresor",
-    "Nya möbler",
-    "Sociala medier",
-    "Nytt tv-spel",
-    "Julklappar",
-    "Stort boende",
-    "Husdjur, som katt eller hund",
-    "Att äga en egen bil",
-    "Varma bostäder (max 19 grader)",
-    "Shoppinggallerior",
-    "Swimmingpool",
-    "E-handel",
-    "Eget rum",
-    "Fotbollsplaner med konstgräs",
-    "Mat och godis som innehåller palmolja",
-    "Snabbmat",
-    "Sommarstuga",
-    "Avokado och exotiska frukter",
-    "Bubbelvatten och sportdrycker",
-  ];
-
-  // List to keep answers
-  List<String> answers = [];
-
-  // Corresponding list of booleans to keep track if the button is clicked
-  List<bool> clicked = List.filled(24, false);
-
-  // Count number of buttos pressed
-  var _count = 0;
-
-  // Color for continue button
-  Color color = Colors.grey;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,34 +35,14 @@ class Mission1AState extends State<Mission1A> {
               // Corresponding index of list strs
               children: List.generate(24, (index) {
                 return ElevatedButton(
-                  onPressed: () => {
-                    setState(() {
-                      // If clicked is false <=> button isn't currently pressed
-                      // Now set clicked to true and increment _counter
-                      // If 5 options are already picked: do nothing
-                      if (!clicked[index] && _count < 5) {
-                        clicked[index] = !clicked[index];
-                        answers.add(strs[index]);
-                        _count++;
-                        if (_count == 5) {
-                          // Sets continue button colour for UI help
-                          color = Colors.green;
-                        }
-                        // User can deselect an option
-                      } else if (clicked[index]) {
-                        clicked[index] = !clicked[index];
-                        answers.remove(strs[index].toString());
-                        _count--;
-                        color = Colors.grey;
-                      }
-                    }),
-                  },
+                  onPressed: () =>
+                      {context.read<PlanningLabState>().onClick(index)},
                   child: Text(
-                    strs[index],
+                    context.watch<PlanningLabState>().strs[index],
                   ),
                   // Different colour if clicked
                   style: ElevatedButton.styleFrom(
-                    primary: clicked[index]
+                    primary: context.watch<PlanningLabState>().clicked[index]
                         ? const Color.fromRGBO(151, 144, 187, 1)
                         : Colors.grey[400],
                     onPrimary: Colors.black,
@@ -111,16 +54,18 @@ class Mission1AState extends State<Mission1A> {
           // Navigator button to next mission page, mission 1b
           ElevatedButton(
             onPressed: () {
-              if (_count == 5) {
+              if (context.read<PlanningLabState>().count == 5) {
+                context.read<PlanningLabState>().resetContinueButton();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Mission1B(answers)),
+                  MaterialPageRoute(
+                      builder: (context) => PlanningLabMission1B()),
                 );
               }
             },
             child: const Text("Fortsätt till uppdrag 1b"),
             style: ElevatedButton.styleFrom(
-              primary: color,
+              primary: context.watch<PlanningLabState>().color,
             ),
           ),
         ],
