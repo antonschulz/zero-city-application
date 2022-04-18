@@ -64,11 +64,12 @@ class omvandlaParkering extends StatelessWidget {
                         TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
-                  context.read<ExhibitionMapProvider>().setCompleteMission("The Park");
+                  context
+                      .read<ExhibitionMapProvider>()
+                      .setCompleteMission("The Park");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => ExhibitionMap()),
+                    MaterialPageRoute(builder: (context) => ExhibitionMap()),
                   );
                 },
               ),

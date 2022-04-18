@@ -40,5 +40,4 @@ class ExhibitionMapProvider with ChangeNotifier {
     completedMission[missionName] = true;
     notifyListeners();
   }
-
 }

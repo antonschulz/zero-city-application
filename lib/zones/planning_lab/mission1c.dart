@@ -54,11 +54,12 @@ class _Mission1CState extends State<Mission1C> {
           ElevatedButton(
             onPressed: () {
               if (correct) {
-                context.read<ExhibitionMapProvider>().setCompleteMission("Planning Lab");
+                context
+                    .read<ExhibitionMapProvider>()
+                    .setCompleteMission("Planning Lab");
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => ExhibitionMap()),
+                  MaterialPageRoute(builder: (context) => ExhibitionMap()),
                 );
               }
             },

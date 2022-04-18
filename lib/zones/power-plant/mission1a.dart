@@ -50,7 +50,9 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
                 Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<ExhibitionMapProvider>().setCompleteMission("Power Plant");
+                    context
+                        .read<ExhibitionMapProvider>()
+                        .setCompleteMission("Power Plant");
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => ExhibitionMap()),

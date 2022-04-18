@@ -34,55 +34,49 @@ class MissionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool? completedMission = context.watch<ExhibitionMapProvider>().completedMission[mission.name];
+    bool? completedMission =
+        context.watch<ExhibitionMapProvider>().completedMission[mission.name];
 
     return Positioned(
-      left: left,
-      top: top,
-      child: GestureDetector(
-        onTap: () {
-          context.read<ExhibitionMapProvider>().setMission(mission);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => mission.missionPage)
-          );
-        },
-        child: Container(
-        width: width,
-        height: height,
-
-        child: Center(
-          child: Text(
-              mission.name,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: 'roboto',
-                fontWeight: FontWeight.w600,
-                fontSize: 28,
+        left: left,
+        top: top,
+        child: GestureDetector(
+          onTap: () {
+            context.read<ExhibitionMapProvider>().setMission(mission);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => mission.missionPage));
+          },
+          child: Container(
+            width: width,
+            height: height,
+            child: Center(
+              child: Text(
+                mission.name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'roboto',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 28,
+                ),
               ),
+            ),
+            decoration: BoxDecoration(
+              color:
+                  completedMission == true ? Graphics.GREEN : Graphics.HEAVEN,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.black,
+                width: 1,
+              ),
+            ),
           ),
-        ),
-        decoration: BoxDecoration(
-          color: completedMission == true ? Graphics.GREEN : Graphics.HEAVEN,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
-        ),
-      ),
-    )
-    );
+        ));
   }
 }
-
-
 
 Mission noMissionSelected = Mission("No mission selected", 0, const Text(""));
 
 class ExhibitionMap extends StatelessWidget {
-
   ExhibitionMap({Key? key}) : super(key: key);
 
   static List<Mission> missions = [
@@ -99,26 +93,53 @@ class ExhibitionMap extends StatelessWidget {
 
   // This section works, however to see changes, rerun the app
   static List<MissionButton> missionButtons = [
-    MissionButton(mission: missions[2], left: 400, top: 75, width: 200, height: 200.0),
-    MissionButton(mission: missions[3], left: 50.0, top: 50.0, width: 300.0, height: 300.0),
-    MissionButton(mission: missions[4], left: 50.0, top: 500.0, width: 250.0, height: 200.0),
-    MissionButton(mission: missions[5], left: 325, top: 375.0, width: 250.0, height: 100.0),
-    MissionButton(mission: missions[1], left: 325, top: 525, width: 150, height: 200),
-    MissionButton(mission: missions[7], left: 650, top: 50.0, width: 350.0, height: 250.0),
-    MissionButton(mission: missions[8], left: 750, top: 400, width: 250, height: 250),
-    MissionButton(mission: missions[0], left: 1050, top: 350, width: 100.0, height: 250.0),
-    MissionButton(mission: missions[6], left: 500, top: 525, width: 150, height: 200.0)
+    MissionButton(
+        mission: missions[2], left: 400, top: 75, width: 200, height: 200.0),
+    MissionButton(
+        mission: missions[3],
+        left: 50.0,
+        top: 50.0,
+        width: 300.0,
+        height: 300.0),
+    MissionButton(
+        mission: missions[4],
+        left: 50.0,
+        top: 500.0,
+        width: 250.0,
+        height: 200.0),
+    MissionButton(
+        mission: missions[5],
+        left: 325,
+        top: 375.0,
+        width: 250.0,
+        height: 100.0),
+    MissionButton(
+        mission: missions[1], left: 325, top: 525, width: 150, height: 200),
+    MissionButton(
+        mission: missions[7],
+        left: 650,
+        top: 50.0,
+        width: 350.0,
+        height: 250.0),
+    MissionButton(
+        mission: missions[8], left: 750, top: 400, width: 250, height: 250),
+    MissionButton(
+        mission: missions[0],
+        left: 1050,
+        top: 350,
+        width: 100.0,
+        height: 250.0),
+    MissionButton(
+        mission: missions[6], left: 500, top: 525, width: 150, height: 200.0)
   ];
-
 
   @override
   Widget build(BuildContext context) {
     // TODO: Decide on how to create the map pag
-    return
-      Scaffold(
-        body: Stack(
-          children: missionButtons,
-        ),
-      );
+    return Scaffold(
+      body: Stack(
+        children: missionButtons,
+      ),
+    );
   }
 }
