@@ -9,7 +9,6 @@ import 'package:zero_city/exhibition_map/map.dart';
 class omvandlaParkering extends StatelessWidget {
   const omvandlaParkering({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -56,13 +55,13 @@ class omvandlaParkering extends StatelessWidget {
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
               // Show submitted String under the input box
-              Text("Erat svar: \n" + context.watch<TheParkState>().parkingAnswer,
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                    fontSize: 22,
-                    color: Colors.black,
-                    fontStyle: FontStyle.italic)
-              ),
+              Text(
+                  "Erat svar: \n" + context.watch<TheParkState>().parkingAnswer,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                      fontStyle: FontStyle.italic)),
               ElevatedButton(
                 style: ButtonStyle(
                   fixedSize:

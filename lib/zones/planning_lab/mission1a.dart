@@ -14,8 +14,6 @@ class Mission1A extends StatefulWidget {
 }
 
 class Mission1AState extends State<Mission1A> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +35,8 @@ class Mission1AState extends State<Mission1A> {
               // Corresponding index of list strs
               children: List.generate(24, (index) {
                 return ElevatedButton(
-                  onPressed: () => {
-                    context.read<PlanningLabState>().onClick(index)
-                  },
+                  onPressed: () =>
+                      {context.read<PlanningLabState>().onClick(index)},
                   child: Text(
                     context.watch<PlanningLabState>().strs[index],
                   ),
@@ -61,7 +58,8 @@ class Mission1AState extends State<Mission1A> {
                 context.read<PlanningLabState>().resetContinueButton();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PlanningLabMission1B()),
+                  MaterialPageRoute(
+                      builder: (context) => PlanningLabMission1B()),
                 );
               }
             },

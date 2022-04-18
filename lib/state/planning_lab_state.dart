@@ -108,5 +108,4 @@ class PlanningLabState with ChangeNotifier {
     correct = false;
     color = Colors.grey;
   }
-
 }

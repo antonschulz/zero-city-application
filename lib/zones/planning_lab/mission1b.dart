@@ -9,7 +9,6 @@ import 'mission1c.dart';
 class PlanningLabMission1B extends StatelessWidget {
   const PlanningLabMission1B({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     List<String> inputList = context.watch<PlanningLabState>().answers;
@@ -52,7 +51,8 @@ class PlanningLabMission1B extends StatelessWidget {
                   context.read<PlanningLabState>().resetContinueButton();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PlanningLabMission1C()),
+                    MaterialPageRoute(
+                        builder: (context) => PlanningLabMission1C()),
                   );
                 }
               },
