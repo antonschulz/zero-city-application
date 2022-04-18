@@ -1,4 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class PairingProvider with ChangeNotifier {
+  late List<bool> _selectedLeft;
+  late List<bool> _selectedRight;
+
+  PairingProvider(int length, {Key? key}) {
+    _selectedLeft = List.filled(length, false);
+    _selectedRight = List.filled(length, false);
+  }
+
+  void setSelected(bool side, int i) {
+    // Updates a selected list to either set index i to true or everything to false
+    // If side is "false", left is updated. If side is "true", right is updated.
+    List<bool> selected = side ? _selectedLeft : _selectedRight;
+    if (selected[i]) {
+      selected[i] = false;
+    } else {
+      for (var k = 0; k < selected.length; k++) {
+        selected[k] = k == i;
+      }
+    }
+    side ? _selectedLeft = selected : _selectedRight = selected;
+    notifyListeners();
+  }
+
+  get left => _selectedLeft;
+
+  set left(newValue) {
+    _selectedLeft = newValue;
+    notifyListeners();
+  }
+
+  get right => _selectedRight;
+
+  set right(newValue) {
+    _selectedRight = newValue;
+    notifyListeners();
+  }
+}
 
 class _PairingColumnWidget extends StatefulWidget {
   final List<String> texts;
