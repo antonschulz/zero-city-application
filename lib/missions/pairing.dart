@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+class Pair {
+  final bool active;
+  final int target;
+
+  const Pair(this.active, this.target);
+
+  @override
+  bool operator ==(Object other) {
+    return other is Pair && active == other.active && target == other.target;
+  }
+}
+
 class PairingProvider with ChangeNotifier {
   late List<bool> _selectedLeft;
   late List<bool> _selectedRight;
