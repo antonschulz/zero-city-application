@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
+import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
@@ -34,10 +35,12 @@ class PlanningLabMission1C extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               if (context.read<PlanningLabState>().correct) {
+                context
+                    .read<ExhibitionMapProvider>()
+                    .setCompleteMission("Planning Lab");
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ExhibitionMap()),
+                  MaterialPageRoute(builder: (context) => ExhibitionMap()),
                 );
               }
             },
