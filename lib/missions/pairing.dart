@@ -42,23 +42,20 @@ class PairingProvider with ChangeNotifier {
 
 class _PairingColumnWidget extends StatefulWidget {
   final List<String> texts;
+  final bool side;
 
-  _PairingColumnWidget({required this.texts});
+  const _PairingColumnWidget(this.texts, this.side);
 
   @override
   _PairingColumnWidgetState createState() => _PairingColumnWidgetState();
 }
 
 class _PairingColumnWidgetState extends State<_PairingColumnWidget> {
-  List<bool> selected = [];
-  List<bool> paired = [];
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<PairingProvider>(context);
     List<Widget> list = [];
     for (var i = 0; i < widget.texts.length; i++) {
-      selected.add(false);
-      paired.add(false);
       list.add(Padding(
         padding: const EdgeInsets.all(15.0),
         child: SizedBox(
@@ -67,24 +64,12 @@ class _PairingColumnWidgetState extends State<_PairingColumnWidget> {
           child: ElevatedButton(
             child: Text(widget.texts[i]),
             style: ElevatedButton.styleFrom(
-              primary: selected[i]
+              primary: (widget.side ? provider.left[i] : provider.right[i])
                   ? const Color.fromRGBO(151, 144, 187, 1)
-                  : paired[i]
-                      ? Colors.green
-                      : Colors.grey[400],
+                  : Colors.grey[400],
               onPrimary: Colors.black,
             ),
-            onPressed: () => {
-              setState(() {
-                if (selected[i]) {
-                  selected[i] = false;
-                } else {
-                  for (var k = 0; k < selected.length; k++) {
-                    selected[k] = k == i;
-                  }
-                }
-              })
-            },
+            onPressed: () => {provider.setSelected(widget.side, i)},
           ),
         ),
       ));
@@ -104,21 +89,19 @@ class PairingWidget extends StatefulWidget {
 }
 
 class _PairingWidgetState extends State<PairingWidget> {
-  List<bool> selectedLeft = [];
-  List<bool> selectedRight = [];
   List<int> links = [];
 
   @override
   Widget build(BuildContext context) {
-    selectedLeft = List.filled(widget.left.length, false);
-    selectedRight = List.filled(widget.left.length, false);
-
-    Widget leftCol = _PairingColumnWidget(texts: widget.left);
-    Widget rightCol = _PairingColumnWidget(texts: widget.right);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [leftCol, rightCol],
+    return ChangeNotifierProvider(
+      create: (_) => PairingProvider(widget.left.length),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _PairingColumnWidget(widget.left, true),
+          _PairingColumnWidget(widget.right, false),
+        ],
+      ),
     );
   }
 }
