@@ -10,15 +10,15 @@ class PairingProvider with ChangeNotifier {
     _selectedRight = List.filled(length, false);
   }
 
-  void setSelected(bool side, int i) {
+  void setSelected(bool side, int index) {
     // Updates a selected list to either set index i to true or everything to false
     // If side is "false", left is updated. If side is "true", right is updated.
     List<bool> selected = side ? _selectedLeft : _selectedRight;
-    if (selected[i]) {
-      selected[i] = false;
+    if (selected[index]) {
+      selected[index] = false;
     } else {
       for (var k = 0; k < selected.length; k++) {
-        selected[k] = k == i;
+        selected[k] = k == index;
       }
     }
     side ? _selectedLeft = selected : _selectedRight = selected;
