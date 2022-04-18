@@ -70,8 +70,8 @@ class _PairingWidgetState extends State<PairingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    selectedLeft = List.generate(widget.left.length, (index) => false);
-    selectedRight = List.generate(widget.left.length, (index) => false);
+    selectedLeft = List.filled(widget.left.length, false);
+    selectedRight = List.filled(widget.left.length, false);
 
     Widget leftCol = _PairingColumnWidget(texts: widget.left);
     Widget rightCol = _PairingColumnWidget(texts: widget.right);
