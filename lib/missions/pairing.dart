@@ -40,36 +40,31 @@ class PairingProvider with ChangeNotifier {
   }
 }
 
-class _PairingColumnWidget extends StatefulWidget {
+class _PairingColumnWidget extends StatelessWidget {
   final List<String> texts;
   final bool side;
 
   const _PairingColumnWidget(this.texts, this.side);
 
   @override
-  _PairingColumnWidgetState createState() => _PairingColumnWidgetState();
-}
-
-class _PairingColumnWidgetState extends State<_PairingColumnWidget> {
-  @override
   Widget build(BuildContext context) {
     final provider = Provider.of<PairingProvider>(context);
     List<Widget> list = [];
-    for (var i = 0; i < widget.texts.length; i++) {
+    for (var i = 0; i < texts.length; i++) {
       list.add(Padding(
         padding: const EdgeInsets.all(15.0),
         child: SizedBox(
           width: 200.0,
           height: 100.0,
           child: ElevatedButton(
-            child: Text(widget.texts[i]),
+            child: Text(texts[i]),
             style: ElevatedButton.styleFrom(
-              primary: (widget.side ? provider.left[i] : provider.right[i])
+              primary: (side ? provider.left[i] : provider.right[i])
                   ? const Color.fromRGBO(151, 144, 187, 1)
                   : Colors.grey[400],
               onPrimary: Colors.black,
             ),
-            onPressed: () => {provider.setSelected(widget.side, i)},
+            onPressed: () => {provider.setSelected(side, i)},
           ),
         ),
       ));
