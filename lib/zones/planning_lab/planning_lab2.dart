@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
+import 'package:zero_city/zones/planning_lab/planning_lab3.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-import 'mission1c.dart';
+class PlanningLab2 extends StatefulWidget {
+  List<String> inputList;
 
-class PlanningLabMission1B extends StatelessWidget {
-  const PlanningLabMission1B({Key? key}) : super(key: key);
+  PlanningLab2(this.inputList, {Key? key}) : super(key: key);
+
+  @override
+  State<PlanningLab2> createState() => _PlanningLab2State(inputList);
+}
+
+class _PlanningLab2State extends State<PlanningLab2> {
+  final List<String> inputList;
+
+  _PlanningLab2State(this.inputList);
+
+  int _group = 0;
+  Color color = Colors.grey;
+  bool correct = false;
 
   @override
   Widget build(BuildContext context) {
     List<String> inputList = context.watch<PlanningLabState>().answers;
     print(context.read<PlanningLabState>().answer1b);
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
       body: Column(
         children: [
-          MissionTitle("Planning Lab 1b"),
+          MissionTitle("Ohållbara vanor"),
           MissionBody(
               "Välj ett av alternativen nedan som ni valde i fråga 1a att avstå "
               "ifrån. Försök att komma på något miljösmart det kan ersättas med."),
@@ -51,12 +66,11 @@ class PlanningLabMission1B extends StatelessWidget {
                   context.read<PlanningLabState>().resetContinueButton();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => PlanningLabMission1C()),
+                    MaterialPageRoute(builder: (context) => const Mission1C()),
                   );
                 }
               },
-              child: const Text("Fortsätt till uppdrag 1c"),
+              child: const Text("Gå vidare"),
               style: ElevatedButton.styleFrom(
                 primary: context.watch<PlanningLabState>().color,
               ),
