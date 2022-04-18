@@ -126,6 +126,41 @@ class PairingWidget extends StatefulWidget {
   _PairingWidgetState createState() => _PairingWidgetState();
 }
 
+class _PairingPainter extends CustomPainter {
+  final PairingProvider provider;
+  _PairingPainter(this.provider);
+
+  Offset calcOffset(Size size, bool side, int i) {
+    // TODO: Make this less hardcoded and more adaptible
+    // Will break if button sizes are changed or if one column has more
+    // buttons than the other.
+    double xDiff = side ? -(size.width / 4) + 164 : (size.width / 4) - 164;
+    double x = xDiff + size.width / 2;
+    double y = 65.0 + 130 * i;
+    return Offset(x, y);
+  }
+
+  @override
+  void paint(canvas, size) {
+    for (var l = 0; l < provider.left.length; l++) {
+      for (var r = 0; r < provider.right.length; r++) {
+        canvas.drawLine(
+          calcOffset(size, true, l),
+          calcOffset(size, false, r),
+          Paint()
+            ..strokeWidth = 5
+            ..color = provider.pairs[l] == Pair(true, r)
+                ? Colors.black
+                : Color.fromARGB(0, 0, 0, 0),
+        );
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(oldDelegate) => false;
+}
+
 class _PairingWidgetState extends State<PairingWidget> {
   List<int> links = [];
 
