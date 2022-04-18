@@ -16,10 +16,12 @@ class Pair {
 class PairingProvider with ChangeNotifier {
   late List<bool> _selectedLeft;
   late List<bool> _selectedRight;
+  late List<Pair> _pairs;
 
   PairingProvider(int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
     _selectedRight = List.filled(length, false);
+    _pairs = List.filled(length, Pair(false, 0));
   }
 
   void setSelected(bool side, int index) {
