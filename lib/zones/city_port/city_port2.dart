@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
@@ -58,10 +60,12 @@ class _CityPort2State extends State<CityPort2> {
               margin: const EdgeInsets.only(top: 10.0),
               child: ElevatedButton(
                 onPressed: () {
+                  context
+                      .read<ExhibitionMapProvider>()
+                      .setCompleteMission("City Port");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const ExhibitionMap()),
+                    MaterialPageRoute(builder: (context) => ExhibitionMap()),
                   );
                 },
                 child: const Text("Tillbaka till kartan"),

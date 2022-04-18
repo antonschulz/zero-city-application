@@ -62,7 +62,7 @@ class PlanningLab1State extends State<PlanningLab1> {
                 context.read<PlanningLabState>().resetContinueButton();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Mission1B(answers)),
+                  MaterialPageRoute(builder: (context) => PlanningLab2()),
                 );
               }
             },

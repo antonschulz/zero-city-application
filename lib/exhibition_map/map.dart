@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/utils/Graphics.dart';
-import 'package:zero_city/zones/planning_lab/mission1a.dart';
+import 'package:zero_city/zones/city_port/city_port_intro.dart';
+import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 
 import 'package:zero_city/zones/the-park/introPage.dart';
 
@@ -81,10 +82,10 @@ class ExhibitionMap extends StatelessWidget {
 
   static List<Mission> missions = [
     Mission("The High Street", 0, const Text("test")),
-    Mission("Planning Lab", 1, const Mission1A()),
+    Mission("Planning Lab", 1, const PlanningLabIntro()),
     Mission("The Park", 2, const introPageThePark()),
     Mission("Power Plant", 3, const Power_plant_Mission1a()),
-    Mission("City Port", 4, const Text("")),
+    Mission("City Port", 4, const CityPortIntro()),
     Mission("The Main Street", 5, const Text("")),
     Mission("The City", 6, const Text("")),
     Mission("The Backstreet", 7, const Text("")),

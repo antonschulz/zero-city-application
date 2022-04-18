@@ -59,7 +59,8 @@ class _CityPort1State extends State<CityPort1> {
                   if (_enteredText) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const CityPort2()),
+                      MaterialPageRoute(
+                          builder: (context) => const CityPort2()),
                     );
                   }
                 },

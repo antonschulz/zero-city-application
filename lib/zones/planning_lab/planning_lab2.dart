@@ -6,26 +6,17 @@ import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
 class PlanningLab2 extends StatefulWidget {
-  List<String> inputList;
-
-  PlanningLab2(this.inputList, {Key? key}) : super(key: key);
+  const PlanningLab2({Key? key}) : super(key: key);
 
   @override
-  State<PlanningLab2> createState() => _PlanningLab2State(inputList);
+  State<PlanningLab2> createState() => _PlanningLab2State();
 }
 
 class _PlanningLab2State extends State<PlanningLab2> {
-  final List<String> inputList;
-
-  _PlanningLab2State(this.inputList);
-
-  int _group = 0;
-  Color color = Colors.grey;
-  bool correct = false;
-
   @override
   Widget build(BuildContext context) {
     List<String> inputList = context.watch<PlanningLabState>().answers;
+
     print(context.read<PlanningLabState>().answer1b);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
@@ -66,7 +57,8 @@ class _PlanningLab2State extends State<PlanningLab2> {
                   context.read<PlanningLabState>().resetContinueButton();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Mission1C()),
+                    MaterialPageRoute(
+                        builder: (context) => const PlanningLab3()),
                   );
                 }
               },

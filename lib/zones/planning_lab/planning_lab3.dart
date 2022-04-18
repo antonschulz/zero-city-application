@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
@@ -19,9 +21,9 @@ class _PlanningLab3State extends State<PlanningLab3> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MissionTitle("Stillastående bilar"),
-            const SizedBox(
-                    height: 16,
-                  ),
+          const SizedBox(
+            height: 16,
+          ),
           MissionBody("Hur många procent av tiden står en bil stilla? "
               "Svaret hittar ni i utställningen."),
           const SizedBox(
@@ -29,9 +31,12 @@ class _PlanningLab3State extends State<PlanningLab3> {
           ),
           ElevatedButton(
             onPressed: () {
+              context
+                  .read<ExhibitionMapProvider>()
+                  .setCompleteMission("Planning Lab");
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ExhibitionMap()),
+                MaterialPageRoute(builder: (context) => ExhibitionMap()),
               );
             },
             child: const Text("Vi har hittat svaret! (tillbaka till kartan)"),
