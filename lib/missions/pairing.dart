@@ -166,14 +166,18 @@ class _PairingWidgetState extends State<PairingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = PairingProvider(widget.left.length);
     return ChangeNotifierProvider(
-      create: (_) => PairingProvider(widget.left.length),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _PairingColumnWidget(widget.left, true),
-          _PairingColumnWidget(widget.right, false),
-        ],
+      create: (_) => provider,
+      child: CustomPaint(
+        painter: _PairingPainter(provider),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _PairingColumnWidget(widget.left, true),
+            _PairingColumnWidget(widget.right, false),
+          ],
+        ),
       ),
     );
   }
