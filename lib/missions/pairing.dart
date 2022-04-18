@@ -36,6 +36,20 @@ class PairingProvider with ChangeNotifier {
       }
     }
     side ? _selectedLeft = selected : _selectedRight = selected;
+
+    if (_selectedLeft.any((element) => element) &&
+        _selectedRight.any((element) => element)) {
+      var l = _selectedLeft.indexOf(true);
+      var r = _selectedRight.indexOf(true);
+
+      for (var i = 0; i < _pairs.length; i++) {
+        if (_pairs[i].target == r) _pairs[i] = Pair(false, r);
+      }
+      _pairs[l] = Pair(true, r);
+      _selectedLeft = List.filled(_selectedLeft.length, false);
+      _selectedRight = List.filled(_selectedRight.length, false);
+    }
+
     notifyListeners();
   }
 
