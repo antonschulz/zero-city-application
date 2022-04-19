@@ -64,7 +64,7 @@ class MainStreetState2 extends State<MainStreet2> {
                 ScaffoldMessenger.of(context).showSnackBar(snack);
               }
             },
-            child: const Text("Fortsätt till uppdrag 1b"),
+            child: const Text("Fortsätt till nästa uppdrag"),
             style: ElevatedButton.styleFrom(
               primary: context.watch<MainStreetState>().color,
             ),
