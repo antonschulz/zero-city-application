@@ -41,7 +41,7 @@ class MainStreetState1 extends State<MainStreet1> {
               children: List.generate(24, (index) {
                 return ElevatedButton(
                   onPressed: () =>
-                  {context.read<PlanningLabState>().onClick(index)},
+                      {context.read<PlanningLabState>().onClick(index)},
                   child: Text(
                     context.watch<PlanningLabState>().strs[index],
                   ),

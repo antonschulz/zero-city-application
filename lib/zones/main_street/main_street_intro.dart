@@ -25,15 +25,16 @@ class MainStreetIntro extends StatelessWidget {
                     endIndent: 0,
                     color: Color.fromRGBO(241, 216, 234, 1),
                   ),
-                  ZoneBody("En stor del av utsläppen kommer från vår konsumtion. Hur vi handlar har betydelse. Kan vi göra på"
-                    "ett annat sätt? Hur kan vi tänka hållbart?"),
+                  ZoneBody(
+                      "En stor del av utsläppen kommer från vår konsumtion. Hur vi handlar har betydelse. Kan vi göra på"
+                      "ett annat sätt? Hur kan vi tänka hållbart?"),
                   const SizedBox(
                     height: 100,
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
                       fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 80)),
+                          MaterialStateProperty.all<Size>(const Size(250, 80)),
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color.fromRGBO(152, 180, 187, 1)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -49,8 +50,7 @@ class MainStreetIntro extends StatelessWidget {
                       //when pressed move to class "FirstRoute"
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => MainStreet1()),
+                        MaterialPageRoute(builder: (context) => MainStreet1()),
                       );
                     },
                   ),

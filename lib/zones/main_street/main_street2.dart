@@ -18,8 +18,8 @@ class MainStreet2 extends StatefulWidget {
 class MainStreetState2 extends State<MainStreet2> {
   // Fel svar snackbar.
   SnackBar snack = const SnackBar(
-    backgroundColor: Colors.redAccent,
-    content: Text(
+      backgroundColor: Colors.redAccent,
+      content: Text(
         "Fel svar!",
         textAlign: TextAlign.center,
         style: TextStyle(
@@ -27,8 +27,7 @@ class MainStreetState2 extends State<MainStreet2> {
           fontWeight: FontWeight.bold,
         ),
       ),
-    duration: Duration(seconds: 7)
-  );
+      duration: Duration(seconds: 7));
 
   @override
   Widget build(BuildContext context) {

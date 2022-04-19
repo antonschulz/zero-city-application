@@ -18,7 +18,6 @@ class MainStreet3 extends StatefulWidget {
 class MainStreetState3 extends State<MainStreet3> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
       body: Column(
@@ -34,7 +33,9 @@ class MainStreetState3 extends State<MainStreet3> {
               context.read<MainStreetState>().setSmartThingsWithJeans(0, str);
             },
             onSubmitted: (String str) {
-              context.read<MainStreetState>().submitSmartThingsWithJeans(0, str);
+              context
+                  .read<MainStreetState>()
+                  .submitSmartThingsWithJeans(0, str);
             },
           ),
           TextField(
@@ -45,7 +46,9 @@ class MainStreetState3 extends State<MainStreet3> {
               context.read<MainStreetState>().setSmartThingsWithJeans(1, str);
             },
             onSubmitted: (String str) {
-              context.read<MainStreetState>().submitSmartThingsWithJeans(1, str);
+              context
+                  .read<MainStreetState>()
+                  .submitSmartThingsWithJeans(1, str);
             },
           ),
           TextField(
@@ -56,21 +59,27 @@ class MainStreetState3 extends State<MainStreet3> {
               context.read<MainStreetState>().setSmartThingsWithJeans(2, str);
             },
             onSubmitted: (String str) {
-              context.read<MainStreetState>().submitSmartThingsWithJeans(2, str);
+              context
+                  .read<MainStreetState>()
+                  .submitSmartThingsWithJeans(2, str);
             },
           ),
           // Navigator button to next mission page, planning_lab2
           ElevatedButton(
             onPressed: () {
               if (context.read<MainStreetState>().canContinue) {
-                context.read<ExhibitionMapProvider>().setCompleteMission("The Main Street");
+                context
+                    .read<ExhibitionMapProvider>()
+                    .setCompleteMission("The Main Street");
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ExhibitionMap()),
                 );
               }
             },
-            child: (context.watch<MainStreetState>().canContinue) ? const Text("Gå vidare") : const Text("Skriv 3 saker"),
+            child: (context.watch<MainStreetState>().canContinue)
+                ? const Text("Gå vidare")
+                : const Text("Skriv 3 saker"),
             style: ElevatedButton.styleFrom(
               primary: context.watch<MainStreetState>().color,
             ),
