@@ -14,8 +14,6 @@ class CityPort2 extends StatefulWidget {
 }
 
 class _CityPort2State extends State<CityPort2> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +37,8 @@ class _CityPort2State extends State<CityPort2> {
                 3,
                 (index) {
                   return RadioListTile(
-                    title: Text(context.read<CityPortState>().alternatives[index]),
+                    title:
+                        Text(context.read<CityPortState>().alternatives[index]),
                     value: index,
                     groupValue: context.watch<CityPortState>().group,
                     onChanged: (value) {
