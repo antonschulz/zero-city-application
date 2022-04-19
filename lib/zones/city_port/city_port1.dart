@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/zones/city_port/city_port2.dart';
@@ -7,12 +9,10 @@ class CityPort1 extends StatefulWidget {
   const CityPort1({Key? key}) : super(key: key);
 
   @override
-  State<CityPort1> createState() => _CityPort1State();
+  State<CityPort1> createState() => CityPort1State();
 }
 
-class _CityPort1State extends State<CityPort1> {
-  Color color = Colors.grey;
-  bool _enteredText = false;
+class CityPort1State extends State<CityPort1> {
 
   @override
   Widget build(BuildContext context) {
@@ -42,21 +42,18 @@ class _CityPort1State extends State<CityPort1> {
               ),
               keyboardType: TextInputType.number,
               maxLength: 3,
+              onChanged: (String str) {
+                context.read<CityPortState>().setText(str);
+              },
               onSubmitted: (String str) {
-                setState(() {
-                  // Assign the typed str to inputStr
-                  if (str != "") {
-                    _enteredText = true;
-                    color = Colors.green;
-                  }
-                });
+                context.read<CityPortState>().setEnteredText();
               },
             ),
             Container(
               margin: const EdgeInsets.only(top: 16.0),
               child: ElevatedButton(
                 onPressed: () {
-                  if (_enteredText) {
+                  if (context.read<CityPortState>().enteredText) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -66,7 +63,7 @@ class _CityPort1State extends State<CityPort1> {
                 },
                 child: const Text("Fortsätt till nästa uppdrag"),
                 style: ElevatedButton.styleFrom(
-                  primary: color,
+                  primary: context.watch<CityPortState>().color,
                 ),
               ),
             ),

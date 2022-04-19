@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
+import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
@@ -13,13 +14,7 @@ class CityPort2 extends StatefulWidget {
 }
 
 class _CityPort2State extends State<CityPort2> {
-  int _group = 0;
 
-  final List<String> alternatives = [
-    "Inför en lag som gör att man bara får lämna tillbaka fem produkter per år.",
-    "Köp färre saker online - så vi inte behöver returnera så mycket!",
-    "Köp lokalt, så att du kan returnera genom att besöka butiken själv.",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +39,11 @@ class _CityPort2State extends State<CityPort2> {
                 3,
                 (index) {
                   return RadioListTile(
-                    title: Text(alternatives[index]),
+                    title: Text(context.read<CityPortState>().alternatives[index]),
                     value: index,
-                    groupValue: _group,
+                    groupValue: context.watch<CityPortState>().group,
                     onChanged: (value) {
-                      setState(() {
-                        _group = index;
-                      });
+                      context.read<CityPortState>().selectAlternative(index);
                     },
                   );
                 },
