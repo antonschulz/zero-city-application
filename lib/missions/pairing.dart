@@ -142,7 +142,7 @@ class _PairingPainter extends CustomPainter {
   _PairingPainter(this.provider);
 
   Offset calcOffset(Size size, bool side, int i) {
-    // TODO: Make this less hardcoded and more adaptible
+    // TODO: Make this less hardcoded and more adaptable
     // Will break if button sizes are changed or if one column has more
     // buttons than the other.
     double xDiff = side ? -(size.width / 4) + 164 : (size.width / 4) - 164;
