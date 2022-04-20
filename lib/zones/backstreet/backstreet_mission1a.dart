@@ -12,10 +12,6 @@ class Backstreet_Mission1a extends StatefulWidget {
 }
 
 class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
-  int hej() {
-    return 1;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,38 +20,97 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
         children: [
           Column(
             children: [
-              Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
+              Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionTitle("Tidslinjen"),
               MissionBody(
-                  "När uppfanns föremålen? Para ihop rätt årtal med rätt sak!"),
+                  "När uppfanns föremålen? Para ihop rätt sak med rätt årtal!"),
             ],
           ),
-          Column(
-            children: List.generate(4, (index) {
-              return Column(
-                children: [
-                  ElevatedButton(
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints.expand(),
-                        child: Column(
-                          children: [
-                            Text("hej", style: TextStyle(fontSize: 25)),
-                            Image(
-                                image:
-                                    AssetImage('assets/images/startsida.png')),
-                          ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Left side buttons
+              Column(
+                children: List.generate(4, (index) {
+                  return Column(
+                    children: [
+                      ElevatedButton(
+                        child: Container(
+                          width: 300,
+                          height: 130,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints.expand(),
+                            child: Column(
+                              children: [
+                                Text(
+                                    context
+                                        .read<BackstreetState>()
+                                        .object[index],
+                                    style: TextStyle(fontSize: 25)),
+                                Container(
+                                  height: 50,
+                                  width: 300,
+                                  child: ConstrainedBox(
+                                    constraints: BoxConstraints.expand(),
+                                    child: Image(
+                                        image: AssetImage(
+                                            'assets/images/startsida.png')),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        onPressed: () => {
+                          context.read<BackstreetState>().left_onPressed(index)
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: context
+                              .watch<BackstreetState>()
+                              .currentColorLeft[index],
+                          onPrimary: Colors.black,
                         ),
                       ),
-                    ),
-                    onPressed: () => {context.read<BackstreetState>().hej()},
-                  ),
-                  Divider(height: 5, color: Color.fromRGBO(0, 0, 0, 0)),
-                ],
-              );
-            }),
+                      Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
+                    ],
+                  );
+                }),
+              ),
+              VerticalDivider(width: 300),
+              // Right side button
+              Column(
+                children: List.generate(4, (index) {
+                  return Column(
+                    children: [
+                      ElevatedButton(
+                        child: Container(
+                          width: 300,
+                          height: 130,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints.expand(),
+                            child: Center(
+                              child: Text(
+                                  context.read<BackstreetState>().year[index],
+                                  style: TextStyle(fontSize: 25)),
+                            ),
+                          ),
+                        ),
+                        onPressed: () => {
+                          context.read<BackstreetState>().right_onPressed(index)
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: context
+                              .watch<BackstreetState>()
+                              .currentColorRight[index],
+                          onPrimary: Colors.black,
+                        ),
+                      ),
+                      Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
+                    ],
+                  );
+                }),
+              ),
+            ],
           ),
         ],
       ),
