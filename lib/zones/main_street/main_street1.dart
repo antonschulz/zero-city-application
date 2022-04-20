@@ -3,7 +3,6 @@ import 'package:provider/src/provider.dart';
 import 'package:zero_city/missions/pairing.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
 import 'package:zero_city/zones/main_street/main_street2.dart';
-import 'package:zero_city/zones/planning_lab/planning_lab2.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
@@ -33,7 +32,7 @@ class MainStreetState1 extends State<MainStreet1> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MainStreet2()),
+                MaterialPageRoute(builder: (context) => const MainStreet2()),
               );
             },
             child: const Text("Fortsätt till nästa uppdrag"),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainStreetState with ChangeNotifier {
-  late String KGClothesThrown = "";
+  late String kgClothesThrown = "";
   late Color color = Colors.grey;
   String correctAnswer = "123";
   bool isCorrectAnswer = false;
@@ -12,12 +12,12 @@ class MainStreetState with ChangeNotifier {
   late List<String> smartThingsWithJeans = ["", "", ""];
 
   void setClothesThrown(String str) {
-    KGClothesThrown = str;
+    kgClothesThrown = str;
     notifyListeners();
   }
 
   void submitClothesThrown(String str) {
-    KGClothesThrown = str;
+    kgClothesThrown = str;
     isCorrectAnswer = str == correctAnswer;
     displaySnackBar = str != correctAnswer;
 

@@ -3,8 +3,6 @@ import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/state/main_street_state.dart';
-import 'package:zero_city/state/planning_lab_state.dart';
-import 'package:zero_city/zones/planning_lab/planning_lab2.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
