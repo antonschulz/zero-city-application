@@ -11,33 +11,28 @@ class TheSquareState with ChangeNotifier {
   //variables for button
   var color = Colors.grey;
 
-
   //start timer and count down
   void startTimer() {
     timerStarted = true;
-    notifyListeners();
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (start == 0) {
           timer.cancel();
           timerFinished = true;
           color = Colors.green;
-          notifyListeners();
         } else {
           start--;
-          notifyListeners();
         }
+        notifyListeners();
       },
     );
   }
 
   //format seconds to MM:SS
   String formatTime(int seconds) {
-    return '${(seconds ~/ 60).toString().padLeft(2, '0')}:${(seconds % 60)
-        .toString()
-        .padLeft(2, '0')}';
+    return '${(seconds ~/ 60).toString().padLeft(2, '0')}:${(seconds % 60).toString().padLeft(2, '0')}';
   }
 
   //get time
@@ -50,6 +45,4 @@ class TheSquareState with ChangeNotifier {
     _timer?.cancel();
     super.dispose();
   }
-
-
 }
