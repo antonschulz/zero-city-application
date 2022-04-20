@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
-import 'package:zero_city/missions/container_dropdown.dart';
+import 'package:zero_city/missions/pairing.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
@@ -14,14 +14,17 @@ class Power_plant_Mission1a extends StatefulWidget {
 }
 
 class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
-  var dropdownValue = "1";
-  var alternatives = ["1", "2"];
-  var picture1 = Text("Generator", style: TextStyle(fontSize: 32));
-  var picture2 = Text("Rotorblad/Vindturbin", style: TextStyle(fontSize: 32));
+  final List<String> left = [
+    "Omvandlar rörelseenergin till ström",
+    "Snurrar när det blåser",
+  ];
+  final List<String> right = [
+    "Generator",
+    "Rotorblad/Vindturbin",
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         body: Container(
             alignment: Alignment.center,
@@ -29,25 +32,11 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                MissionTitle(
-                    "\nPara ihop vindkraftverkets olika delar med den \nfunktion som de utför"),
-                Column(children: [
-                  Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
-                  MissionBody(
-                      "1. Omvandlar/Genererar rörelseenergin till ström.\n\n\n2. Snurrar runt när det blåser."),
-                  Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
-                  /*
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: MissionBody("2. Snurrar runt när det blåser.")),
-                 */
-                  Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Container_dropdown(picture1, alternatives),
-                    Container_dropdown(picture2, alternatives)
-                  ]),
-                ]),
-                Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
+                MissionTitle("\nVindkraftverkets delar"),
+                MissionBody("Para ihop rätt alternativ med varandra"),
+                Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+                PairingWidget(left: left, right: right),
+                Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
                 ElevatedButton(
                   onPressed: () {
                     context
