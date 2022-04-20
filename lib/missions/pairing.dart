@@ -65,7 +65,7 @@ class PairingProvider with ChangeNotifier {
       } else if (side.isRight()) {
         for (var i = 0; i < _pairs.length; i++) {
           if (_pairs[i].target == index) {
-            _pairs[index] = const Pair(false, 0);
+            _pairs[i] = const Pair(false, 0);
           }
         }
       }
