@@ -32,13 +32,13 @@ class PairingProvider with ChangeNotifier {
   PairingProvider(int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
     _selectedRight = List.filled(length, false);
-    _pairs = List.filled(length, Pair(false, 0));
+    _pairs = List.filled(length, const Pair(false, 0));
   }
 
-  void setSelected(bool side, int index) {
+  void setSelected(Side side, int index) {
     // Updates a selected list to either set index i to true or everything to false
     // If side is "false", left is updated. If side is "true", right is updated.
-    List<bool> selected = side ? _selectedLeft : _selectedRight;
+    List<bool> selected = side.isLeft() ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
     } else {
@@ -46,7 +46,7 @@ class PairingProvider with ChangeNotifier {
         selected[k] = k == index;
       }
     }
-    side ? _selectedLeft = selected : _selectedRight = selected;
+    side.isLeft() ? _selectedLeft = selected : _selectedRight = selected;
 
     if (_selectedLeft.any((element) => element) &&
         _selectedRight.any((element) => element)) {
@@ -80,8 +80,8 @@ class PairingProvider with ChangeNotifier {
 
   List<Pair> get pairs => _pairs;
 
-  bool isPaired(bool side, int index) {
-    if (side) {
+  bool isPaired(Side side, int index) {
+    if (side.isLeft()) {
       return _pairs[index].active;
     } else {
       for (var pair in _pairs) {
@@ -94,7 +94,7 @@ class PairingProvider with ChangeNotifier {
 
 class _PairingColumnWidget extends StatelessWidget {
   final List<String> texts;
-  final bool side;
+  final Side side;
 
   const _PairingColumnWidget(this.texts, this.side);
 
@@ -111,7 +111,7 @@ class _PairingColumnWidget extends StatelessWidget {
           child: ElevatedButton(
             child: Text(texts[i]),
             style: ElevatedButton.styleFrom(
-              primary: (side ? provider.left[i] : provider.right[i])
+              primary: (side.isLeft() ? provider.left[i] : provider.right[i])
                   ? const Color.fromRGBO(151, 144, 187, 1)
                   : provider.isPaired(side, i)
                       ? Colors.green
@@ -185,8 +185,8 @@ class _PairingWidgetState extends State<PairingWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _PairingColumnWidget(widget.left, true),
-            _PairingColumnWidget(widget.right, false),
+            _PairingColumnWidget(widget.left, Side.left()),
+            _PairingColumnWidget(widget.right, Side.right()),
           ],
         ),
       ),
