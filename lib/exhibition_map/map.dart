@@ -82,7 +82,7 @@ class ExhibitionMap extends StatelessWidget {
     Mission("The High Street", 0, const Text("test")),
     Mission("Planning Lab", 1, const PlanningLabIntro()),
     Mission("The Park", 2, const introPageThePark()),
-    Mission("Power Plant", 3, const Power_plant_Mission1a()),
+    Mission("Power Plant", 3, const PowerPlantMission1a()),
     Mission("City Port", 4, const CityPortIntro()),
     Mission("The Main Street", 5, const Text("")),
     Mission("The City", 6, const Text("")),
