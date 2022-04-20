@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+class Side {
+  final bool _side;
+
+  const Side(this._side);
+  Side.left() : _side = true;
+  Side.right() : _side = false;
+
+  bool isLeft() => _side;
+  bool isRight() => !_side;
+}
+
 class Pair {
   final bool active;
   final int target;
