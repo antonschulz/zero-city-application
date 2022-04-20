@@ -1,8 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
+import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/state/backstreet_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+
+double boxWidth = 250;
+double boxHeight = 100;
+
+class LinePainter extends CustomPainter {
+  List<double> positionx;
+  List<double> positiony;
+  List<int> pairs;
+  var points;
+  LinePainter(this.positionx, this.positiony, this.pairs);
+
+  // create point-pairs for each pair that is connected
+  void pointGenerator() {
+    points = List.generate(10, (index) => (Offset(0, 0)));
+    // ugly homemade for each enumerate loop
+    var count = 0;
+    for (var i in pairs) {
+      // if there is a pair
+      if (i != -1) {
+        points[count] = Offset(
+            positionx[count] + boxWidth, positiony[count] + (boxHeight / 2));
+        points[count + 5] =
+            Offset(positionx[i + 5], positiony[i + 5] + (boxHeight / 2));
+      }
+      count += 1;
+    }
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    pointGenerator();
+    final paint = Paint()
+      ..color = Colors.green
+      ..strokeWidth = 5
+      ..strokeCap = StrokeCap.round;
+    for (int i = 0; i < 5; i++) {
+      canvas.drawLine(points[i], points[i + 5], paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(oldDelegate) => false;
+}
 
 class Backstreet_Mission1a extends StatefulWidget {
   const Backstreet_Mission1a({Key? key}) : super(key: key);
@@ -12,107 +57,146 @@ class Backstreet_Mission1a extends StatefulWidget {
 }
 
 class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
+  List<GlobalKey> keyCap = List<GlobalKey>.generate(
+      10, (index) => GlobalKey(debugLabel: 'key_$index'),
+      growable: false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(160, 214, 190, 1),
-      body: Column(
-        children: [
-          Column(
-            children: [
-              Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
-              MissionTitle("Tidslinjen"),
-              MissionBody(
-                  "När uppfanns föremålen? Para ihop rätt sak med rätt årtal!"),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Left side buttons
-              Column(
-                children: List.generate(4, (index) {
-                  return Column(
-                    children: [
-                      ElevatedButton(
-                        child: Container(
-                          width: 300,
-                          height: 130,
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints.expand(),
-                            child: Column(
-                              children: [
-                                Text(
-                                    context
-                                        .read<BackstreetState>()
-                                        .object[index],
-                                    style: TextStyle(fontSize: 25)),
-                                Container(
-                                  height: 50,
-                                  width: 300,
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints.expand(),
-                                    child: Image(
-                                        image: AssetImage(
-                                            'assets/images/startsida.png')),
+      body: CustomPaint(
+        painter: LinePainter(
+          context.watch<BackstreetState>().positionx,
+          context.watch<BackstreetState>().positiony,
+          context.watch<BackstreetState>().pairs,
+        ),
+        child: Column(
+          children: [
+            Column(
+              children: [
+                Divider(height: 5, color: Color.fromRGBO(0, 0, 0, 0)),
+                MissionTitle("Tidslinjen"),
+                MissionBody(
+                    "När uppfanns föremålen? Para ihop rätt sak med rätt årtal!"),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Left side buttons
+                Column(
+                  children: List.generate(5, (index) {
+                    return Column(
+                      children: [
+                        ElevatedButton(
+                          key: keyCap[index],
+                          child: Container(
+                            width: boxWidth,
+                            height: boxHeight,
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints.expand(),
+                              child: Column(
+                                children: [
+                                  Text(
+                                      context
+                                          .read<BackstreetState>()
+                                          .object[index],
+                                      style: TextStyle(fontSize: 25)),
+                                  Container(
+                                    height: 50,
+                                    width: 300,
+                                    child: ConstrainedBox(
+                                      constraints: BoxConstraints.expand(),
+                                      child: context
+                                          .read<BackstreetState>()
+                                          .images[index],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        onPressed: () => {
-                          context.read<BackstreetState>().left_onPressed(index)
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: context
-                              .watch<BackstreetState>()
-                              .currentColorLeft[index],
-                          onPrimary: Colors.black,
-                        ),
-                      ),
-                      Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
-                    ],
-                  );
-                }),
-              ),
-              VerticalDivider(width: 300),
-              // Right side button
-              Column(
-                children: List.generate(4, (index) {
-                  return Column(
-                    children: [
-                      ElevatedButton(
-                        child: Container(
-                          width: 300,
-                          height: 130,
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints.expand(),
-                            child: Center(
-                              child: Text(
-                                  context.read<BackstreetState>().year[index],
-                                  style: TextStyle(fontSize: 25)),
-                            ),
+                          onPressed: () => {
+                            context
+                                .read<BackstreetState>()
+                                .left_onPressed(index, keyCap[index])
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: context
+                                .watch<BackstreetState>()
+                                .currentColorLeft[index],
+                            onPrimary: Colors.black,
                           ),
                         ),
-                        onPressed: () => {
-                          context.read<BackstreetState>().right_onPressed(index)
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: context
-                              .watch<BackstreetState>()
-                              .currentColorRight[index],
-                          onPrimary: Colors.black,
+                        Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
+                      ],
+                    );
+                  }),
+                ),
+                VerticalDivider(width: 300),
+                // Right side button
+                Column(
+                  children: List.generate(5, (index) {
+                    return Column(
+                      children: [
+                        ElevatedButton(
+                          key: keyCap[index + 5],
+                          child: Container(
+                            width: boxWidth,
+                            height: boxHeight,
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints.expand(),
+                              child: Center(
+                                child: Text(
+                                    context.read<BackstreetState>().year[index],
+                                    style: TextStyle(fontSize: 25)),
+                              ),
+                            ),
+                          ),
+                          onPressed: () => {
+                            context
+                                .read<BackstreetState>()
+                                .right_onPressed(index, keyCap[index + 5])
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: context
+                                .watch<BackstreetState>()
+                                .currentColorRight[index],
+                            onPrimary: Colors.black,
+                          ),
                         ),
-                      ),
-                      Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
-                    ],
+                        Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
+                      ],
+                    );
+                  }),
+                ),
+              ],
+            ),
+            // Continue-button
+            ElevatedButton(
+              onPressed: () {
+                var allPairsChosen = true;
+                var pairs = context.read<BackstreetState>().pairs;
+                for (var i in pairs) {
+                  if (i == -1) {
+                    allPairsChosen = false;
+                  }
+                }
+                if (allPairsChosen) {
+                  context
+                      .read<ExhibitionMapProvider>()
+                      .setCompleteMission("The Backstreet");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ExhibitionMap()),
                   );
-                }),
-              ),
-            ],
-          ),
-        ],
+                }
+              },
+              child: const Text("Nästa uppdrag"),
+            ),
+          ],
+        ),
       ),
     );
   }

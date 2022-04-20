@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 class BackstreetState with ChangeNotifier {
   List<String> year = ["1832", "1875", "1890", "1915", "1926"];
 
+  List<Image> images = [
+    Image(image: AssetImage('assets/images/bleirot.png')),
+    Image(image: AssetImage('assets/images/nordstjärnan.png')),
+    Image(image: AssetImage('assets/images/ångmaskinen.png')),
+    Image(image: AssetImage('assets/images/ottomotorn.png')),
+    Image(image: AssetImage('assets/images/ford.png')),
+  ];
+
   List<String> object = [
     "Flygplanet Bleriot",
     "Cykeln Nordstjärnan",
@@ -16,24 +24,41 @@ class BackstreetState with ChangeNotifier {
   If there is a pair between the first object and the first year than
   pairs[0] will equal the index of the corresponding year, that is: 0 in this case.
    */
-  List<int> pairs = List.generate(4, (index) {
+  List<int> pairs = List.generate(5, (index) {
     return -1;
   });
 
   // grey, green, blue-isch
   final List<Color> buttonColors = [Colors.grey, Colors.green, Colors.cyan];
 
-  List<Color> currentColorLeft = List.generate(4, (index) {
+  List<Color> currentColorLeft = List.generate(5, (index) {
     return Colors.grey;
   });
 
-  List<Color> currentColorRight = List.generate(4, (index) {
+  List<Color> currentColorRight = List.generate(5, (index) {
     return Colors.grey;
   });
   // Index for the button selected on left side
   var selectedLeft = -1;
 
-  void left_onPressed(index) {
+  List<double> positionx = List.generate(10, (index) => (0));
+  List<double> positiony = List.generate(10, (index) => (0));
+
+  void updatePosition(side, index, key) {
+    var currentBox = index;
+    if (side == "right") {
+      // right side starts at index 4
+      currentBox += 5;
+    }
+    RenderBox box = key.currentContext.findRenderObject() as RenderBox;
+    Offset position = box.localToGlobal(Offset.zero); //this is global position
+    positionx[currentBox] = position.dx;
+    positiony[currentBox] = position.dy;
+
+    notifyListeners();
+  }
+
+  void left_onPressed(index, containerKey) {
     /*
     When an item on the left side is pressed:
     - Remove the current pair that the item is connected to
@@ -41,7 +66,11 @@ class BackstreetState with ChangeNotifier {
     - Update the color of the pressed button
     - Update the color of previously pressed button if it is on left side
     - If there is a paired button -> change color for it as well
+    - Update coordinates
      */
+
+    // update position of widget (button)
+    updatePosition("left", index, containerKey);
 
     // change color of connected pair
     if (pairs[index] != -1) {
@@ -63,7 +92,8 @@ class BackstreetState with ChangeNotifier {
     notifyListeners();
   }
 
-  void right_onPressed(index) {
+  void right_onPressed(index, containerKey) {
+    updatePosition("right", index, containerKey);
     // oldConnected holds the index of the old left button connected to this
     // right side item, if there is none: then oldConnected = -1
     var oldConnected = pairs.indexWhere((element) => (element == index));
