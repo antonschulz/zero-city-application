@@ -6,6 +6,8 @@ import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 import 'package:zero_city/zones/power-plant/mission1a.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
 
+import 'package:zero_city/zones/the-square/theSquareIntroPage.dart';
+
 import 'map_provider.dart';
 
 class Mission {
@@ -87,7 +89,7 @@ class ExhibitionMap extends StatelessWidget {
     Mission("The Main Street", 5, const Text("")),
     Mission("The City", 6, const Text("")),
     Mission("The Backstreet", 7, const Text("")),
-    Mission("The Square", 8, const Text(""))
+    Mission("The Square", 8, const introPageTheSquare()),
   ];
 
   // This section works, however to see changes, rerun the app
