@@ -37,7 +37,6 @@ class PairingProvider with ChangeNotifier {
 
   void setSelected(Side side, int index) {
     // Updates a selected list to either set index i to true or everything to false
-    // If side is "false", left is updated. If side is "true", right is updated.
     List<bool> selected = side.isLeft() ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
