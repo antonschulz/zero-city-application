@@ -50,7 +50,8 @@ class MainStreetIntro extends StatelessWidget {
                       //when pressed move to class "FirstRoute"
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const MainStreet1()),
+                        MaterialPageRoute(
+                            builder: (context) => const MainStreet1()),
                       );
                     },
                   ),
