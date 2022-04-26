@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class PlanningLabState with ChangeNotifier {
   final List<String> strs = [
@@ -38,44 +39,43 @@ class PlanningLabState with ChangeNotifier {
   var count = 0;
 
   // Color for continue button
-  Color color = Colors.grey;
+  Color color = Graphics.GREY;
 
   int group = 0;
   bool correct = false;
 
-  String correctProcent = "123";
-  String hint = "Skriv 123";
+  String correctProcent = "95";
+  bool displaySnackBar = false;
 
-  String answer1b = "";
+  String answer2 = "";
 
   void setGroup(int val) {
     group = val;
     notifyListeners();
   }
 
-  void assign1b(String str) {
+  void assign2(String str) {
     // Assign the typed str to inputStr
 
     if (str != "") {
       correct = true;
-      color = Colors.green;
-      answer1b = str;
+      color = Graphics.GREEN;
+      answer2 = str;
     } else {
       correct = false;
-      color = Colors.grey;
+      color = Graphics.GREY;
     }
 
     notifyListeners();
   }
 
-  void assing1c(String str) {
+  void submit3(String str) {
     // Assign the typed str to inputStr
     if (str == correctProcent) {
       correct = true;
-      hint = correctProcent + " är rätt svar!";
-      color = Colors.green;
+      color = Graphics.GREEN;
     } else {
-      hint = "Försök igen";
+      displaySnackBar = true;
     }
 
     notifyListeners();
@@ -98,7 +98,7 @@ class PlanningLabState with ChangeNotifier {
       clicked[index] = !clicked[index];
       answers.remove(strs[index].toString());
       count--;
-      color = Colors.grey;
+      color = Graphics.GREY;
     }
 
     notifyListeners();
@@ -106,6 +106,6 @@ class PlanningLabState with ChangeNotifier {
 
   void resetContinueButton() {
     correct = false;
-    color = Colors.grey;
+    color = Graphics.GREY;
   }
 }
