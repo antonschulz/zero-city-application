@@ -133,7 +133,7 @@ class _TheCity2State extends State<TheCity2> {
               child: ElevatedButton(
                 onPressed: () {
                   if (context.read<TheCityState>().canContinue) {
-                    // Since this is the last mission in this zone, 
+                    // Since this is the last mission in this zone,
                     // setCompleteMission is used through ExibitionMapProvider
                     // to change the zone button green, i.e. completed
                     context
@@ -145,7 +145,7 @@ class _TheCity2State extends State<TheCity2> {
                     );
                   }
                 },
-               child: (context.watch<TheCityState>().canContinue)
+                child: (context.watch<TheCityState>().canContinue)
                     // If canContinue == true
                     ? const Text(
                         "Gå tillbaka till kartan",

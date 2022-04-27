@@ -14,7 +14,7 @@ class TheCityState with ChangeNotifier {
     "",
     "",
   ];
-  
+
   // When the text field is changed, setImportantElements is executed
   void setImportantElements(int idx, String str) {
     // As long as the user input non-empty string, update importantElements
