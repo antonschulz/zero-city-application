@@ -8,6 +8,7 @@ import 'package:zero_city/zones/power-plant/mission1a.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
 
 import 'package:zero_city/zones/the-square/theSquareIntroPage.dart';
+import 'package:zero_city/zones/the_city/the_city_intro.dart';
 
 import 'map_provider.dart';
 
@@ -79,7 +80,7 @@ class MissionButton extends StatelessWidget {
 Mission noMissionSelected = Mission("No mission selected", 0, const Text(""));
 
 class ExhibitionMap extends StatelessWidget {
-  ExhibitionMap({Key? key}) : super(key: key);
+  const ExhibitionMap({Key? key}) : super(key: key);
 
   static List<Mission> missions = [
     Mission("The High Street", 0, const Text("test")),
@@ -88,7 +89,7 @@ class ExhibitionMap extends StatelessWidget {
     Mission("Power Plant", 3, const Power_plant_Mission1a()),
     Mission("City Port", 4, const CityPortIntro()),
     Mission("The Main Street", 5, const Text("")),
-    Mission("The City", 6, const Text("")),
+    Mission("The City", 6, const TheCityIntro()),
     Mission("The Backstreet", 7, const Backstreet_Mission1a()),
     Mission("The Backstreet", 7, const Text("")),
     Mission("The Square", 8, const introPageTheSquare()),
@@ -138,7 +139,6 @@ class ExhibitionMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Decide on how to create the map pag
     return Scaffold(
       body: Stack(
         children: missionButtons,

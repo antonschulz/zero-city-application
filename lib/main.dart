@@ -4,6 +4,7 @@ import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/state/backstreet_state.dart';
 import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
+import 'package:zero_city/state/the_city_state.dart';
 import 'package:zero_city/state/the_park_state.dart';
 import 'package:zero_city/zones/zone1/zone1_mission1.dart';
 import 'package:zero_city/state/the_square_state.dart';
@@ -21,6 +22,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => BackstreetState()),
       ChangeNotifierProvider(create: (_) => TheSquareState()),
       ChangeNotifierProvider(create: (_) => CityPortState()),
+      ChangeNotifierProvider(create: (_) => TheCityState()),
     ],
     child: const MyApp(),
   ));
