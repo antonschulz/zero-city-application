@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/state/main_street_state.dart';
 import 'package:zero_city/state/backstreet_state.dart';
 import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
@@ -18,6 +19,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => ExhibitionMapProvider()),
       ChangeNotifierProvider(create: (_) => PlanningLabState()),
       ChangeNotifierProvider(create: (_) => TheParkState()),
+      ChangeNotifierProvider(create: (_) => MainStreetState()),
       ChangeNotifierProvider(create: (_) => BackstreetState()),
       ChangeNotifierProvider(create: (_) => TheSquareState()),
       ChangeNotifierProvider(create: (_) => CityPortState()),
