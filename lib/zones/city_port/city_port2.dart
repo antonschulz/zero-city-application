@@ -5,6 +5,7 @@ import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class CityPort2 extends StatefulWidget {
   const CityPort2({Key? key}) : super(key: key);
@@ -57,12 +58,13 @@ class _CityPort2State extends State<CityPort2> {
                       .setCompleteMission("City Port");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ExhibitionMap()),
+                    MaterialPageRoute(
+                        builder: (context) => const ExhibitionMap()),
                   );
                 },
                 child: const Text("Tillbaka till kartan"),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  primary: Graphics.GREEN,
                 ),
               ),
             ),
