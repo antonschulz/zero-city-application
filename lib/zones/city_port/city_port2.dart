@@ -38,8 +38,10 @@ class _CityPort2State extends State<CityPort2> {
                 3,
                 (index) {
                   return RadioListTile(
-                    title:
-                        Text(context.read<CityPortState>().alternatives[index]),
+                    title: Text(
+                      context.read<CityPortState>().alternatives[index],
+                      style: const TextStyle(fontSize: 20),
+                    ),
                     value: index,
                     groupValue: context.watch<CityPortState>().group,
                     onChanged: (value) {
@@ -62,9 +64,23 @@ class _CityPort2State extends State<CityPort2> {
                         builder: (context) => const ExhibitionMap()),
                   );
                 },
-                child: const Text("Tillbaka till kartan"),
-                style: ElevatedButton.styleFrom(
-                  primary: Graphics.GREEN,
+                child: const Text(
+                  "Tillbaka till kartan",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ButtonStyle(
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(350, 80)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      context.read<CityPortState>().color),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
                 ),
               ),
             ),

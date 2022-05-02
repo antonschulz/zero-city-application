@@ -27,7 +27,7 @@ class TheCity1State extends State<TheCity1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.YELLOW,
       body: Container(
         // Create some horizontal margin to the side edges
         margin: const EdgeInsets.symmetric(horizontal: 48),

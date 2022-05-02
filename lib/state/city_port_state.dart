@@ -10,7 +10,7 @@ class CityPortState with ChangeNotifier {
 
   // Timer widget
   Timer? _timer;
-  var count = 0; // Timer should start at 0 and count up
+  var _count = 0; // Timer should start at 0 and count up
   var timerOn = false;
 
   // CityPort1
@@ -19,16 +19,18 @@ class CityPortState with ChangeNotifier {
 
   void startTimer() {
     timerOn = true;
+    canContinue = false;
+    color = Graphics.GREY;
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
-        if (count == 300) {
+        if (_count == 300) {
           timer.cancel();
           timerOn = false;
           canContinue = true;
-          color = Graphics.GREEN;
+          color = Graphics.GREY;
         } else {
-          count++;
+          _count++;
         }
         notifyListeners();
       },
@@ -51,7 +53,7 @@ class CityPortState with ChangeNotifier {
 
   //get time
   String getTime() {
-    return formatTime(count);
+    return formatTime(_count);
   }
 
   @override

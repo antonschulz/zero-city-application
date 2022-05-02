@@ -18,7 +18,7 @@ class PlanningLab1State extends State<PlanningLab1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.LIGHTGREEN,
       body: Column(
         children: [
           MissionTitle("Ohållbara vanor"),
@@ -49,8 +49,8 @@ class PlanningLab1State extends State<PlanningLab1> {
                   // Different colour if clicked
                   style: ElevatedButton.styleFrom(
                     primary: context.watch<PlanningLabState>().clicked[index]
-                        ? Graphics.LILAC
-                        : Colors.grey,
+                        ? Graphics.GREEN
+                        : Colors.grey[300],
                     onPrimary: Colors.black,
                   ),
                 );
@@ -73,13 +73,23 @@ class PlanningLab1State extends State<PlanningLab1> {
                   ),
                 ),
               ),
-              child: const Text(
-                'Fortsätt till nästa uppdrag',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: (context.watch<PlanningLabState>().correct)
+                  // If correct == true
+                  ? const Text(
+                      "Fortsätt till nästa uppdrag",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  // If canContinue == false
+                  : const Text(
+                      "Välj 5 vanor",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
               onPressed: () {
                 // Can only proceed if 5 buttons are pressed
                 if (context.read<PlanningLabState>().count == 5) {

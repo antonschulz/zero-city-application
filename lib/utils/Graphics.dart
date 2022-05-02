@@ -9,8 +9,11 @@ class Graphics {
 
   // Background color
   static Color PINK = const Color.fromRGBO(241, 216, 234, 1);
+  static Color YELLOW = const Color.fromRGBO(249, 230, 151, 1);
+  static Color LIGHTGREEN = const Color.fromRGBO(204, 224, 202, 1);
 
   // Button color
   static Color GREEN = const Color.fromRGBO(0, 233, 109, 1);
   static Color GREY = const Color.fromRGBO(142, 142, 142, 1);
+  static Color BLUE = const Color.fromRGBO(62, 125, 196, 1);
 }

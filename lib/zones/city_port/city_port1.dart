@@ -33,12 +33,11 @@ class CityPort1State extends State<CityPort1> {
               height: 16,
             ),
             MissionBody(
-                "Testa och se hur bra ni kan packa på så kort tid som möjligt. "
-                "Innan ni startar, ta ut alla paket så containern är tom. "
-                "Lyckas ni få alla på plats, eller får ni några över? "
-                "Försök packa paketen så att containern blir full på så kort tid "
-                "som möjligt. Efter 5 minuter stängs timern av automatiskt. "
-                "Starta timern för att börja packa!"),
+                "Försök packa containern så att den blir full på så kort tid "
+                "som möjligt. Innan ni startar, ta ut alla paket så containern "
+                "är tom. Starta timern för att börja packa! Efter 5 minuter "
+                "stängs timern av automatiskt. Er packtid kommer att sparas "
+                "för att se vem som packar snabbast!"),
             // Knapp för att starta timer
             ElevatedButton(
               onPressed: () => {
@@ -53,14 +52,26 @@ class CityPort1State extends State<CityPort1> {
                   }
               },
               child: context.read<CityPortState>().timerOn
-                  ? const Text("Stoppa timer")
-                  : const Text("Starta timer"),
+                  ? const Text(
+                      "Stoppa timer",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  : const Text(
+                      "Starta timer",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(350, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                   context.read<CityPortState>().timerOn
                       ? Colors.red
-                      : Graphics.GREEN,
+                      : Graphics.BLUE,
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -92,6 +103,7 @@ class CityPort1State extends State<CityPort1> {
                 if (context.read<CityPortState>().canContinue) {
                   context.read<CityPortState>().timeTaken =
                       context.read<CityPortState>().getTime();
+                  context.read<CityPortState>().stopTimer();
 
                   Navigator.push(
                     context,
@@ -99,11 +111,17 @@ class CityPort1State extends State<CityPort1> {
                   );
                 }
               },
-              child: const Text("Fortsätt till nästa uppdrag"),
+              child: const Text(
+                "Fortsätt till nästa uppdrag",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(450, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
-                    context.read<CityPortState>().color),
+                    context.watch<CityPortState>().color),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
