@@ -133,17 +133,6 @@ class _PairingColumnWidget extends StatelessWidget {
   }
 }
 
-class PairingWidget extends StatefulWidget {
-  final List<String> left;
-  final List<String> right;
-  final List<Pair> correct;
-
-  PairingWidget(this.left, this.right, this.correct);
-
-  @override
-  _PairingWidgetState createState() => _PairingWidgetState();
-}
-
 class _PairingPainter extends CustomPainter {
   final PairingProvider provider;
   _PairingPainter(this.provider);
@@ -177,6 +166,17 @@ class _PairingPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(oldDelegate) => false;
+}
+
+class PairingWidget extends StatefulWidget {
+  final List<String> left;
+  final List<String> right;
+  final List<Pair> correct;
+
+  PairingWidget(this.left, this.right, this.correct);
+
+  @override
+  _PairingWidgetState createState() => _PairingWidgetState();
 }
 
 class _PairingWidgetState extends State<PairingWidget> {
