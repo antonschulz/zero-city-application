@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class Pair {
   final bool active;
@@ -101,10 +102,10 @@ class _PairingColumnWidget extends StatelessWidget {
             child: Text(texts[i]),
             style: ElevatedButton.styleFrom(
               primary: (side ? provider.left[i] : provider.right[i])
-                  ? const Color.fromRGBO(151, 144, 187, 1)
+                  ? Graphics.HEAVEN
                   : provider.isPaired(side, i)
-                      ? Colors.green
-                      : Colors.grey[400],
+                      ? Graphics.LILAC
+                      : Graphics.OYSTER,
               onPrimary: Colors.black,
             ),
             onPressed: () => {provider.setSelected(side, i)},
