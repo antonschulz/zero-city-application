@@ -19,8 +19,12 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
     "Snurrar när det blåser",
   ];
   final List<String> right = [
-    "Generator",
     "Rotorblad/Vindturbin",
+    "Generator",
+  ];
+  final List<Pair> correct = [
+    const Pair(true, 1),
+    const Pair(true, 0),
   ];
 
   @override
@@ -28,15 +32,15 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
     return Scaffold(
         body: Container(
             alignment: Alignment.center,
-            color: Color.fromRGBO(255, 200, 100, 0.5),
+            color: const Color.fromRGBO(255, 200, 100, 0.5),
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 MissionTitle("\nVindkraftverkets delar"),
                 MissionBody("Para ihop rätt alternativ med varandra"),
-                Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-                PairingWidget(left: left, right: right),
-                Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+                const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+                PairingWidget(left, right, correct),
+                const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
                 ElevatedButton(
                   onPressed: () {
                     context

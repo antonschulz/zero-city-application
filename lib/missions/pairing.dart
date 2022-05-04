@@ -18,11 +18,12 @@ class PairingProvider with ChangeNotifier {
   late List<bool> _selectedLeft;
   late List<bool> _selectedRight;
   late List<Pair> _pairs;
+  late List<Pair> _correct;
 
-  PairingProvider(int length, {Key? key}) {
+  PairingProvider(this._correct, int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
     _selectedRight = List.filled(length, false);
-    _pairs = List.filled(length, Pair(false, 0));
+    _pairs = List.filled(length, const Pair(false, 0));
   }
 
   void setSelected(bool side, int index) {
@@ -80,6 +81,21 @@ class PairingProvider with ChangeNotifier {
       return false;
     }
   }
+
+  bool isCorrect(index) {
+    return _correct[index] == pairs[index];
+  }
+
+  bool buttonIsCorrect(bool side, int index) {
+    if (side) {
+      return isCorrect(index);
+    } else {
+      for (var i = 0; i < pairs.length; i++) {
+        if (pairs[i].target == index && isCorrect(i)) return true;
+      }
+      return false;
+    }
+  }
 }
 
 class _PairingColumnWidget extends StatelessWidget {
@@ -120,8 +136,9 @@ class _PairingColumnWidget extends StatelessWidget {
 class PairingWidget extends StatefulWidget {
   final List<String> left;
   final List<String> right;
+  final List<Pair> correct;
 
-  PairingWidget({required this.left, required this.right});
+  PairingWidget(this.left, this.right, this.correct);
 
   @override
   _PairingWidgetState createState() => _PairingWidgetState();
@@ -167,7 +184,7 @@ class _PairingWidgetState extends State<PairingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = PairingProvider(widget.left.length);
+    final provider = PairingProvider(widget.correct, widget.left.length);
     return ChangeNotifierProvider(
       create: (_) => provider,
       child: CustomPaint(
