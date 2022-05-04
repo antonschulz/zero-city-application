@@ -7,7 +7,6 @@ import 'package:zero_city/zones/main_street/main_street_intro.dart';
 import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 import 'package:zero_city/zones/power-plant/mission1a.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
-
 import 'package:zero_city/zones/the-square/theSquareIntroPage.dart';
 import 'package:zero_city/zones/the_city/the_city_intro.dart';
 
@@ -92,7 +91,6 @@ class ExhibitionMap extends StatelessWidget {
     Mission("The City", 6, const TheCityIntro()),
     Mission("The Main Street", 5, const MainStreetIntro()),
     Mission("The Backstreet", 7, const Backstreet_Mission1a()),
-    Mission("The Backstreet", 7, const Text("")),
     Mission("The Square", 8, const introPageTheSquare()),
   ];
 
