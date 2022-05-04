@@ -228,8 +228,9 @@ class _PairingWidgetState extends State<PairingWidget> {
             ),
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             ElevatedButton(
-              onPressed:
-                  provider.complete ? widget.buttonTarget(context) : () {},
+              onPressed: provider.complete
+                  ? widget.buttonTarget(context)
+                  : provider.testCorrect,
               child: provider.complete
                   ? Text("Fortsätt till nästa uppdrag")
                   : Text("Testa svar"),
