@@ -106,6 +106,22 @@ class PairingProvider with ChangeNotifier {
   bool get complete {
     return _pairs == _correct;
   }
+
+  Null testCorrect() {
+    for (var i = 0; i < _pairs.length; i++) {
+      final pair = _pairs[i];
+      final correct = _correct[i];
+      if (pair.state == PairState.complete) {
+        continue;
+      } else if (pair.state == PairState.active &&
+          pair.target == correct.target) {
+        _pairs[i] = Pair(PairState.complete, pair.target);
+      } else {
+        _pairs[i] = Pair(PairState.inactive, pair.target);
+      }
+    }
+    notifyListeners();
+  }
 }
 
 class _PairingColumnWidget extends StatelessWidget {
