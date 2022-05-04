@@ -18,7 +18,7 @@ class PairingProvider with ChangeNotifier {
   late List<bool> _selectedLeft;
   late List<bool> _selectedRight;
   late List<Pair> _pairs;
-  late List<Pair> _correct;
+  late final List<Pair> _correct;
 
   PairingProvider(this._correct, int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
