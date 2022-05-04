@@ -23,8 +23,8 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
     "Generator",
   ];
   final List<Pair> correct = [
-    const Pair(true, 1),
-    const Pair(true, 0),
+    const Pair(PairState.complete, 1),
+    const Pair(PairState.complete, 0),
   ];
 
   @override

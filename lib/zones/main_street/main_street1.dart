@@ -18,9 +18,9 @@ class MainStreetState1 extends State<MainStreet1> {
   final List<String> right = ["2 Kg CO2", "9 Kg CO2", "15 Kg CO2"];
   // TODO Set this to correct values
   final List<Pair> correct = [
-    const Pair(true, 0),
-    const Pair(true, 1),
-    const Pair(true, 2),
+    const Pair(PairState.complete, 0),
+    const Pair(PairState.complete, 1),
+    const Pair(PairState.complete, 2),
   ];
 
   @override

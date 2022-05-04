@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_city/utils/Graphics.dart';
 
+enum PairState {
+  inactive,
+  active,
+  complete,
+}
+
 class Pair {
-  final bool active;
+  final PairState state;
   final int target;
 
-  const Pair(this.active, this.target);
+  const Pair(this.state, this.target);
 
   @override
   bool operator ==(Object other) {
-    return other is Pair && active == other.active && target == other.target;
+    return other is Pair && state == other.state && target == other.target;
   }
 }
 
@@ -23,7 +29,7 @@ class PairingProvider with ChangeNotifier {
   PairingProvider(this._correct, int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
     _selectedRight = List.filled(length, false);
-    _pairs = List.filled(length, const Pair(false, 0));
+    _pairs = List.filled(length, const Pair(PairState.inactive, 0));
   }
 
   void setSelected(bool side, int index) {
@@ -45,9 +51,9 @@ class PairingProvider with ChangeNotifier {
       var r = _selectedRight.indexOf(true);
 
       for (var i = 0; i < _pairs.length; i++) {
-        if (_pairs[i].target == r) _pairs[i] = Pair(false, r);
+        if (_pairs[i].target == r) _pairs[i] = Pair(PairState.inactive, r);
       }
-      _pairs[l] = Pair(true, r);
+      _pairs[l] = Pair(PairState.active, r);
       _selectedLeft = List.filled(_selectedLeft.length, false);
       _selectedRight = List.filled(_selectedRight.length, false);
     }
@@ -73,10 +79,10 @@ class PairingProvider with ChangeNotifier {
 
   bool isPaired(bool side, int index) {
     if (side) {
-      return _pairs[index].active;
+      return _pairs[index].state == PairState.active;
     } else {
       for (var pair in _pairs) {
-        if (pair == Pair(true, index)) return true;
+        if (pair == Pair(PairState.active, index)) return true;
       }
       return false;
     }
@@ -154,13 +160,14 @@ class _PairingPainter extends CustomPainter {
   @override
   void paint(canvas, size) {
     for (var l = 0; l < provider.left.length; l++) {
+      var pair = provider.pairs[l];
       for (var r = 0; r < provider.right.length; r++) {
         canvas.drawLine(
           calcOffset(size, true, l),
           calcOffset(size, false, r),
           Paint()
             ..strokeWidth = 5
-            ..color = provider.pairs[l] == Pair(true, r)
+            ..color = pair.state != PairState.inactive && pair.target == r
                 ? Colors.black
                 : Color.fromARGB(0, 0, 0, 0),
         );
