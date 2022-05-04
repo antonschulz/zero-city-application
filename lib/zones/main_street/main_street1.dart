@@ -32,8 +32,9 @@ class MainStreetState1 extends State<MainStreet1> {
           MissionTitle("Koldioxidutsläpp - Klädesplagg"),
           MissionBody(
               "Dra ett strck mellan klädesplagget och det koldioxidutsläpp de skapar."),
-          PairingWidget(left, right, correct),
+          PairingWidget(left, right, correct, buttonTarget),
           // Navigator button to next mission page, planning_lab2
+/*
           ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -46,8 +47,18 @@ class MainStreetState1 extends State<MainStreet1> {
               primary: context.watch<PlanningLabState>().color,
             ),
           ),
+*/
         ],
       ),
     );
   }
+}
+
+Null Function() buttonTarget(BuildContext context) {
+  return () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MainStreet2()),
+    );
+  };
 }

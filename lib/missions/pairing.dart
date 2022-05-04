@@ -96,6 +96,10 @@ class PairingProvider with ChangeNotifier {
       return false;
     }
   }
+
+  bool get complete {
+    return _pairs == _correct;
+  }
 }
 
 class _PairingColumnWidget extends StatelessWidget {
@@ -172,8 +176,9 @@ class PairingWidget extends StatefulWidget {
   final List<String> left;
   final List<String> right;
   final List<Pair> correct;
+  final Null Function() Function(BuildContext) buttonTarget;
 
-  PairingWidget(this.left, this.right, this.correct);
+  PairingWidget(this.left, this.right, this.correct, this.buttonTarget);
 
   @override
   _PairingWidgetState createState() => _PairingWidgetState();
@@ -189,11 +194,33 @@ class _PairingWidgetState extends State<PairingWidget> {
       create: (_) => provider,
       child: CustomPaint(
         painter: _PairingPainter(provider),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
           children: [
-            _PairingColumnWidget(widget.left, true),
-            _PairingColumnWidget(widget.right, false),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _PairingColumnWidget(widget.left, true),
+                _PairingColumnWidget(widget.right, false),
+              ],
+            ),
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            ElevatedButton(
+              onPressed:
+                  provider.complete ? widget.buttonTarget(context) : () {},
+              child: provider.complete
+                  ? Text("Fortsätt till nästa uppdrag")
+                  : Text("Testa svar"),
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    provider.complete ? Graphics.GREEN : Graphics.HEAVEN),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

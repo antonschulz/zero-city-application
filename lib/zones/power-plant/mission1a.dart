@@ -39,24 +39,18 @@ class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
                 MissionTitle("\nVindkraftverkets delar"),
                 MissionBody("Para ihop rätt alternativ med varandra"),
                 const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-                PairingWidget(left, right, correct),
-                const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<ExhibitionMapProvider>()
-                        .setCompleteMission("Power Plant");
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
-                    );
-                  },
-                  child: const Text("Fortsätt till nästa uppdrag"),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                  ),
-                ),
+                PairingWidget(left, right, correct, buttonTarget),
               ],
             )));
   }
+}
+
+Null Function() buttonTarget(BuildContext context) {
+  return () {
+    context.read<ExhibitionMapProvider>().setCompleteMission("Power Plant");
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+    );
+  };
 }
