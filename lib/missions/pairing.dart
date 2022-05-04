@@ -108,7 +108,12 @@ class PairingProvider with ChangeNotifier {
   }
 
   bool get complete {
-    return _pairs == _correct;
+    for (var i = 0; i < _pairs.length; i++) {
+      if (_pairs[i] != _correct[i]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   Null testCorrect() {
