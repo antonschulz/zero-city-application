@@ -35,6 +35,10 @@ class PairingProvider with ChangeNotifier {
   void setSelected(bool side, int index) {
     // Updates a selected list to either set index i to true or everything to false
     // If side is "true", left is updated. If side is "false", right is updated.
+    if (buttonIsCorrect(side, index)) {
+      // If the selected button is already correct then don't make any changes
+      return;
+    }
     List<bool> selected = side ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
