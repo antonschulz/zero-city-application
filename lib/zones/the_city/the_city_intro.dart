@@ -14,7 +14,7 @@ class TheCityIntro extends StatelessWidget {
     // Scaffold widget allows for easy graphical customization
     return Scaffold(
       // Color is taken from the utils/Graphics.dart file
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.YELLOW,
       // The 'main' widget
       body: Container(
         // Margin around text from all edges

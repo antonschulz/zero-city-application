@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zero_city/utils/Graphics.dart';
 
 class PlanningLabState with ChangeNotifier {
+  // PlanningLab1
   final List<String> strs = [
     "Egen bil som drivs med fossila bränslen",
     "Att köpa nya kläder",
@@ -35,24 +36,40 @@ class PlanningLabState with ChangeNotifier {
   // Corresponding list of booleans to keep track if the button is clicked
   List<bool> clicked = List.filled(24, false);
 
-  // Count number of buttos pressed
+  // Count number of buttons pressed
   var count = 0;
 
   // Color for continue button
   Color color = Graphics.GREY;
 
-  int group = 0;
-  bool correct = false;
+  void onClick(int index) {
+    // If clicked is false <=> button isn't currently pressed
+    // Now set clicked to true and increment _counter
+    // If 5 options are already picked: do nothing
+    if (!clicked[index] && count < 5) {
+      clicked[index] = !clicked[index];
+      answers.add(strs[index]);
+      count++;
+      if (count == 5) {
+        // Sets continue button colour for UI help
+        color = Graphics.GREEN;
+        correct = true;
+      }
+      // User can deselect an option
+    } else if (clicked[index]) {
+      clicked[index] = !clicked[index];
+      answers.remove(strs[index].toString());
+      count--;
+      color = Graphics.GREY;
+    }
 
-  String correctProcent = "95";
-  bool displaySnackBar = false;
-
-  String answer2 = "";
-
-  void setGroup(int val) {
-    group = val;
     notifyListeners();
   }
+
+  // PlanningLab2
+  int group = 0;
+  bool correct = false;
+  String answer2 = "";
 
   void assign2(String str) {
     // Assign the typed str to inputStr
@@ -69,6 +86,15 @@ class PlanningLabState with ChangeNotifier {
     notifyListeners();
   }
 
+  void setGroup(int val) {
+    group = val;
+    notifyListeners();
+  }
+
+  // PlanningLab3
+  String correctProcent = "95";
+  bool displaySnackBar = false;
+
   void submit3(String str) {
     // Assign the typed str to inputStr
     if (str == correctProcent) {
@@ -76,29 +102,6 @@ class PlanningLabState with ChangeNotifier {
       color = Graphics.GREEN;
     } else {
       displaySnackBar = true;
-    }
-
-    notifyListeners();
-  }
-
-  void onClick(int index) {
-    // If clicked is false <=> button isn't currently pressed
-    // Now set clicked to true and increment _counter
-    // If 5 options are already picked: do nothing
-    if (!clicked[index] && count < 5) {
-      clicked[index] = !clicked[index];
-      answers.add(strs[index]);
-      count++;
-      if (count == 5) {
-        // Sets continue button colour for UI help
-        color = Colors.green;
-      }
-      // User can deselect an option
-    } else if (clicked[index]) {
-      clicked[index] = !clicked[index];
-      answers.remove(strs[index].toString());
-      count--;
-      color = Graphics.GREY;
     }
 
     notifyListeners();

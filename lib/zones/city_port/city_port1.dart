@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:zero_city/state/city_port_state.dart';
-import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/utils/Graphics.dart';
+import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/zones/city_port/city_port2.dart';
 
 class CityPort1 extends StatefulWidget {
@@ -31,38 +32,100 @@ class CityPort1State extends State<CityPort1> {
             const SizedBox(
               height: 16,
             ),
-            MissionBody("Testa och se hur bra ni kan packa. Innan ni startar, "
-                "ta ut alla paket så containern är tom. Lyckas ni få alla på "
-                "plats, eller får ni några över? Fyll i sådana fall i antalet i "
-                "protokollet."),
-            TextField(
-              decoration: const InputDecoration(
-                hintText: "Hur många paket blev över?",
-              ),
-              keyboardType: TextInputType.number,
-              maxLength: 3,
-              onChanged: (String str) {
-                context.read<CityPortState>().setText(str);
-              },
-              onSubmitted: (String str) {
-                context.read<CityPortState>().setEnteredText();
-              },
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  if (context.read<CityPortState>().enteredText) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CityPort2()),
-                    );
+            MissionBody(
+                "Försök packa containern så att den blir full på så kort tid "
+                "som möjligt. Innan ni startar, ta ut alla paket så containern "
+                "är tom. Starta timern för att börja packa! Efter 5 minuter "
+                "stängs timern av automatiskt. Er packtid kommer att sparas "
+                "för att se vem som packar snabbast!"),
+            // Knapp för att starta timer
+            ElevatedButton(
+              onPressed: () => {
+                // startTimer
+                if (context.read<CityPortState>().timerOn == false)
+                  {
+                    context.read<CityPortState>().startTimer(),
                   }
-                },
-                child: const Text("Fortsätt till nästa uppdrag"),
-                style: ElevatedButton.styleFrom(
-                  primary: context.watch<CityPortState>().color,
+                else
+                  {
+                    context.read<CityPortState>().stopTimer(),
+                  }
+              },
+              child: context.read<CityPortState>().timerOn
+                  ? const Text(
+                      "Stoppa timer",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  : const Text(
+                      "Starta timer",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all<Size>(const Size(350, 80)),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  context.read<CityPortState>().timerOn
+                      ? Colors.red
+                      : Graphics.BLUE,
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
+
+            // Timer
+            Text(
+              context.watch<CityPortState>().getTime(),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black45,
+                  fontSize: 64),
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                if (context.read<CityPortState>().canContinue) {
+                  context.read<CityPortState>().timeTaken =
+                      context.read<CityPortState>().getTime();
+                  context.read<CityPortState>().stopTimer();
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CityPort2()),
+                  );
+                }
+              },
+              child: const Text(
+                "Fortsätt till nästa uppdrag",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all<Size>(const Size(450, 80)),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    context.watch<CityPortState>().color),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                 ),
               ),
             ),

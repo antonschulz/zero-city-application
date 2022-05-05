@@ -20,7 +20,7 @@ class _PlanningLab2State extends State<PlanningLab2> {
     List<String> inputList = context.watch<PlanningLabState>().answers;
 
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.LIGHTGREEN,
       body: Column(
         children: [
           MissionTitle("Ohållbara vanor"),
@@ -35,17 +35,13 @@ class _PlanningLab2State extends State<PlanningLab2> {
                   children: List.generate(
                     3,
                     (index) {
-                      return Row(
-                        children: [
-                          Radio(
-                            value: index,
-                            groupValue: context.watch<PlanningLabState>().group,
-                            onChanged: (value) {
-                              context.read<PlanningLabState>().setGroup(index);
-                            },
-                          ),
-                          Text(inputList[index]),
-                        ],
+                      return RadioListTile(
+                        title: Text(inputList[index]),
+                        value: index,
+                        groupValue: context.watch<PlanningLabState>().group,
+                        onChanged: (value) {
+                          context.read<PlanningLabState>().setGroup(index);
+                        },
                       );
                     },
                   ),
@@ -57,19 +53,13 @@ class _PlanningLab2State extends State<PlanningLab2> {
                   children: List.generate(
                     2,
                     (index) {
-                      return Row(
-                        children: [
-                          Radio(
-                            value: index + 3,
-                            groupValue: context.watch<PlanningLabState>().group,
-                            onChanged: (value) {
-                              context
-                                  .read<PlanningLabState>()
-                                  .setGroup(index + 3);
-                            },
-                          ),
-                          Text(inputList[index + 3]),
-                        ],
+                      return RadioListTile(
+                        title: Text(inputList[index + 3]),
+                        value: index + 3,
+                        groupValue: context.watch<PlanningLabState>().group,
+                        onChanged: (value) {
+                          context.read<PlanningLabState>().setGroup(index + 3);
+                        },
                       );
                     },
                   ),

@@ -19,15 +19,15 @@ class TheCity1State extends State<TheCity1> {
   final List<String> _hints = [
     "Det absolut viktigaste är: ",
     "Det är viktigt att det finns: ",
-    "Och så måste det finnas",
-    "Man får inte glömma",
+    "Och så måste det finnas: ",
+    "Man får inte glömma: ",
     "Sen är det ju väldigt bra om det finns: ",
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.YELLOW,
       body: Container(
         // Create some horizontal margin to the side edges
         margin: const EdgeInsets.symmetric(horizontal: 48),

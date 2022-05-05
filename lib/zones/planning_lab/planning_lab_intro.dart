@@ -12,7 +12,7 @@ class PlanningLabIntro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.LIGHTGREEN,
       body: Container(
         // Padding around text
         padding: const EdgeInsets.all(20),

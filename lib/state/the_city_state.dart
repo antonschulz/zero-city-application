@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 // State that keeps track of all answers related to The City
 class TheCityState with ChangeNotifier {
-  late Color color = Colors.grey;
+  late Color color = Graphics.GREY;
   bool canContinue = false;
 
   // The user input from TheCity1 is stored here
@@ -37,13 +38,13 @@ class TheCityState with ChangeNotifier {
     // If the list contains empty string, then the above isn't true
     if (importantElements.contains("")) {
       // Change button color
-      color = Colors.grey;
+      color = Graphics.GREY;
       canContinue = false;
       return;
     }
 
     canContinue = true;
-    color = Colors.green;
+    color = Graphics.GREEN;
     notifyListeners();
   }
 
@@ -74,13 +75,13 @@ class TheCityState with ChangeNotifier {
 
     // Here we need to check both lists
     if (positives.contains("") || negatives.contains("")) {
-      color = Colors.grey;
+      color = Graphics.GREY;
       canContinue = false;
       return;
     }
 
     canContinue = true;
-    color = Colors.green;
+    color = Graphics.GREEN;
     notifyListeners();
   }
 
@@ -96,20 +97,20 @@ class TheCityState with ChangeNotifier {
     setNegatives(idx, str);
 
     if (negatives.contains("") || positives.contains("")) {
-      color = Colors.grey;
+      color = Graphics.GREY;
       canContinue = false;
       return;
     }
 
     canContinue = true;
-    color = Colors.green;
+    color = Graphics.GREEN;
     notifyListeners();
   }
 
   // Reset the state variables, i.e. button color and continue boolean
   void resetState() {
-    color = Colors.grey;
     canContinue = false;
+    color = Graphics.GREY;
     notifyListeners();
   }
 }

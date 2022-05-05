@@ -32,7 +32,7 @@ class _PlanningLab3State extends State<PlanningLab3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.LIGHTGREEN,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -58,6 +58,9 @@ class _PlanningLab3State extends State<PlanningLab3> {
               },
             ),
           ),
+          const SizedBox(
+            height: 120,
+          ),
           ElevatedButton(
             onPressed: () {
               if (context.read<PlanningLabState>().correct) {
@@ -66,15 +69,29 @@ class _PlanningLab3State extends State<PlanningLab3> {
                     .setCompleteMission("Planning Lab");
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ExhibitionMap()),
+                  MaterialPageRoute(
+                      builder: (context) => const ExhibitionMap()),
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(snack);
               }
             },
-            child: const Text("Vi har hittat svaret! (tillbaka till kartan)"),
-            style: ElevatedButton.styleFrom(
-              primary: context.watch<PlanningLabState>().color,
+            child: const Text(
+              "Tillbaka till kartan!",
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all<Size>(const Size(350, 80)),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  context.watch<PlanningLabState>().color),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+              ),
             ),
           ),
         ],

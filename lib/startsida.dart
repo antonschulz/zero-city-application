@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/zones/city_port/city_port1.dart';
 import 'package:zero_city/zones/zone1/zone1_mission1.dart';
 import 'package:zero_city/zones/the-park/dansaFramParken.dart';
 import 'package:zero_city/zones/the-park/omvandlaParkeringsplats.dart';
@@ -73,7 +74,7 @@ class MyHomePage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => introPageThePark()));
+                                builder: (context) => const CityPort1()));
                       },
                       child: const Text('Exempel uppgragssida',
                           style: TextStyle(

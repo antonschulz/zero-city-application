@@ -18,7 +18,7 @@ class _TheCity2State extends State<TheCity2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Graphics.PINK,
+      backgroundColor: Graphics.YELLOW,
       body: Container(
         margin: const EdgeInsets.all(16),
         child: Column(
