@@ -4,7 +4,9 @@ import 'package:zero_city/state/planning_lab_state.dart';
 import 'package:zero_city/zones/planning_lab/planning_lab2.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
+// Planning Lab mission 1
 class PlanningLab1 extends StatefulWidget {
   const PlanningLab1({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class PlanningLab1State extends State<PlanningLab1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
+      backgroundColor: Graphics.PINK,
       body: Column(
         children: [
           MissionTitle("Ohållbara vanor"),
@@ -36,7 +38,7 @@ class PlanningLab1State extends State<PlanningLab1> {
               // All option buttons are produced through this code
               // Creates a list of length 24
               // For every index of said list: creates a button with text from
-              // Corresponding index of list strs
+              // corresponding index of list strs from planning_lab_state
               children: List.generate(24, (index) {
                 return ElevatedButton(
                   onPressed: () =>
@@ -47,8 +49,8 @@ class PlanningLab1State extends State<PlanningLab1> {
                   // Different colour if clicked
                   style: ElevatedButton.styleFrom(
                     primary: context.watch<PlanningLabState>().clicked[index]
-                        ? const Color.fromRGBO(151, 144, 187, 1)
-                        : Colors.grey[400],
+                        ? Graphics.LILAC
+                        : Colors.grey,
                     onPrimary: Colors.black,
                   ),
                 );
@@ -56,19 +58,39 @@ class PlanningLab1State extends State<PlanningLab1> {
             ),
           ),
           // Navigator button to next mission page, planning_lab2
-          ElevatedButton(
-            onPressed: () {
-              if (context.read<PlanningLabState>().count == 5) {
-                context.read<PlanningLabState>().resetContinueButton();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PlanningLab2()),
-                );
-              }
-            },
-            child: const Text("Fortsätt till uppdrag 1b"),
-            style: ElevatedButton.styleFrom(
-              primary: context.watch<PlanningLabState>().color,
+          Container(
+            margin: const EdgeInsets.only(
+              bottom: 50,
+            ),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all<Size>(const Size(400, 80)),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    context.watch<PlanningLabState>().color),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              child: const Text(
+                'Fortsätt till nästa uppdrag',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onPressed: () {
+                // Can only proceed if 5 buttons are pressed
+                if (context.read<PlanningLabState>().count == 5) {
+                  context.read<PlanningLabState>().resetContinueButton();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PlanningLab2()),
+                  );
+                }
+              },
             ),
           ),
         ],

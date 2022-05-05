@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zero_city/utils/Graphics.dart';
+
+enum PairState {
+  inactive,
+  active,
+  complete,
+}
 
 class Side {
   final bool _side;
@@ -13,14 +20,19 @@ class Side {
 }
 
 class Pair {
-  final bool active;
+  final PairState state;
   final int target;
 
-  const Pair(this.active, this.target);
+  const Pair(this.state, this.target);
 
   @override
   bool operator ==(Object other) {
-    return other is Pair && active == other.active && target == other.target;
+    return other is Pair && state == other.state && target == other.target;
+  }
+
+  @override
+  String toString() {
+    return 'Pair: {state: $state, target: $target}';
   }
 }
 
@@ -28,16 +40,24 @@ class PairingProvider with ChangeNotifier {
   late List<bool> _selectedLeft;
   late List<bool> _selectedRight;
   late List<Pair> _pairs;
+  late final List<Pair> _correct;
 
-  PairingProvider(int length, {Key? key}) {
+  Text buttonText = Text("Testa svar");
+  Color buttonColor = Graphics.HEAVEN;
+
+  PairingProvider(this._correct, int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
     _selectedRight = List.filled(length, false);
-    _pairs = List.filled(length, const Pair(false, 0));
+    _pairs = List.filled(length, const Pair(PairState.inactive, 0));
   }
 
   void setSelected(Side side, int index) {
     // Updates a selected list to either set index i to true or everything to false
-    List<bool> selected = side.isLeft() ? _selectedLeft : _selectedRight;
+    if (buttonIsCorrect(side, index)) {
+      // If the selected button is already correct then don't make any changes
+      return;
+    }
+	List<bool> selected = side.isLeft() ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
     } else {
@@ -53,9 +73,9 @@ class PairingProvider with ChangeNotifier {
       var r = _selectedRight.indexOf(true);
 
       for (var i = 0; i < _pairs.length; i++) {
-        if (_pairs[i].target == r) _pairs[i] = Pair(false, r);
+        if (_pairs[i].target == r) _pairs[i] = Pair(PairState.inactive, r);
       }
-      _pairs[l] = Pair(true, r);
+      _pairs[l] = Pair(PairState.active, r);
       _selectedLeft = List.filled(_selectedLeft.length, false);
       _selectedRight = List.filled(_selectedRight.length, false);
     } else {
@@ -92,13 +112,57 @@ class PairingProvider with ChangeNotifier {
 
   bool isPaired(Side side, int index) {
     if (side.isLeft()) {
-      return _pairs[index].active;
+      return _pairs[index].state == PairState.active;
     } else {
       for (var pair in _pairs) {
-        if (pair == Pair(true, index)) return true;
+        if (pair == Pair(PairState.active, index)) return true;
       }
       return false;
     }
+  }
+
+  bool isCorrect(index) {
+    return _correct[index] == pairs[index];
+  }
+
+  bool buttonIsCorrect(bool side, int index) {
+    if (side) {
+      return isCorrect(index);
+    } else {
+      for (var i = 0; i < pairs.length; i++) {
+        if (pairs[i].target == index && isCorrect(i)) return true;
+      }
+      return false;
+    }
+  }
+
+  bool get complete {
+    for (var i = 0; i < _pairs.length; i++) {
+      if (_pairs[i] != _correct[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  Null testCorrect() {
+    for (var i = 0; i < _pairs.length; i++) {
+      final pair = _pairs[i];
+      final correct = _correct[i];
+      if (pair.state == PairState.complete) {
+        continue;
+      } else if (pair.state == PairState.active &&
+          pair.target == correct.target) {
+        _pairs[i] = Pair(PairState.complete, pair.target);
+      } else {
+        _pairs[i] = Pair(PairState.inactive, pair.target);
+      }
+    }
+    if (complete) {
+      buttonText = Text("Fortsätt till nästa uppdrag");
+      buttonColor = Graphics.GREEN;
+    }
+    notifyListeners();
   }
 }
 
@@ -121,11 +185,13 @@ class _PairingColumnWidget extends StatelessWidget {
           child: ElevatedButton(
             child: Text(texts[i]),
             style: ElevatedButton.styleFrom(
-              primary: (side.isLeft() ? provider.left[i] : provider.right[i])
-                  ? const Color.fromRGBO(151, 144, 187, 1)
-                  : provider.isPaired(side, i)
-                      ? Colors.green
-                      : Colors.grey[400],
+              primary: provider.buttonIsCorrect(side, i)
+                  ? Graphics.GREEN
+                  : (side.isLeft() ? provider.left[i] : provider.right[i])
+                      ? Graphics.HEAVEN
+                      : provider.isPaired(side, i)
+                          ? Graphics.LILAC
+                          : Graphics.OYSTER,
               onPrimary: Colors.black,
             ),
             onPressed: () => {provider.setSelected(side, i)},
@@ -154,13 +220,14 @@ class _PairingPainter extends CustomPainter {
   @override
   void paint(canvas, size) {
     for (var l = 0; l < provider.left.length; l++) {
+      var pair = provider.pairs[l];
       for (var r = 0; r < provider.right.length; r++) {
         canvas.drawLine(
           calcOffset(size, true, l),
           calcOffset(size, false, r),
           Paint()
             ..strokeWidth = 5
-            ..color = provider.pairs[l] == Pair(true, r)
+            ..color = pair.state != PairState.inactive && pair.target == r
                 ? Colors.black
                 : Color.fromARGB(0, 0, 0, 0),
         );
@@ -172,31 +239,80 @@ class _PairingPainter extends CustomPainter {
   bool shouldRepaint(oldDelegate) => false;
 }
 
+SnackBar snack = const SnackBar(
+    backgroundColor: Colors.redAccent,
+    content: Text(
+      "Fel svar!",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    duration: Duration(seconds: 7));
+
+class continueButtonWidget extends StatelessWidget {
+  final Null Function() Function(BuildContext) buttonTarget;
+
+  continueButtonWidget(this.buttonTarget);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        context.read<PairingProvider>().complete
+            ? buttonTarget(context)()
+            : context.read<PairingProvider>().testCorrect();
+        if (!context.read<PairingProvider>().complete) {
+          ScaffoldMessenger.of(context).showSnackBar(snack);
+        }
+      },
+      child: context.watch<PairingProvider>().buttonText,
+      style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+        backgroundColor: MaterialStateProperty.all<Color>(
+            context.watch<PairingProvider>().buttonColor),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class PairingWidget extends StatefulWidget {
   final List<String> left;
   final List<String> right;
+  final List<Pair> correct;
+  final Null Function() Function(BuildContext) buttonTarget;
 
-  PairingWidget({required this.left, required this.right});
+  PairingWidget(this.left, this.right, this.correct, this.buttonTarget);
 
   @override
   _PairingWidgetState createState() => _PairingWidgetState();
 }
 
 class _PairingWidgetState extends State<PairingWidget> {
-  List<int> links = [];
-
   @override
   Widget build(BuildContext context) {
-    final provider = PairingProvider(widget.left.length);
+    final provider = PairingProvider(widget.correct, widget.left.length);
     return ChangeNotifierProvider(
       create: (_) => provider,
       child: CustomPaint(
         painter: _PairingPainter(provider),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
           children: [
-            _PairingColumnWidget(widget.left, Side.left()),
-            _PairingColumnWidget(widget.right, Side.right()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _PairingColumnWidget(widget.left, Side.left()),
+                _PairingColumnWidget(widget.right, Side.right()),
+              ],
+            ),
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            continueButtonWidget(widget.buttonTarget),
           ],
         ),
       ),

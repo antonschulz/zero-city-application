@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/utils/Graphics.dart';
+import 'package:zero_city/zones/backstreet/backstreet_mission1a.dart';
 import 'package:zero_city/zones/city_port/city_port_intro.dart';
+import 'package:zero_city/zones/main_street/main_street_intro.dart';
 import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 import 'package:zero_city/zones/power-plant/mission1a.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
+import 'package:zero_city/zones/the-square/theSquareIntroPage.dart';
+import 'package:zero_city/zones/the_city/the_city_intro.dart';
 
 import 'map_provider.dart';
 
@@ -76,7 +80,7 @@ class MissionButton extends StatelessWidget {
 Mission noMissionSelected = Mission("No mission selected", 0, const Text(""));
 
 class ExhibitionMap extends StatelessWidget {
-  ExhibitionMap({Key? key}) : super(key: key);
+  const ExhibitionMap({Key? key}) : super(key: key);
 
   static List<Mission> missions = [
     Mission("The High Street", 0, const Text("test")),
@@ -84,10 +88,10 @@ class ExhibitionMap extends StatelessWidget {
     Mission("The Park", 2, const introPageThePark()),
     Mission("Power Plant", 3, const PowerPlantMission1a()),
     Mission("City Port", 4, const CityPortIntro()),
-    Mission("The Main Street", 5, const Text("")),
-    Mission("The City", 6, const Text("")),
-    Mission("The Backstreet", 7, const Text("")),
-    Mission("The Square", 8, const Text(""))
+    Mission("The City", 6, const TheCityIntro()),
+    Mission("The Main Street", 5, const MainStreetIntro()),
+    Mission("The Backstreet", 7, const Backstreet_Mission1a()),
+    Mission("The Square", 8, const introPageTheSquare()),
   ];
 
   // This section works, however to see changes, rerun the app
@@ -134,7 +138,6 @@ class ExhibitionMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Decide on how to create the map pag
     return Scaffold(
       body: Stack(
         children: missionButtons,

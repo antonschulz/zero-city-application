@@ -19,8 +19,12 @@ class PowerPlantMission1aState extends State<PowerPlantMission1a> {
     "Snurrar när det blåser",
   ];
   final List<String> right = [
-    "Generator",
     "Rotorblad/Vindturbin",
+    "Generator",
+  ];
+  final List<Pair> correct = [
+    const Pair(PairState.complete, 1),
+    const Pair(PairState.complete, 0),
   ];
 
   @override
@@ -28,31 +32,25 @@ class PowerPlantMission1aState extends State<PowerPlantMission1a> {
     return Scaffold(
         body: Container(
             alignment: Alignment.center,
-            color: Color.fromRGBO(255, 200, 100, 0.5),
+            color: const Color.fromRGBO(255, 200, 100, 0.5),
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 MissionTitle("\nVindkraftverkets delar"),
                 MissionBody("Para ihop rätt alternativ med varandra"),
-                Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-                PairingWidget(left: left, right: right),
-                Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<ExhibitionMapProvider>()
-                        .setCompleteMission("Power Plant");
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
-                    );
-                  },
-                  child: const Text("Fortsätt till nästa uppdrag"),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                  ),
-                ),
+                const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+                PairingWidget(left, right, correct, buttonTarget),
               ],
             )));
   }
+}
+
+Null Function() buttonTarget(BuildContext context) {
+  return () {
+    context.read<ExhibitionMapProvider>().setCompleteMission("Power Plant");
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+    );
+  };
 }
