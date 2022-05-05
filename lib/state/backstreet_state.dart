@@ -40,6 +40,8 @@ class BackstreetState with ChangeNotifier {
   });
   // Index for the button selected on left side
   var selectedLeft = -1;
+  var selectedRight = -1;
+  var lastCreatedPair = true;
 
   List<double> positionx = List.generate(10, (index) => (0));
   List<double> positiony = List.generate(10, (index) => (0));
@@ -60,69 +62,100 @@ class BackstreetState with ChangeNotifier {
 
   void left_onPressed(index, containerKey) {
     /*
-    When an item on the left side is pressed:
-    - Remove the current pair that the item is connected to
-    - Update the currently selected left button
-    - Update the color of the pressed button
-    - Update the color of previously pressed button if it is on left side
-    - If there is a paired button -> change color for it as well
-    - Update coordinates
+    Three cases:
+    1. Last button pressed was on left side and did not create a pair
+    2. Last button pressed was on right side
+    3. Last button pressed created a pair
      */
-
-    // update position of widget (button)
     updatePosition("left", index, containerKey);
-
-    // change color of connected pair
-    if (pairs[index] != -1) {
-      currentColorRight[pairs[index]] = buttonColors[0];
-    }
-    // remove current pair
-    pairs[index] = -1;
-    // remove blue color if prev button selected was on left side
-    if (selectedLeft != -1) {
-      if (currentColorLeft[selectedLeft] == buttonColors[2]) {
-        currentColorLeft[selectedLeft] = buttonColors[0];
+    // case 1
+    if (lastCreatedPair == false && (selectedLeft != -1)) {
+      currentColorLeft[selectedLeft] = buttonColors[0];
+      currentColorLeft[index] = buttonColors[2];
+      // remove old pair
+      pairs[index] = -1;
+      selectedLeft = index;
+      lastCreatedPair = false;
+    } else
+    // case 2
+    if (lastCreatedPair == false && (selectedRight != -1)) {
+      if (pairs[index] != -1) {
+        currentColorRight[pairs[index]] = buttonColors[0];
+        pairs[index] = -1;
       }
+      pairs[index] = selectedRight;
+      currentColorRight[selectedRight] = buttonColors[1];
+      currentColorLeft[index] = buttonColors[1];
+      selectedRight = -1;
+      selectedLeft = -1;
+      lastCreatedPair = true;
+    } else
+    // case 3
+    if (lastCreatedPair == true) {
+      // already paired
+      if (pairs[index] != -1) {
+        // change color of the right button
+        currentColorRight[pairs[index]] = buttonColors[0];
+        // remove the pairing
+        pairs[index] = -1;
+      }
+      currentColorLeft[index] = buttonColors[2];
+      selectedLeft = index;
+      lastCreatedPair = false;
     }
-    // change color of currently selected button
-    currentColorLeft[index] = buttonColors[2];
-    // change currently selected button
-    selectedLeft = index;
-
     notifyListeners();
   }
 
   void right_onPressed(index, containerKey) {
+    // update position of widget (button)
     updatePosition("right", index, containerKey);
-    // oldConnected holds the index of the old left button connected to this
-    // right side item, if there is none: then oldConnected = -1
-    var oldConnected = pairs.indexWhere((element) => (element == index));
     /*
-    - Create a pair between right and left if there is a selected left
-    - Change color of left and right side
+    Three cases:
+    1. Last button pressed was on right side and did not create a pair
+    2. Last button pressed was on left side
+    3. Last button pressed created a pair
      */
-    if (selectedLeft != -1) {
-      // If there is no existing pair to this right button
-      if (oldConnected == -1) {
-        pairs[selectedLeft] = index;
-        currentColorLeft[selectedLeft] = buttonColors[1];
-        currentColorRight[index] = buttonColors[1];
-      } else {
-        /*
-      If we get here there is already an connection to the pressed right button
-      - Remove current connection then create new connection
-       */
-        pairs[oldConnected] = -1;
-        currentColorLeft[oldConnected] = buttonColors[0];
-
-        // create new pair
-        pairs[selectedLeft] = index;
-        currentColorLeft[selectedLeft] = buttonColors[1];
-        currentColorRight[index] = buttonColors[1];
+    // case 1
+    if (lastCreatedPair == false && (selectedRight != -1)) {
+      currentColorRight[selectedRight] = buttonColors[0];
+      currentColorRight[index] = buttonColors[2];
+      var pairing = pairs.indexWhere((element) => (element == index));
+      // remove old pair
+      if (pairing != -1) {
+        pairs[pairing] = -1;
       }
+      selectedRight = index;
+      lastCreatedPair = false;
+    } else
+    // case 2
+    if (lastCreatedPair == false && (selectedLeft != -1)) {
+      var pairing = pairs.indexWhere((element) => (element == index));
+      if (pairing != -1) {
+        currentColorLeft[pairing] = buttonColors[0];
+        pairs[pairing] = -1;
+      }
+      pairs[selectedLeft] = index;
+      currentColorLeft[selectedLeft] = buttonColors[1];
+      currentColorRight[index] = buttonColors[1];
+      selectedRight = -1;
+      selectedLeft = -1;
+      lastCreatedPair = true;
+    } else
+    // case 3
+    if (lastCreatedPair == true) {
+      // already paired
+      var pairing = pairs.indexWhere((element) => (element == index));
+      if (pairing != -1) {
+        // change color of the left button
+        currentColorLeft[pairing] = buttonColors[0];
+        // remove the pairing
+        pairs[pairing] = -1;
+      }
+      currentColorRight[index] = buttonColors[2];
+      selectedRight = index;
+      lastCreatedPair = false;
     }
-    // reset so no button is selected on left side
-    selectedLeft = -1;
+
     notifyListeners();
   }
 }
