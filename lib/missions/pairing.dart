@@ -26,6 +26,9 @@ class PairingProvider with ChangeNotifier {
   late List<Pair> _pairs;
   late final List<Pair> _correct;
 
+  Text buttonText = Text("Testa svar");
+  Color buttonColor = Graphics.HEAVEN;
+
   PairingProvider(this._correct, int length, {Key? key}) {
     _selectedLeft = List.filled(length, false);
     _selectedRight = List.filled(length, false);
@@ -129,6 +132,10 @@ class PairingProvider with ChangeNotifier {
         _pairs[i] = Pair(PairState.inactive, pair.target);
       }
     }
+    if (complete) {
+      buttonText = Text("Fortsätt till nästa uppdrag");
+      buttonColor = Graphics.GREEN;
+    }
     notifyListeners();
   }
 }
@@ -206,6 +213,34 @@ class _PairingPainter extends CustomPainter {
   bool shouldRepaint(oldDelegate) => false;
 }
 
+class continueButtonWidget extends StatelessWidget {
+  final Null Function() Function(BuildContext) buttonTarget;
+
+  continueButtonWidget(this.buttonTarget);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        context.read<PairingProvider>().complete
+            ? buttonTarget(context)()
+            : context.read<PairingProvider>().testCorrect();
+      },
+      child: context.watch<PairingProvider>().buttonText,
+      style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+        backgroundColor: MaterialStateProperty.all<Color>(
+            context.watch<PairingProvider>().buttonColor),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class PairingWidget extends StatefulWidget {
   final List<String> left;
   final List<String> right;
@@ -238,24 +273,7 @@ class _PairingWidgetState extends State<PairingWidget> {
               ],
             ),
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-            ElevatedButton(
-              onPressed: provider.complete
-                  ? widget.buttonTarget(context)
-                  : provider.testCorrect,
-              child: provider.complete
-                  ? Text("Fortsätt till nästa uppdrag")
-                  : Text("Testa svar"),
-              style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
-                backgroundColor: MaterialStateProperty.all<Color>(
-                    provider.complete ? Graphics.GREEN : Graphics.HEAVEN),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                ),
-              ),
-            ),
+            continueButtonWidget(widget.buttonTarget),
           ],
         ),
       ),
