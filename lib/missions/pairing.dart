@@ -218,6 +218,18 @@ class _PairingPainter extends CustomPainter {
   bool shouldRepaint(oldDelegate) => false;
 }
 
+SnackBar snack = const SnackBar(
+    backgroundColor: Colors.redAccent,
+    content: Text(
+      "Fel svar!",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    duration: Duration(seconds: 7));
+
 class continueButtonWidget extends StatelessWidget {
   final Null Function() Function(BuildContext) buttonTarget;
 
@@ -230,6 +242,9 @@ class continueButtonWidget extends StatelessWidget {
         context.read<PairingProvider>().complete
             ? buttonTarget(context)()
             : context.read<PairingProvider>().testCorrect();
+        if (!context.read<PairingProvider>().complete) {
+          ScaffoldMessenger.of(context).showSnackBar(snack);
+        }
       },
       child: context.watch<PairingProvider>().buttonText,
       style: ButtonStyle(
