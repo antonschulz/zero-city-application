@@ -254,8 +254,6 @@ class PairingWidget extends StatefulWidget {
 }
 
 class _PairingWidgetState extends State<PairingWidget> {
-  List<int> links = [];
-
   @override
   Widget build(BuildContext context) {
     final provider = PairingProvider(widget.correct, widget.left.length);
