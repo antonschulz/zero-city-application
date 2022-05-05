@@ -57,7 +57,7 @@ class PairingProvider with ChangeNotifier {
       // If the selected button is already correct then don't make any changes
       return;
     }
-	List<bool> selected = side.isLeft() ? _selectedLeft : _selectedRight;
+    List<bool> selected = side.isLeft() ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
     } else {
@@ -80,12 +80,12 @@ class PairingProvider with ChangeNotifier {
       _selectedRight = List.filled(_selectedRight.length, false);
     } else {
       // Remove pair if selected is paired
-      if (side.isLeft() && _pairs[index].active) {
-        _pairs[index] = const Pair(false, 0);
+      if (side.isLeft() && _pairs[index].state == PairState.active) {
+        _pairs[index] = const Pair(PairState.inactive, 0);
       } else if (side.isRight()) {
         for (var i = 0; i < _pairs.length; i++) {
           if (_pairs[i].target == index) {
-            _pairs[i] = const Pair(false, 0);
+            _pairs[i] = const Pair(PairState.inactive, 0);
           }
         }
       }
@@ -125,8 +125,8 @@ class PairingProvider with ChangeNotifier {
     return _correct[index] == pairs[index];
   }
 
-  bool buttonIsCorrect(bool side, int index) {
-    if (side) {
+  bool buttonIsCorrect(Side side, int index) {
+    if (side.isLeft()) {
       return isCorrect(index);
     } else {
       for (var i = 0; i < pairs.length; i++) {
