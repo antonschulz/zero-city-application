@@ -18,6 +18,11 @@ class Pair {
   bool operator ==(Object other) {
     return other is Pair && state == other.state && target == other.target;
   }
+
+  @override
+  String toString() {
+    return 'Pair: {state: $state, target: $target}';
+  }
 }
 
 class PairingProvider with ChangeNotifier {
