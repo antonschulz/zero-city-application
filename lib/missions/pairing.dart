@@ -152,11 +152,13 @@ class _PairingColumnWidget extends StatelessWidget {
           child: ElevatedButton(
             child: Text(texts[i]),
             style: ElevatedButton.styleFrom(
-              primary: (side ? provider.left[i] : provider.right[i])
-                  ? Graphics.HEAVEN
-                  : provider.isPaired(side, i)
-                      ? Graphics.LILAC
-                      : Graphics.OYSTER,
+              primary: provider.buttonIsCorrect(side, i)
+                  ? Graphics.GREEN
+                  : (side ? provider.left[i] : provider.right[i])
+                      ? Graphics.HEAVEN
+                      : provider.isPaired(side, i)
+                          ? Graphics.LILAC
+                          : Graphics.OYSTER,
               onPrimary: Colors.black,
             ),
             onPressed: () => {provider.setSelected(side, i)},
