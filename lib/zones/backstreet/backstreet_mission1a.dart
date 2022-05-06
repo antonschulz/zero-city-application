@@ -57,6 +57,7 @@ class Backstreet_Mission1a extends StatefulWidget {
 }
 
 class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
+  bool readyToMoveOn = false;
   List<GlobalKey> keyCap = List<GlobalKey>.generate(
       10, (index) => GlobalKey(debugLabel: 'key_$index'),
       growable: false);
@@ -175,25 +176,40 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
             ),
             // Continue-button
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary:
+                    context.watch<BackstreetState>().currentColorContinueButton,
+                onPrimary: Colors.black,
+              ),
               onPressed: () {
-                var allPairsChosen = true;
+                var allPairsCorrect = true;
                 var pairs = context.read<BackstreetState>().pairs;
-                for (var i in pairs) {
-                  if (i == -1) {
-                    allPairsChosen = false;
+                var correctAnswers = [0, 1, 2, 3, 4];
+                for (var i = 0; i < pairs.length; i++) {
+                  if (pairs[i] != correctAnswers[i]) {
+                    allPairsCorrect = false;
                   }
                 }
-                if (allPairsChosen) {
+                if (allPairsCorrect) {
                   context
                       .read<ExhibitionMapProvider>()
                       .setCompleteMission("The Backstreet");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ExhibitionMap()),
-                  );
+                  context.read<BackstreetState>().continueText = "Gå vidare";
+                  context.read<BackstreetState>().currentColorContinueButton =
+                      context.read<BackstreetState>().buttonColors[1];
+                  if (readyToMoveOn) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+                    );
+                  }
+                  readyToMoveOn = true;
+                  context
+                      .read<BackstreetState>()
+                      .continueButtonPressed(readyToMoveOn);
                 }
               },
-              child: const Text("Nästa uppdrag"),
+              child: Text(context.read<BackstreetState>().continueText),
             ),
           ],
         ),

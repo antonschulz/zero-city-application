@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BackstreetState with ChangeNotifier {
   List<String> year = ["1832", "1875", "1890", "1915", "1926"];
-
+  var continueText = "Testa svar";
   List<Image> images = [
     Image(image: AssetImage('assets/images/bleirot.png')),
     Image(image: AssetImage('assets/images/nordstjärnan.png')),
@@ -30,6 +30,9 @@ class BackstreetState with ChangeNotifier {
 
   // grey, green, blue-isch
   final List<Color> buttonColors = [Colors.grey, Colors.green, Colors.cyan];
+
+  // color for continue button
+  Color currentColorContinueButton = Colors.grey;
 
   List<Color> currentColorLeft = List.generate(5, (index) {
     return Colors.grey;
@@ -103,6 +106,11 @@ class BackstreetState with ChangeNotifier {
       selectedLeft = index;
       lastCreatedPair = false;
     }
+    if (allPaired()) {
+      currentColorContinueButton = buttonColors[2];
+    } else {
+      currentColorContinueButton = buttonColors[0];
+    }
     notifyListeners();
   }
 
@@ -155,7 +163,28 @@ class BackstreetState with ChangeNotifier {
       selectedRight = index;
       lastCreatedPair = false;
     }
+    if (allPaired()) {
+      currentColorContinueButton = buttonColors[2];
+    } else {
+      currentColorContinueButton = buttonColors[0];
+    }
+    notifyListeners();
+  }
 
+  /*
+  Checks if all buttons are connected to another button
+   */
+  bool allPaired() {
+    bool allPaired = true;
+    for (var i = 0; i < pairs.length; i++) {
+      if (pairs[i] == -1) {
+        allPaired = false;
+      }
+    }
+    return allPaired;
+  }
+
+  void continueButtonPressed(test) {
     notifyListeners();
   }
 }
