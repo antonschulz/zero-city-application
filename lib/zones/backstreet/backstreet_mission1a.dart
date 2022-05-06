@@ -6,8 +6,8 @@ import 'package:zero_city/state/backstreet_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-double boxWidth = 250;
-double boxHeight = 100;
+double boxWidth = 200;
+double boxHeight = 90;
 
 class LinePainter extends CustomPainter {
   List<double> positionx;
@@ -103,7 +103,7 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
                                       context
                                           .read<BackstreetState>()
                                           .object[index],
-                                      style: TextStyle(fontSize: 25)),
+                                      style: TextStyle(fontSize: 20)),
                                   Container(
                                     height: 50,
                                     width: 300,
@@ -176,11 +176,24 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
             ),
             // Continue-button
             ElevatedButton(
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+                backgroundColor: MaterialStateProperty.all<Color>(context
+                    .watch<BackstreetState>()
+                    .currentColorContinueButton),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              /*
               style: ElevatedButton.styleFrom(
                 primary:
                     context.watch<BackstreetState>().currentColorContinueButton,
                 onPrimary: Colors.black,
               ),
+              */
               onPressed: () {
                 var allPairsCorrect = true;
                 var pairs = context.read<BackstreetState>().pairs;
@@ -209,7 +222,8 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
                       .continueButtonPressed(readyToMoveOn);
                 }
               },
-              child: Text(context.read<BackstreetState>().continueText),
+              child: Text(context.read<BackstreetState>().continueText,
+                  style: TextStyle(fontSize: 20)),
             ),
           ],
         ),

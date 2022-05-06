@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class BackstreetState with ChangeNotifier {
   List<String> year = ["1832", "1875", "1890", "1915", "1926"];
@@ -29,7 +30,11 @@ class BackstreetState with ChangeNotifier {
   });
 
   // grey, green, blue-isch
-  final List<Color> buttonColors = [Colors.grey, Colors.green, Colors.cyan];
+  final List<Color> buttonColors = [
+    Colors.grey,
+    Graphics.GREEN,
+    Graphics.BLUE,
+  ];
 
   // color for continue button
   Color currentColorContinueButton = Colors.grey;
