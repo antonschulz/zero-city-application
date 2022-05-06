@@ -22,6 +22,8 @@ class omvandlaParkering extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+
               MissionTitle("Omvandla en parkeringsplats!"),
               const Divider(
                 height: 50,
@@ -40,13 +42,17 @@ class omvandlaParkering extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-              TextField(
+              Container(
+                height: 100,
+              width: 500,
+              child: TextField(
                 decoration: InputDecoration(
-                  hintText: "Skriv här",
+                  hintText: "Skriv här", border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
                 ),
                 onChanged: (String str) {
                   context.read<TheParkState>().setText(str);
                 },
+              ),
               ),
               const Divider(
                 height: 50,
@@ -55,18 +61,12 @@ class omvandlaParkering extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-              // Show submitted String under the input box
-              Text(
-                  "Erat svar: \n" + context.watch<TheParkState>().parkingAnswer,
-                  textAlign: TextAlign.left,
-                  style: const TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontStyle: FontStyle.italic)),
+
+
+
               ElevatedButton(
                 style: ButtonStyle(
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 80)),
+                  fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromRGBO(152, 180, 187, 1)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -77,7 +77,7 @@ class omvandlaParkering extends StatelessWidget {
                 ),
                 child: const Text('Gå vidare',
                     style:
-                        TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold )),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
                   context
@@ -89,6 +89,8 @@ class omvandlaParkering extends StatelessWidget {
                   );
                 },
               ),
+
+
             ],
           ))
         ],
