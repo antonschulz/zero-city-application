@@ -5,7 +5,6 @@ import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/utils/Graphics.dart';
 
 class CityPort2 extends StatefulWidget {
   const CityPort2({Key? key}) : super(key: key);
@@ -23,7 +22,15 @@ class _CityPort2State extends State<CityPort2> {
         margin: const EdgeInsets.all(16),
         child: Column(
           children: [
+            const Divider(
+              height: 40,
+              color: Color.fromRGBO(0, 0, 0, 0),
+            ),
             MissionTitle("Onödiga returer"),
+            const Divider(
+              height: 40,
+              color: Color.fromRGBO(0, 0, 0, 0),
+            ),
             MissionBody(
                 "Att beställa varor på nätet känns både smidigt och ofta billigt. "
                 "Problemet är att vi ofta beställer mer än vad vi behöver och "

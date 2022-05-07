@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/text_types/zone_title.dart';
-import 'package:zero_city/text_types/zone_body.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/zones/city_port/city_port1.dart';
 
 class CityPortIntro extends StatelessWidget {
@@ -17,7 +17,11 @@ class CityPortIntro extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  ZoneTitle("City Port"),
+                  const Divider(
+                    height: 40,
+                    color: Color.fromRGBO(241, 216, 234, 1),
+                  ),
+                  MissionTitle("City Port"),
                   const Divider(
                     height: 50,
                     thickness: 5,
@@ -25,7 +29,7 @@ class CityPortIntro extends StatelessWidget {
                     endIndent: 0,
                     color: Color.fromRGBO(241, 216, 234, 1),
                   ),
-                  ZoneBody(
+                  MissionBody(
                       "Om stadens klimatavtryck ska minska måste onödiga transporter undvikas. Hur undviker man "
                       "egentligen onödiga transporter av varor till och från staden?"),
                   const SizedBox(
