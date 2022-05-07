@@ -76,9 +76,9 @@ class omvandlaParkering extends StatelessWidget {
                   ),
                 ),
                 child: context.watch<TheParkState>().completed
-                    ? const Text('Gå vidare',
+                    ? const Text('Tillbaka till kartan',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold))
+                            fontSize: 25, fontWeight: FontWeight.bold))
                     : Text('Skriv ett svar!',
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),

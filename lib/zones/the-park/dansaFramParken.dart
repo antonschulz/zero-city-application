@@ -19,7 +19,6 @@ class dansaFramParken extends StatelessWidget {
               child: Column(
             children: [
               const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-
               MissionTitle("Dansa fram staden!"),
               const Divider(
                 height: 50,
@@ -39,10 +38,10 @@ class dansaFramParken extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-
               ElevatedButton(
                 style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromRGBO(152, 180, 187, 1)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -53,7 +52,7 @@ class dansaFramParken extends StatelessWidget {
                 ),
                 child: const Text('Gå vidare',
                     style:
-                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold )),
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
                   Navigator.push(
@@ -63,10 +62,6 @@ class dansaFramParken extends StatelessWidget {
                   );
                 },
               ),
-
-
-
-
             ],
           ))
         ],
