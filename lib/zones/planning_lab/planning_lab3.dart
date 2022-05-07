@@ -36,15 +36,12 @@ class _PlanningLab3State extends State<PlanningLab3> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionTitle("Stillastående bilar"),
-          const SizedBox(
-            height: 16,
-          ),
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionBody("Hur många procent av tiden står en bil stilla? "
               "Svaret hittar ni i utställningen."),
-          const SizedBox(
-            height: 100,
-          ),
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 400),
             child: TextField(
@@ -58,9 +55,7 @@ class _PlanningLab3State extends State<PlanningLab3> {
               },
             ),
           ),
-          const SizedBox(
-            height: 120,
-          ),
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           ElevatedButton(
             onPressed: () {
               if (context.read<PlanningLabState>().correct) {
@@ -77,14 +72,14 @@ class _PlanningLab3State extends State<PlanningLab3> {
               }
             },
             child: const Text(
-              "Tillbaka till kartan!",
+              "Tillbaka till kartan",
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
             style: ButtonStyle(
-              fixedSize: MaterialStateProperty.all<Size>(const Size(350, 80)),
+              fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
               backgroundColor: MaterialStateProperty.all<Color>(
                   context.watch<PlanningLabState>().color),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(

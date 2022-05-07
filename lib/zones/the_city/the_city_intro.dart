@@ -54,7 +54,7 @@ class TheCityIntro extends StatelessWidget {
               ),
               child: const Text('Påbörja uppdrag',
                   style:
-                  TextStyle(fontSize: 20, fontWeight: FontWeight.bold )),
+                  TextStyle(fontSize: 25, fontWeight: FontWeight.bold )),
               onPressed: () {
                 // When pressed move to "TheCity1"/first mission
                 Navigator.push(

@@ -96,7 +96,7 @@ class TheCity1State extends State<TheCity1> {
                     ? const Text(
                         "Gå vidare",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       )
@@ -104,7 +104,7 @@ class TheCity1State extends State<TheCity1> {
                     : const Text(
                         "Skriv 5 saker",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

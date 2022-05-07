@@ -153,7 +153,7 @@ class _TheCity2State extends State<TheCity2> {
                     ? const Text(
                         "Tillbaka till kartan",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       )
@@ -161,7 +161,7 @@ class _TheCity2State extends State<TheCity2> {
                     : const Text(
                         "Skriv för- och nackdelar",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -30,11 +30,12 @@ class PlanningLabIntro extends StatelessWidget {
             const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
 
             // Button directs to first mission in planning lab
+
             ElevatedButton(
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Graphics.GREEN),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromRGBO(152, 180, 187, 1)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
@@ -42,7 +43,7 @@ class PlanningLabIntro extends StatelessWidget {
                 ),
               ),
               child: const Text('Gå vidare',
-                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               onPressed: () {
                 // When pressed move to "PlanningLab1"/first mission
                 Navigator.push(
@@ -51,6 +52,9 @@ class PlanningLabIntro extends StatelessWidget {
                 );
               },
             ),
+
+
+
           ],
         ),
       ),

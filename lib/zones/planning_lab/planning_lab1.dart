@@ -21,7 +21,9 @@ class PlanningLab1State extends State<PlanningLab1> {
       backgroundColor: Graphics.LIGHTGREEN,
       body: Column(
         children: [
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionTitle("Ohållbara vanor"),
+          const Divider(height: 10, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionBody(
               "Vad är ni beredda att avstå från? Välj fem olika alternativ."),
           Flexible(
@@ -57,6 +59,7 @@ class PlanningLab1State extends State<PlanningLab1> {
               }),
             ),
           ),
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           // Navigator button to next mission page, planning_lab2
           Container(
             margin: const EdgeInsets.only(
@@ -64,7 +67,7 @@ class PlanningLab1State extends State<PlanningLab1> {
             ),
             child: ElevatedButton(
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(400, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                     context.watch<PlanningLabState>().color),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -76,9 +79,9 @@ class PlanningLab1State extends State<PlanningLab1> {
               child: (context.watch<PlanningLabState>().correct)
                   // If correct == true
                   ? const Text(
-                      "Fortsätt till nästa uppdrag",
+                      "Gå vidare",
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     )
@@ -86,7 +89,7 @@ class PlanningLab1State extends State<PlanningLab1> {
                   : const Text(
                       "Välj 5 vanor",
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -102,6 +105,10 @@ class PlanningLab1State extends State<PlanningLab1> {
                 }
               },
             ),
+
+
+
+
           ),
         ],
       ),
