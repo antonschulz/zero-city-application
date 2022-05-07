@@ -238,7 +238,7 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
                 }
               },
               child: Text(context.read<BackstreetState>().continueText,
-                  style: TextStyle(fontSize: 20)),
+                  style: TextStyle(fontSize: 25)),
             ),
           ],
         ),
