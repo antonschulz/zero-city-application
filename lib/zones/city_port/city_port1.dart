@@ -79,7 +79,7 @@ class CityPort1State extends State<CityPort1> {
                       ),
                     ),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(350, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                   context.read<CityPortState>().timerOn
                       ? Colors.red
@@ -124,14 +124,14 @@ class CityPort1State extends State<CityPort1> {
                 }
               },
               child: const Text(
-                "Fortsätt till nästa uppdrag",
+                "Gå vidare",
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(450, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                     context.watch<CityPortState>().color),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(

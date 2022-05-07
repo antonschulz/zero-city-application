@@ -74,7 +74,7 @@ class _CityPort2State extends State<CityPort2> {
                 child: const Text(
                   "Tillbaka till kartan",
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
