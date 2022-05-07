@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/state/backstreet_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/zones/backstreet/backstreet_mission2a.dart';
 
 double boxWidth = 200;
 double boxHeight = 90;
@@ -225,7 +225,8 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
                   if (readyToMoveOn) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+                      MaterialPageRoute(
+                          builder: (context) => Backstreet_Mission2a()),
                     );
                   }
                   readyToMoveOn = true;

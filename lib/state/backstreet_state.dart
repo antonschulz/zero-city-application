@@ -192,4 +192,25 @@ class BackstreetState with ChangeNotifier {
   void continueButtonPressed(test) {
     notifyListeners();
   }
+
+  var text1 = "";
+  var text2 = "";
+  void setText1(str) {
+    text1 = str;
+    notifyListeners();
+  }
+
+  void setText2(str) {
+    text2 = str;
+    notifyListeners();
+  }
+
+  // mission 2
+  bool completed() {
+    if (text1 != "" && (text2 != "")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
