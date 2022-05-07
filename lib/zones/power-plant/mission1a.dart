@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/missions/pairing.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/zones/power-plant/mission2a.dart';
 
 class Power_plant_Mission1a extends StatefulWidget {
   const Power_plant_Mission1a({Key? key}) : super(key: key);
@@ -50,7 +50,7 @@ Null Function() buttonTarget(BuildContext context) {
     context.read<ExhibitionMapProvider>().setCompleteMission("Power Plant");
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+      MaterialPageRoute(builder: (context) => mission2a()),
     );
   };
 }
