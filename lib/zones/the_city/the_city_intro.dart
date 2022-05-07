@@ -4,6 +4,8 @@ import 'package:zero_city/text_types/zone_body.dart';
 import 'package:zero_city/utils/Graphics.dart';
 import 'package:zero_city/zones/the_city/the_city1.dart';
 import 'package:provider/src/provider.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 
 // Stateless widget because nothing will be changed on this page
 class TheCityIntro extends StatelessWidget {
@@ -22,12 +24,13 @@ class TheCityIntro extends StatelessWidget {
         child: Column(
           // Widgets are ordered in a column
           children: [
-            ZoneTitle("The City"),
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            MissionTitle("The City"),
             // Just some whitespace between widgets for graphics
             const SizedBox(
               height: 50,
             ),
-            ZoneBody(
+            MissionBody(
                 "I dagens städer är arbetsplatser, fritidsaktiviteter och nöjesställen utspridda. Stadsplaneringen "
                 "har gjort det svårt att leva utan bil, men om stadens klimatavtryck ska minska måste vi tänka "
                 "om. Visionen om 15-minutersstaden innebär att allt en stadsbo behöver ska finnas nära, inom "
@@ -36,25 +39,22 @@ class TheCityIntro extends StatelessWidget {
               height: 100,
             ),
             // Button directs to first mission in the city
+
+
             ElevatedButton(
-              // Button style makes it big, green, and rounded around the border
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Graphics.GREEN),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromRGBO(152, 180, 187, 1)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                 ),
               ),
-              child: const Text(
-                'Påbörja uppdrag',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: const Text('Påbörja uppdrag',
+                  style:
+                  TextStyle(fontSize: 20, fontWeight: FontWeight.bold )),
               onPressed: () {
                 // When pressed move to "TheCity1"/first mission
                 Navigator.push(
@@ -65,6 +65,10 @@ class TheCityIntro extends StatelessWidget {
                 );
               },
             ),
+
+
+
+
           ],
         ),
       ),

@@ -23,10 +23,13 @@ class _TheCity2State extends State<TheCity2> {
         margin: const EdgeInsets.all(16),
         child: Column(
           children: [
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             MissionTitle("Elsparkcykeln"),
+            const Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
             MissionBody(
-                "I dagens städer finns det nu många el-sparkcyklar. De är både älskade och hatade."),
-            MissionBody("Kom på två för- och nackdelar med dem."),
+                "I dagens städer finns det nu många el-sparkcyklar. De är både älskade och hatade."
+                    " Kom på två för- och nackdelar med dem."),
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               // We need a row of two columns
@@ -148,9 +151,9 @@ class _TheCity2State extends State<TheCity2> {
                 child: (context.watch<TheCityState>().canContinue)
                     // If canContinue == true
                     ? const Text(
-                        "Gå tillbaka till kartan",
+                        "Tillbaka till kartan",
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       )
@@ -158,13 +161,13 @@ class _TheCity2State extends State<TheCity2> {
                     : const Text(
                         "Skriv för- och nackdelar",
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                 style: ButtonStyle(
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(400, 80)),
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       context.watch<TheCityState>().color),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

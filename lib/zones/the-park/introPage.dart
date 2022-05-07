@@ -82,9 +82,9 @@ class introPageThePark extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: const Text('Gå vidare',
+                child: const Text('Påbörja uppdrag',
                     style:
-                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold )),
+                    TextStyle(fontSize: 20, fontWeight: FontWeight.bold )),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
                   Navigator.push(
