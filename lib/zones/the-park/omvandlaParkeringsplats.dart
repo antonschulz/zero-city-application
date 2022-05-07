@@ -5,6 +5,7 @@ import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/state/the_park_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class omvandlaParkering extends StatelessWidget {
   const omvandlaParkering({Key? key}) : super(key: key);
@@ -65,17 +66,22 @@ class omvandlaParkering extends StatelessWidget {
                 style: ButtonStyle(
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(250, 80)),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromRGBO(152, 180, 187, 1)),
+                  backgroundColor: context.read<TheParkState>().completed
+                      ? MaterialStateProperty.all<Color>(Graphics.GREEN)
+                      : MaterialStateProperty.all<Color>(Graphics.HEAVEN),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                 ),
-                child: const Text('Gå vidare',
-                    style:
-                        TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                child: context.watch<TheParkState>().completed
+                    ? const Text('Gå vidare',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold))
+                    : Text('Skriv ett svar!',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed and text is filled in move to class "FirstRoute"
                   if (context.read<TheParkState>().completed) {
