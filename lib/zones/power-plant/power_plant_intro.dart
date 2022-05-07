@@ -1,40 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/text_types/zone_title.dart';
-import 'package:zero_city/text_types/zone_body.dart';
-import 'package:zero_city/utils/Graphics.dart';
-import 'package:zero_city/zones/the_city/the_city1.dart';
-import 'package:provider/src/provider.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/zones/power-plant/mission1a.dart';
 
 // Stateless widget because nothing will be changed on this page
-class TheCityIntro extends StatelessWidget {
-  const TheCityIntro({Key? key}) : super(key: key);
+class PowerPlantIntro extends StatelessWidget {
+  const PowerPlantIntro({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Scaffold widget allows for easy graphical customization
     return Scaffold(
       // Color is taken from the utils/Graphics.dart file
-      backgroundColor: Graphics.YELLOW,
       // The 'main' widget
       body: Container(
-        // Margin around text from all edges
-        margin: const EdgeInsets.all(32),
+        color: const Color.fromRGBO(255, 200, 100, 0.5),
         child: Column(
           // Widgets are ordered in a column
           children: [
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-            MissionTitle("The City"),
+            MissionTitle("Power Plant"),
             // Just some whitespace between widgets for graphics
             const SizedBox(
               height: 50,
             ),
             MissionBody(
-                "I dagens städer är arbetsplatser, fritidsaktiviteter och nöjesställen utspridda. Stadsplaneringen "
-                "har gjort det svårt att leva utan bil, men om stadens klimatavtryck ska minska måste vi tänka "
-                "om. Visionen om 15-minutersstaden innebär att allt en stadsbo behöver ska finnas nära, inom "
-                "15 minuter med cykel."),
+              "Energiproduktion. Idag drivs de flesta bilar med fossila bränslen. "
+              "För att åstadkomma en stad utan utsläpp och nå klimatmålen måste vi "
+              "gå över till förnyelsebara drivmedel. "
+              "Hur fungerar ett vindkraftverk? "
+              "Testa modellen som finns i utställningen. ",
+            ),
             const SizedBox(
               height: 100,
             ),
@@ -52,13 +48,13 @@ class TheCityIntro extends StatelessWidget {
                 ),
               ),
               child: const Text('Påbörja uppdrag',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               onPressed: () {
                 // When pressed move to "TheCity1"/first mission
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TheCity1(),
+                    builder: (context) => const Power_plant_Mission1a(),
                   ),
                 );
               },

@@ -27,9 +27,12 @@ class MainStreetState1 extends State<MainStreet1> {
       backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
       body: Column(
         children: [
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionTitle("Koldioxidutsläpp - Klädesplagg"),
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionBody(
               "Dra ett strck mellan klädesplagget och det koldioxidutsläpp de skapar."),
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           PairingWidget(left, right, correct, buttonTarget),
         ],
       ),

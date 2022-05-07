@@ -31,7 +31,8 @@ class PairingProvider with ChangeNotifier {
   late List<Pair> _pairs;
   late final List<Pair> _correct;
 
-  Text buttonText = Text("Testa svar");
+  Text buttonText = Text("Testa svar",
+      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold));
   Color buttonColor = Graphics.HEAVEN;
 
   PairingProvider(this._correct, int length, {Key? key}) {
@@ -138,7 +139,8 @@ class PairingProvider with ChangeNotifier {
       }
     }
     if (complete) {
-      buttonText = Text("Fortsätt till nästa uppdrag");
+      buttonText = Text("Gå vidare",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold));
       buttonColor = Graphics.GREEN;
     }
     notifyListeners();
@@ -224,7 +226,7 @@ SnackBar snack = const SnackBar(
       "Fel svar!",
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
     ),

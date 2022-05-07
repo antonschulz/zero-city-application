@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:zero_city/utils/Graphics.dart';
-import 'package:zero_city/zones/backstreet/backstreet_mission1a.dart';
+import 'package:zero_city/zones/backstreet/backstreetintro.dart';
 import 'package:zero_city/zones/city_port/city_port_intro.dart';
 import 'package:zero_city/zones/main_street/main_street_intro.dart';
 import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
-import 'package:zero_city/zones/power-plant/mission1a.dart';
+import 'package:zero_city/zones/power-plant/power_plant_intro.dart';
 import 'package:zero_city/zones/the-park/introPage.dart';
 import 'package:zero_city/zones/the-square/theSquareIntroPage.dart';
 import 'package:zero_city/zones/the_city/the_city_intro.dart';
@@ -86,11 +86,11 @@ class ExhibitionMap extends StatelessWidget {
     Mission("The High Street", 0, const Text("test")),
     Mission("Planning Lab", 1, const PlanningLabIntro()),
     Mission("The Park", 2, const introPageThePark()),
-    Mission("Power Plant", 3, const Power_plant_Mission1a()),
+    Mission("Power Plant", 3, const PowerPlantIntro()),
     Mission("City Port", 4, const CityPortIntro()),
     Mission("The City", 6, const TheCityIntro()),
     Mission("The Main Street", 5, const MainStreetIntro()),
-    Mission("The Backstreet", 7, const Backstreet_Mission1a()),
+    Mission("The Backstreet", 7, const BackstreetIntro()),
     Mission("The Square", 8, const introPageTheSquare()),
   ];
 
@@ -126,12 +126,6 @@ class ExhibitionMap extends StatelessWidget {
         height: 250.0),
     MissionButton(
         mission: missions[8], left: 750, top: 400, width: 250, height: 250),
-    MissionButton(
-        mission: missions[0],
-        left: 1050,
-        top: 350,
-        width: 100.0,
-        height: 250.0),
     MissionButton(
         mission: missions[6], left: 500, top: 525, width: 150, height: 200.0)
   ];

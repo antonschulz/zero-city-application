@@ -32,24 +32,13 @@ class theSquareMission1State extends State<theSquareMission1> {
           Expanded(
               child: Column(
             children: [
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionTitle("Designa er egen stad"),
-              const Divider(
-                height: 50,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Color.fromRGBO(241, 216, 234, 1),
-              ),
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionBody(
                   "I spelet kan ni välja vad de olika ytorna ska innehålla (vägar, skog, byggnader, m.m.)."
                   " Hur kan ni förändra staden på fem minuter?"),
-              const Divider(
-                height: 20,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Color.fromRGBO(241, 216, 234, 1),
-              ),
+              const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
 
               //knapp för att starta timer
               ElevatedButton(
@@ -60,19 +49,27 @@ class theSquareMission1State extends State<theSquareMission1> {
                       context.read<TheSquareState>().startTimer(),
                     }
                 },
-                child: const Text("Starta tidtagning"),
-                style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(62, 125, 196, 1),
+                child: const Text(
+                  "Starta timer",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ButtonStyle(
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromRGBO(62, 125, 196, 1)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
                 ),
               ),
 
-              const Divider(
-                height: 10,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Color.fromRGBO(241, 216, 234, 1),
-              ),
+              const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
 
               //timern
 
@@ -80,20 +77,14 @@ class theSquareMission1State extends State<theSquareMission1> {
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black45,
-                      fontSize: 40)),
+                      fontSize: 60)),
 
-              const Divider(
-                height: 50,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Color.fromRGBO(241, 216, 234, 1),
-              ),
+              const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
 
               //gå vidare till kartan om det gått 5 min
               ElevatedButton(
                 onPressed: () {
-                  if (context.read<TheSquareState>().timerFinished) {
+                  if (context.read<TheSquareState>().timerStarted) {
                     context
                         .read<ExhibitionMapProvider>()
                         .setCompleteMission("The Square");
@@ -103,9 +94,23 @@ class theSquareMission1State extends State<theSquareMission1> {
                     );
                   }
                 },
-                child: const Text("Gå tillbaka till kartan"),
-                style: ElevatedButton.styleFrom(
-                  primary: context.watch<TheSquareState>().color,
+                child: const Text(
+                  "Tillbaka till kartan",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ButtonStyle(
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      context.watch<TheSquareState>().color),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
                 ),
               ),
             ],

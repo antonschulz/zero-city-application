@@ -17,25 +17,14 @@ class introPageTheSquare extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionTitle("The Square"),
-              const Divider(
-                height: 50,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Color.fromRGBO(241, 216, 234, 1),
-              ),
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionBody(
                   "Vi kan inte lämna över dagens problem till nästa generation. Härifrån och framåt är det vi som"
                   "tillsammans är förändringen! Torget är stadens mötesplats. Här kan vi samlas, umgås och dela"
                   "idéer för hållbar utveckling."),
-              const Divider(
-                height: 100,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Color.fromRGBO(241, 216, 234, 1),
-              ),
+              const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
               ElevatedButton(
                 style: ButtonStyle(
                   fixedSize:
@@ -50,7 +39,7 @@ class introPageTheSquare extends StatelessWidget {
                 ),
                 child: const Text('Gå vidare',
                     style:
-                        TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   Navigator.push(
                     context,

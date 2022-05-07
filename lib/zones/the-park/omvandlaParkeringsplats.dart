@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:zero_city/state/the_park_state.dart';
+import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
+import 'package:zero_city/state/the_park_state.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/missions/input.dart';
-import 'package:zero_city/exhibition_map/map.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class omvandlaParkering extends StatelessWidget {
   const omvandlaParkering({Key? key}) : super(key: key);
@@ -22,6 +22,7 @@ class omvandlaParkering extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionTitle("Omvandla en parkeringsplats!"),
               const Divider(
                 height: 50,
@@ -40,13 +41,19 @@ class omvandlaParkering extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: "Skriv här",
+              Container(
+                height: 100,
+                width: 500,
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Skriv här",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  onChanged: (String str) {
+                    context.read<TheParkState>().setText(str);
+                  },
                 ),
-                onChanged: (String str) {
-                  context.read<TheParkState>().setText(str);
-                },
               ),
               const Divider(
                 height: 50,
@@ -55,38 +62,37 @@ class omvandlaParkering extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-              // Show submitted String under the input box
-              Text(
-                  "Erat svar: \n" + context.watch<TheParkState>().parkingAnswer,
-                  textAlign: TextAlign.left,
-                  style: const TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontStyle: FontStyle.italic)),
               ElevatedButton(
                 style: ButtonStyle(
                   fixedSize:
                       MaterialStateProperty.all<Size>(const Size(250, 80)),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromRGBO(152, 180, 187, 1)),
+                  backgroundColor: context.read<TheParkState>().completed
+                      ? MaterialStateProperty.all<Color>(Graphics.GREEN)
+                      : MaterialStateProperty.all<Color>(Graphics.HEAVEN),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                 ),
-                child: const Text('Gå vidare',
-                    style:
-                        TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                child: context.watch<TheParkState>().completed
+                    ? const Text('Tillbaka till kartan',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold))
+                    : Text('Skriv ett svar!',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
-                  //when pressed move to class "FirstRoute"
-                  context
-                      .read<ExhibitionMapProvider>()
-                      .setCompleteMission("The Park");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ExhibitionMap()),
-                  );
+                  //when pressed and text is filled in move to class "FirstRoute"
+                  if (context.read<TheParkState>().completed) {
+                    context
+                        .read<ExhibitionMapProvider>()
+                        .setCompleteMission("The Park");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ExhibitionMap()),
+                    );
+                  }
                 },
               ),
             ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/text_types/mission_body.dart';
-import 'package:zero_city/utils/Graphics.dart';
 import 'package:zero_city/state/city_port_state.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
+import 'package:zero_city/utils/Graphics.dart';
 import 'package:zero_city/zones/city_port/city_port2.dart';
 
 class CityPort1 extends StatefulWidget {
@@ -22,7 +22,15 @@ class CityPort1State extends State<CityPort1> {
         margin: const EdgeInsets.all(16),
         child: Column(
           children: [
+            const Divider(
+              height: 40,
+              color: Color.fromRGBO(0, 0, 0, 0),
+            ),
             MissionTitle("Packa en container"),
+            const Divider(
+              height: 40,
+              color: Color.fromRGBO(0, 0, 0, 0),
+            ),
             MissionBody(
                 "Att packa rätt och undvika tomrum är ett enkelt sätt att minska "
                 "på behovet av transporter. I dag går många lastbilar och fartyg "
@@ -38,6 +46,10 @@ class CityPort1State extends State<CityPort1> {
                 "är tom. Starta timern för att börja packa! Efter 5 minuter "
                 "stängs timern av automatiskt. Er packtid kommer att sparas "
                 "för att se vem som packar snabbast!"),
+            const Divider(
+              height: 30,
+              color: Color.fromRGBO(0, 0, 0, 0),
+            ),
             // Knapp för att starta timer
             ElevatedButton(
               onPressed: () => {
@@ -55,19 +67,19 @@ class CityPort1State extends State<CityPort1> {
                   ? const Text(
                       "Stoppa timer",
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     )
                   : const Text(
                       "Starta timer",
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(350, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                   context.read<CityPortState>().timerOn
                       ? Colors.red
@@ -112,14 +124,14 @@ class CityPort1State extends State<CityPort1> {
                 }
               },
               child: const Text(
-                "Fortsätt till nästa uppdrag",
+                "Gå vidare",
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all<Size>(const Size(450, 80)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                     context.watch<CityPortState>().color),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(

@@ -23,10 +23,13 @@ class _PlanningLab2State extends State<PlanningLab2> {
       backgroundColor: Graphics.LIGHTGREEN,
       body: Column(
         children: [
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionTitle("Ohållbara vanor"),
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionBody(
               "Välj ett av alternativen nedan som ni valde i föregående fråga att avstå "
               "ifrån. Försök att komma på något miljösmart det kan ersättas med."),
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -85,6 +88,7 @@ class _PlanningLab2State extends State<PlanningLab2> {
           const SizedBox(
             height: 32,
           ),
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           ElevatedButton(
             style: ButtonStyle(
               fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
@@ -98,7 +102,7 @@ class _PlanningLab2State extends State<PlanningLab2> {
             ),
             child: const Text(
               'Gå vidare',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             onPressed: () {
               if (context.read<PlanningLabState>().correct) {

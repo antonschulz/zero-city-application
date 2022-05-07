@@ -13,6 +13,7 @@ class TheSquareState with ChangeNotifier {
 
   //start timer and count down
   void startTimer() {
+    color = Colors.green;
     timerStarted = true;
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
@@ -21,7 +22,6 @@ class TheSquareState with ChangeNotifier {
         if (start == 0) {
           timer.cancel();
           timerFinished = true;
-          color = Colors.green;
         } else {
           start--;
         }

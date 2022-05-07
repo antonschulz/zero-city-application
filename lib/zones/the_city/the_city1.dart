@@ -5,6 +5,8 @@ import 'package:zero_city/zones/the_city/the_city2.dart';
 import 'package:zero_city/state/the_city_state.dart';
 import 'package:zero_city/utils/Graphics.dart';
 import 'package:provider/src/provider.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 
 // Stateful widget because user input will alter the state of the page
 // and change some graphical aspects
@@ -33,9 +35,12 @@ class TheCity1State extends State<TheCity1> {
         margin: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           children: [
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             MissionTitle("Funktioner i staden"),
+            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             MissionBody(
                 "Vilka tycker ni är de fem viktigaste sakerna som ska finnas i en storstad?"),
+            const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
             Column(
               // Generate a list of text input widgets
               children: List.generate(
@@ -66,6 +71,7 @@ class TheCity1State extends State<TheCity1> {
                 },
               ),
             ),
+            const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
             Container(
               // Create some margin to the last text input
               margin: const EdgeInsets.only(top: 32.0),
@@ -73,7 +79,7 @@ class TheCity1State extends State<TheCity1> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(400, 80)),
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       context.watch<TheCityState>().color),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -88,7 +94,7 @@ class TheCity1State extends State<TheCity1> {
                     ? const Text(
                         "Gå vidare",
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       )
@@ -96,7 +102,7 @@ class TheCity1State extends State<TheCity1> {
                     : const Text(
                         "Skriv 5 saker",
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
