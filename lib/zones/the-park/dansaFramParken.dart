@@ -52,7 +52,6 @@ class dansaFramParken extends StatelessWidget {
                 ),
                 child: const Text('Gå vidare',
                     style:
-
                         TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"

@@ -28,7 +28,7 @@ class _TheCity2State extends State<TheCity2> {
             const Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
             MissionBody(
                 "I dagens städer finns det nu många el-sparkcyklar. De är både älskade och hatade."
-                    " Kom på två för- och nackdelar med dem."),
+                " Kom på två för- och nackdelar med dem."),
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),

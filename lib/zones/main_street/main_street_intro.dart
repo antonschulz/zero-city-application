@@ -26,7 +26,6 @@ class MainStreetIntro extends StatelessWidget {
                       "En stor del av utsläppen kommer från vår konsumtion. Hur vi handlar har betydelse. Kan vi göra på"
                       "ett annat sätt? Hur kan vi tänka hållbart?"),
                   const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
-
                   ElevatedButton(
                     style: ButtonStyle(
                       fixedSize:

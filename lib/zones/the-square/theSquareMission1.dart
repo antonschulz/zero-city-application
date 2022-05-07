@@ -49,14 +49,16 @@ class theSquareMission1State extends State<theSquareMission1> {
                       context.read<TheSquareState>().startTimer(),
                     }
                 },
-                child: const Text("Starta timer",  style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
+                child: const Text(
+                  "Starta timer",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 style: ButtonStyle(
                   fixedSize:
-                  MaterialStateProperty.all<Size>(const Size(250, 80)),
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromRGBO(62, 125, 196, 1)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -65,13 +67,9 @@ class theSquareMission1State extends State<theSquareMission1> {
                     ),
                   ),
                 ),
-
-
-
               ),
 
               const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
-
 
               //timern
 
@@ -96,15 +94,16 @@ class theSquareMission1State extends State<theSquareMission1> {
                     );
                   }
                 },
-                child: const Text("Tillbaka till kartan", style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+                child: const Text(
+                  "Tillbaka till kartan",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                ),
-
                 style: ButtonStyle(
                   fixedSize:
-                  MaterialStateProperty.all<Size>(const Size(250, 80)),
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       context.watch<TheSquareState>().color),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -113,9 +112,6 @@ class theSquareMission1State extends State<theSquareMission1> {
                     ),
                   ),
                 ),
-
-
-
               ),
             ],
           ))

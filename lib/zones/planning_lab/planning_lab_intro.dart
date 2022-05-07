@@ -52,9 +52,6 @@ class PlanningLabIntro extends StatelessWidget {
                 );
               },
             ),
-
-
-
           ],
         ),
       ),

@@ -41,7 +41,6 @@ class TheCity1State extends State<TheCity1> {
             MissionBody(
                 "Vilka tycker ni är de fem viktigaste sakerna som ska finnas i en storstad?"),
             const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
-
             Column(
               // Generate a list of text input widgets
               children: List.generate(
@@ -73,7 +72,6 @@ class TheCity1State extends State<TheCity1> {
               ),
             ),
             const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
-
             Container(
               // Create some margin to the last text input
               margin: const EdgeInsets.only(top: 32.0),
@@ -120,7 +118,6 @@ class TheCity1State extends State<TheCity1> {
                 },
               ),
             ),
-
           ],
         ),
       ),

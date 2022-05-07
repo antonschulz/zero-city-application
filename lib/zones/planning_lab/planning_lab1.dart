@@ -105,10 +105,6 @@ class PlanningLab1State extends State<PlanningLab1> {
                 }
               },
             ),
-
-
-
-
           ),
         ],
       ),

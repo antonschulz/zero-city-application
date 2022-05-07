@@ -20,14 +20,11 @@ class introPageTheSquare extends StatelessWidget {
               const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionTitle("The Square"),
               const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-
               MissionBody(
                   "Vi kan inte lämna över dagens problem till nästa generation. Härifrån och framåt är det vi som"
                   "tillsammans är förändringen! Torget är stadens mötesplats. Här kan vi samlas, umgås och dela"
                   "idéer för hållbar utveckling."),
-
               const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
-
               ElevatedButton(
                 style: ButtonStyle(
                   fixedSize:

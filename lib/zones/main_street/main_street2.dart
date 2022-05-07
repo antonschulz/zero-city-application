@@ -44,8 +44,8 @@ class MainStreetState2 extends State<MainStreet2> {
             child: TextField(
               decoration: InputDecoration(
                 hintText: "Svaret finner ni i utställningen!",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50)),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
               ),
               keyboardType: TextInputType.number,
               maxLength: 4,
@@ -57,11 +57,6 @@ class MainStreetState2 extends State<MainStreet2> {
               },
             ),
           ),
-
-
-
-
-
 
           // Navigator button to next mission page, planning_lab2
           const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
@@ -77,13 +72,10 @@ class MainStreetState2 extends State<MainStreet2> {
                 ScaffoldMessenger.of(context).showSnackBar(snack);
               }
             },
-            child: const Text("Gå vidare",style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.bold)),
-
-
+            child: const Text("Gå vidare",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
             style: ButtonStyle(
-              fixedSize:
-              MaterialStateProperty.all<Size>(const Size(250, 80)),
+              fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
               backgroundColor: MaterialStateProperty.all<Color>(
                   context.watch<MainStreetState>().color),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -92,10 +84,7 @@ class MainStreetState2 extends State<MainStreet2> {
                 ),
               ),
             ),
-
-
           ),
-
         ],
       ),
     );

@@ -75,7 +75,6 @@ class omvandlaParkering extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 child: context.watch<TheParkState>().completed
                     ? const Text('Tillbaka till kartan',
                         style: TextStyle(

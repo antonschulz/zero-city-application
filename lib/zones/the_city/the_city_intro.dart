@@ -40,7 +40,6 @@ class TheCityIntro extends StatelessWidget {
             ),
             // Button directs to first mission in the city
 
-
             ElevatedButton(
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
@@ -53,8 +52,7 @@ class TheCityIntro extends StatelessWidget {
                 ),
               ),
               child: const Text('Påbörja uppdrag',
-                  style:
-                  TextStyle(fontSize: 25, fontWeight: FontWeight.bold )),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               onPressed: () {
                 // When pressed move to "TheCity1"/first mission
                 Navigator.push(
@@ -65,10 +63,6 @@ class TheCityIntro extends StatelessWidget {
                 );
               },
             ),
-
-
-
-
           ],
         ),
       ),
