@@ -32,23 +32,39 @@ class MainStreetState2 extends State<MainStreet2> {
       backgroundColor: const Color.fromRGBO(241, 216, 234, 1),
       body: Column(
         children: [
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionTitle("The Main Street"),
+          const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionBody(
               "I Europa slängs i genomsnitt ___ kg kläder per person per år. Fyll i ditt svar nedanför."),
-          TextField(
-            decoration: const InputDecoration(
-              hintText: "Svaret finner ni i utställningen!",
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
+          Container(
+            height: 100,
+            width: 500,
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Svaret finner ni i utställningen!",
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50)),
+              ),
+              keyboardType: TextInputType.number,
+              maxLength: 4,
+              onChanged: (String str) {
+                context.read<MainStreetState>().setClothesThrown(str);
+              },
+              onSubmitted: (String str) {
+                context.read<MainStreetState>().submitClothesThrown(str);
+              },
             ),
-            keyboardType: TextInputType.number,
-            maxLength: 4,
-            onChanged: (String str) {
-              context.read<MainStreetState>().setClothesThrown(str);
-            },
-            onSubmitted: (String str) {
-              context.read<MainStreetState>().submitClothesThrown(str);
-            },
           ),
+
+
+
+
+
+
           // Navigator button to next mission page, planning_lab2
+          const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           ElevatedButton(
             onPressed: () {
               if (context.read<MainStreetState>().isCorrectAnswer) {
@@ -66,6 +82,7 @@ class MainStreetState2 extends State<MainStreet2> {
               primary: context.watch<MainStreetState>().color,
             ),
           ),
+
         ],
       ),
     );

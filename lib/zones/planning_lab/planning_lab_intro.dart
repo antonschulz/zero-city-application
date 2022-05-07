@@ -42,7 +42,7 @@ class PlanningLabIntro extends StatelessWidget {
                   ),
                 ),
               ),
-              child: const Text('Gå vidare',
+              child: const Text('Påbörja uppdrag',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               onPressed: () {
                 // When pressed move to "PlanningLab1"/first mission

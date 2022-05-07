@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/zone_title.dart';
 import 'package:zero_city/text_types/zone_body.dart';
 import 'package:zero_city/zones/main_street/main_street1.dart';
+import 'package:zero_city/text_types/mission_body.dart';
+import 'package:zero_city/text_types/mission_title.dart';
 
 class MainStreetIntro extends StatelessWidget {
   const MainStreetIntro({Key? key}) : super(key: key);
@@ -17,20 +19,14 @@ class MainStreetIntro extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  ZoneTitle("The Main Street"),
-                  const Divider(
-                    height: 50,
-                    thickness: 5,
-                    indent: 20,
-                    endIndent: 0,
-                    color: Color.fromRGBO(241, 216, 234, 1),
-                  ),
-                  ZoneBody(
+                  const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+                  MissionTitle("The Main Street"),
+                  const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+                  MissionBody(
                       "En stor del av utsläppen kommer från vår konsumtion. Hur vi handlar har betydelse. Kan vi göra på"
                       "ett annat sätt? Hur kan vi tänka hållbart?"),
-                  const SizedBox(
-                    height: 100,
-                  ),
+                  const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
+
                   ElevatedButton(
                     style: ButtonStyle(
                       fixedSize:

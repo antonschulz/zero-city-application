@@ -33,7 +33,7 @@ class PairingProvider with ChangeNotifier {
 
   Text buttonText = Text("Testa svar",
       style:
-      TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
+      TextStyle(fontSize: 25, fontWeight: FontWeight.bold));
   Color buttonColor = Graphics.HEAVEN;
 
   PairingProvider(this._correct, int length, {Key? key}) {
@@ -140,9 +140,9 @@ class PairingProvider with ChangeNotifier {
       }
     }
     if (complete) {
-      buttonText = Text("Fortsätt till nästa uppdrag",
+      buttonText = Text("Gå vidare",
           style:
-          TextStyle(fontSize: 17, fontWeight: FontWeight.bold));
+          TextStyle(fontSize: 25, fontWeight: FontWeight.bold));
       buttonColor = Graphics.GREEN;
     }
     notifyListeners();
