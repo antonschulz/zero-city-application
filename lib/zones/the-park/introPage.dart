@@ -73,7 +73,8 @@ class introPageThePark extends StatelessWidget {
               //new button
               ElevatedButton(
                 style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all<Size>(const Size(250, 80)),
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(250, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       const Color.fromRGBO(152, 180, 187, 1)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -84,7 +85,7 @@ class introPageThePark extends StatelessWidget {
                 ),
                 child: const Text('Påbörja uppdrag',
                     style:
-                    TextStyle(fontSize: 20, fontWeight: FontWeight.bold )),
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
                   Navigator.push(
@@ -94,17 +95,6 @@ class introPageThePark extends StatelessWidget {
                   );
                 },
               ),
-
-
-
-
-
-
-
-
-
-
-
             ],
           ))
         ],
