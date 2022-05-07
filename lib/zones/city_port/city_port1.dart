@@ -67,14 +67,14 @@ class CityPort1State extends State<CityPort1> {
                   ? const Text(
                       "Stoppa timer",
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     )
                   : const Text(
                       "Starta timer",
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

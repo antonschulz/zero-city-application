@@ -69,7 +69,9 @@ class MyHomePage extends StatelessWidget {
                       );
                     },
                   ),
-                  ElevatedButton(
+
+                //test uppdragssida - använd för att testa en uppdragssida
+                /*  ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -79,6 +81,8 @@ class MyHomePage extends StatelessWidget {
                       child: const Text('Exempel uppgragssida',
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.bold)))
+
+                 */
                 ],
               ),
             ),

@@ -77,10 +77,23 @@ class MainStreetState2 extends State<MainStreet2> {
                 ScaffoldMessenger.of(context).showSnackBar(snack);
               }
             },
-            child: const Text("Fortsätt till nästa uppdrag"),
-            style: ElevatedButton.styleFrom(
-              primary: context.watch<MainStreetState>().color,
+            child: const Text("Gå vidare",style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold)),
+
+
+            style: ButtonStyle(
+              fixedSize:
+              MaterialStateProperty.all<Size>(const Size(250, 80)),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  context.watch<MainStreetState>().color),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+              ),
             ),
+
+
           ),
 
         ],

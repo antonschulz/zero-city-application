@@ -41,7 +41,7 @@ class MainStreetIntro extends StatelessWidget {
                     ),
                     child: const Text('Påbörja uppdrag',
                         style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.bold)),
+                            fontSize: 25, fontWeight: FontWeight.bold)),
                     onPressed: () {
                       //when pressed move to class "FirstRoute"
                       Navigator.push(

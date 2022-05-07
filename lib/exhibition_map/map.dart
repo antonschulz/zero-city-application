@@ -127,12 +127,6 @@ class ExhibitionMap extends StatelessWidget {
     MissionButton(
         mission: missions[8], left: 750, top: 400, width: 250, height: 250),
     MissionButton(
-        mission: missions[0],
-        left: 1050,
-        top: 350,
-        width: 100.0,
-        height: 250.0),
-    MissionButton(
         mission: missions[6], left: 500, top: 525, width: 150, height: 200.0)
   ];
 
