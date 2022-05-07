@@ -9,6 +9,18 @@ import 'package:zero_city/text_types/mission_title.dart';
 double boxWidth = 200;
 double boxHeight = 90;
 
+SnackBar snack = const SnackBar(
+    backgroundColor: Colors.redAccent,
+    content: Text(
+      "Fel svar!",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    duration: Duration(seconds: 7));
+
 class LinePainter extends CustomPainter {
   List<double> positionx;
   List<double> positiony;
@@ -197,7 +209,7 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
               onPressed: () {
                 var allPairsCorrect = true;
                 var pairs = context.read<BackstreetState>().pairs;
-                var correctAnswers = [0, 1, 2, 3, 4];
+                var correctAnswers = [3, 2, 0, 1, 4];
                 for (var i = 0; i < pairs.length; i++) {
                   if (pairs[i] != correctAnswers[i]) {
                     allPairsCorrect = false;
@@ -220,6 +232,9 @@ class Backstreet_Mission1aState extends State<Backstreet_Mission1a> {
                   context
                       .read<BackstreetState>()
                       .continueButtonPressed(readyToMoveOn);
+                } else {
+                  // fel meddelande
+                  ScaffoldMessenger.of(context).showSnackBar(snack);
                 }
               },
               child: Text(context.read<BackstreetState>().continueText,
