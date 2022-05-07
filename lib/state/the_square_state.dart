@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class TheSquareState with ChangeNotifier {
   //timer variables
@@ -9,11 +11,11 @@ class TheSquareState with ChangeNotifier {
   var timerFinished = false;
 
   //variables for button
-  var color = Colors.grey;
+  var color = Graphics.GREY;
 
   //start timer and count down
   void startTimer() {
-    color = Colors.green;
+    color = Graphics.GREEN;
     timerStarted = true;
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
