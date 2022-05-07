@@ -17,6 +17,7 @@ class mission2a extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
+              const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
               MissionTitle("Generera egen energi!"),
               const Divider(
                 height: 50,
