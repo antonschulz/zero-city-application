@@ -249,7 +249,7 @@ SnackBar snack = const SnackBar(
         fontWeight: FontWeight.bold,
       ),
     ),
-    duration: Duration(seconds: 7));
+    duration: Duration(seconds: 3));
 
 class continueButtonWidget extends StatelessWidget {
   final Null Function() Function(BuildContext) buttonTarget;
