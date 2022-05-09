@@ -269,10 +269,10 @@ SnackBar rightAnswer = const SnackBar(
     ),
     duration: Duration(seconds: 3));
 
-class continueButtonWidget extends StatelessWidget {
+class ContinueButtonWidget extends StatelessWidget {
   final Null Function() Function(BuildContext) buttonTarget;
 
-  continueButtonWidget(this.buttonTarget);
+  const ContinueButtonWidget(this.buttonTarget, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -307,7 +307,9 @@ class PairingWidget extends StatefulWidget {
   final List<Pair> correct;
   final Null Function() Function(BuildContext) buttonTarget;
 
-  PairingWidget(this.left, this.right, this.correct, this.buttonTarget);
+  const PairingWidget(this.left, this.right, this.correct, this.buttonTarget,
+      {Key? key})
+      : super(key: key);
 
   @override
   _PairingWidgetState createState() => _PairingWidgetState();
@@ -331,7 +333,7 @@ class _PairingWidgetState extends State<PairingWidget> {
               ],
             ),
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-            continueButtonWidget(widget.buttonTarget),
+            ContinueButtonWidget(widget.buttonTarget),
           ],
         ),
       ),
