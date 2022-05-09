@@ -6,7 +6,6 @@ class ExhibitionMapProvider with ChangeNotifier {
   late Mission selectedMission;
 
   late Map<String, bool> completedMission = {
-    "The High Street": false,
     "Planning Lab": false,
     "The Park": false,
     "Power Plant": false,
@@ -16,6 +15,8 @@ class ExhibitionMapProvider with ChangeNotifier {
     "The Backstreet": false,
     "The Square": false,
   };
+
+  late bool allCompleted = false;
 
   static Color unstartedMissionColor = Graphics.HEAVEN;
   static Color completedMissionColor = Graphics.GREEN;
@@ -38,6 +39,9 @@ class ExhibitionMapProvider with ChangeNotifier {
     }
 
     completedMission[missionName] = true;
+    if (!completedMission.values.contains(false)) {
+      allCompleted = true;
+    }
     notifyListeners();
   }
 }

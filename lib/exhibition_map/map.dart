@@ -3,6 +3,7 @@ import 'package:provider/src/provider.dart';
 import 'package:zero_city/utils/Graphics.dart';
 import 'package:zero_city/zones/backstreet/backstreetintro.dart';
 import 'package:zero_city/zones/city_port/city_port_intro.dart';
+import 'package:zero_city/zones/garage/garage.dart';
 import 'package:zero_city/zones/main_street/main_street_intro.dart';
 import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 import 'package:zero_city/zones/power-plant/power_plant_intro.dart';
@@ -40,14 +41,73 @@ class MissionButton extends StatelessWidget {
     bool? completedMission =
         context.watch<ExhibitionMapProvider>().completedMission[mission.name];
 
+    String _PASSWORD = "0000";
+
     return Positioned(
         left: left,
         top: top,
         child: GestureDetector(
           onTap: () {
-            context.read<ExhibitionMapProvider>().setMission(mission);
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => mission.missionPage));
+            if (mission.name != "The Garage") {
+              context.read<ExhibitionMapProvider>().setMission(mission);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => mission.missionPage));
+            } else if (!context.read<ExhibitionMapProvider>().allCompleted) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text("The Garage"),
+                  titleTextStyle: const TextStyle(
+                    fontSize: 40,
+                  ),
+                  content: Column(
+                    children: [
+                      const Text(
+                        "I garaget kan ni jämföra era svar med "
+                        "andra grupper när ni är klara. \nOm ni inte är klara men inte "
+                        "har tid för att klara alla uppdrag kan ni skriva in en kod \n"
+                        "för att se de svar ni har fått hittils.",
+                      ),
+                      SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            hintText: "Kod",
+                          ),
+                          maxLength: 4,
+                          keyboardType: TextInputType.number,
+                          onSubmitted: (String str) {
+                            if (str == _PASSWORD) {
+                              context
+                                  .read<ExhibitionMapProvider>()
+                                  .setMission(mission);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          mission.missionPage));
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text(
+                        "AVBRYT",
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              context.read<ExhibitionMapProvider>().setMission(mission);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => mission.missionPage));
+            }
           },
           child: Container(
             width: width,
@@ -83,7 +143,7 @@ class ExhibitionMap extends StatelessWidget {
   const ExhibitionMap({Key? key}) : super(key: key);
 
   static List<Mission> missions = [
-    Mission("The High Street", 0, const Text("test")),
+    Mission("The Garage", 0, const Garage()),
     Mission("Planning Lab", 1, const PlanningLabIntro()),
     Mission("The Park", 2, const introPageThePark()),
     Mission("Power Plant", 3, const PowerPlantIntro()),
@@ -97,7 +157,26 @@ class ExhibitionMap extends StatelessWidget {
   // This section works, however to see changes, rerun the app
   static List<MissionButton> missionButtons = [
     MissionButton(
-        mission: missions[2], left: 400, top: 75, width: 200, height: 200.0),
+      mission: missions[0],
+      left: 1050,
+      top: 350,
+      width: 100.0,
+      height: 250.0,
+    ),
+    MissionButton(
+      mission: missions[1],
+      left: 325,
+      top: 525,
+      width: 150,
+      height: 200,
+    ),
+    MissionButton(
+      mission: missions[2],
+      left: 400,
+      top: 75,
+      width: 200,
+      height: 200.0,
+    ),
     MissionButton(
         mission: missions[3],
         left: 50.0,
@@ -117,7 +196,12 @@ class ExhibitionMap extends StatelessWidget {
         width: 250.0,
         height: 100.0),
     MissionButton(
-        mission: missions[1], left: 325, top: 525, width: 150, height: 200),
+      mission: missions[6],
+      left: 500,
+      top: 525,
+      width: 150,
+      height: 200.0,
+    ),
     MissionButton(
         mission: missions[7],
         left: 650,
@@ -125,9 +209,12 @@ class ExhibitionMap extends StatelessWidget {
         width: 350.0,
         height: 250.0),
     MissionButton(
-        mission: missions[8], left: 750, top: 400, width: 250, height: 250),
-    MissionButton(
-        mission: missions[6], left: 500, top: 525, width: 150, height: 200.0)
+      mission: missions[8],
+      left: 750,
+      top: 400,
+      width: 250,
+      height: 250,
+    ),
   ];
 
   @override

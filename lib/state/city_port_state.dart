@@ -41,6 +41,7 @@ class CityPortState with ChangeNotifier {
     canContinue = true;
     timerOn = false;
     color = Graphics.GREEN;
+    timeTaken = getTime();
     _timer?.cancel();
 
     notifyListeners();
@@ -65,6 +66,10 @@ class CityPortState with ChangeNotifier {
   // CityPort2
   int group = 0;
 
+  // TODO init to "" but need to rewrite city_port2
+  String answer2 =
+      "Inför en lag som gör att man bara får lämna tillbaka fem produkter per år.";
+
   final List<String> alternatives = [
     "Inför en lag som gör att man bara får lämna tillbaka fem produkter per år.",
     "Köp färre saker online - så vi inte behöver returnera så mycket!",
@@ -73,6 +78,7 @@ class CityPortState with ChangeNotifier {
 
   void selectAlternative(int idx) {
     group = idx;
+    answer2 = alternatives[idx];
     notifyListeners();
   }
 }
