@@ -133,21 +133,17 @@ class ExhibitionMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/exhibition_map.jpg"),
-          fit: BoxFit.cover
-        )
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: missionButtons,
-        ),
-      )
-    );
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/exhibition_map.jpg"),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: missionButtons,
+          ),
+        ));
   }
 }
-
