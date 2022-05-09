@@ -67,6 +67,7 @@ flutter:
     - assets/images/ford.png
     - assets/images/nordstjärnan.png
     - assets/images/ottomotorn.png
+    - assets/images/exhibition_map.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
