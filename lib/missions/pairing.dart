@@ -8,6 +8,11 @@ enum PairState {
   complete,
 }
 
+enum Side {
+  left,
+  right,
+}
+
 class Pair {
   final PairState state;
   final int target;
@@ -41,14 +46,14 @@ class PairingProvider with ChangeNotifier {
     _pairs = List.filled(length, const Pair(PairState.inactive, 0));
   }
 
-  void setSelected(bool side, int index) {
+  void setSelected(Side side, int index) {
     // Updates a selected list to either set index i to true or everything to false
     // If side is "true", left is updated. If side is "false", right is updated.
     if (buttonIsCorrect(side, index)) {
       // If the selected button is already correct then don't make any changes
       return;
     }
-    List<bool> selected = side ? _selectedLeft : _selectedRight;
+    List<bool> selected = side == Side.left ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
     } else {
@@ -56,7 +61,7 @@ class PairingProvider with ChangeNotifier {
         selected[k] = k == index;
       }
     }
-    side ? _selectedLeft = selected : _selectedRight = selected;
+    side == Side.left ? _selectedLeft = selected : _selectedRight = selected;
 
     if (_selectedLeft.any((element) => element) &&
         _selectedRight.any((element) => element)) {
@@ -90,8 +95,8 @@ class PairingProvider with ChangeNotifier {
 
   List<Pair> get pairs => _pairs;
 
-  bool isPaired(bool side, int index) {
-    if (side) {
+  bool isPaired(Side side, int index) {
+    if (side == Side.left) {
       return _pairs[index].state == PairState.active;
     } else {
       for (var pair in _pairs) {
@@ -105,8 +110,8 @@ class PairingProvider with ChangeNotifier {
     return _correct[index] == pairs[index];
   }
 
-  bool buttonIsCorrect(bool side, int index) {
-    if (side) {
+  bool buttonIsCorrect(Side side, int index) {
+    if (side == Side.left) {
       return isCorrect(index);
     } else {
       for (var i = 0; i < pairs.length; i++) {
@@ -149,7 +154,7 @@ class PairingProvider with ChangeNotifier {
 
 class _PairingColumnWidget extends StatelessWidget {
   final List<String> texts;
-  final bool side;
+  final Side side;
 
   const _PairingColumnWidget(this.texts, this.side);
 
@@ -168,7 +173,7 @@ class _PairingColumnWidget extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               primary: provider.buttonIsCorrect(side, i)
                   ? Graphics.GREEN
-                  : (side ? provider.left[i] : provider.right[i])
+                  : (side == Side.left ? provider.left[i] : provider.right[i])
                       ? Graphics.HEAVEN
                       : provider.isPaired(side, i)
                           ? Graphics.LILAC
@@ -188,11 +193,12 @@ class _PairingPainter extends CustomPainter {
   final PairingProvider provider;
   _PairingPainter(this.provider);
 
-  Offset calcOffset(Size size, bool side, int i) {
+  Offset calcOffset(Size size, Side side, int i) {
     // TODO: Make this less hardcoded and more adaptible
     // Will break if button sizes are changed or if one column has more
     // buttons than the other.
-    double xDiff = side ? -(size.width / 4) + 164 : (size.width / 4) - 164;
+    double xDiff =
+        side == Side.left ? -(size.width / 4) + 164 : (size.width / 4) - 164;
     double x = xDiff + size.width / 2;
     double y = 65.0 + 130 * i;
     return Offset(x, y);
@@ -204,8 +210,8 @@ class _PairingPainter extends CustomPainter {
       var pair = provider.pairs[l];
       for (var r = 0; r < provider.right.length; r++) {
         canvas.drawLine(
-          calcOffset(size, true, l),
-          calcOffset(size, false, r),
+          calcOffset(size, Side.left, l),
+          calcOffset(size, Side.right, r),
           Paint()
             ..strokeWidth = 5
             ..color = pair.state != PairState.inactive && pair.target == r
@@ -288,8 +294,8 @@ class _PairingWidgetState extends State<PairingWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _PairingColumnWidget(widget.left, true),
-                _PairingColumnWidget(widget.right, false),
+                _PairingColumnWidget(widget.left, Side.left),
+                _PairingColumnWidget(widget.right, Side.right),
               ],
             ),
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
