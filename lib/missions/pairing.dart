@@ -53,6 +53,9 @@ class PairingProvider with ChangeNotifier {
       // If the selected button is already correct then don't make any changes
       return;
     }
+
+    // If button is already selected, deselect it.
+    // Otherwise deselect all others and select it.
     List<bool> selected = side == Side.left ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
@@ -61,17 +64,22 @@ class PairingProvider with ChangeNotifier {
         selected[k] = k == index;
       }
     }
+    // Set the new value to the correct list
     side == Side.left ? _selectedLeft = selected : _selectedRight = selected;
 
+    // Handle pairs if one element on each side is selected
     if (_selectedLeft.any((element) => element) &&
         _selectedRight.any((element) => element)) {
       var l = _selectedLeft.indexOf(true);
       var r = _selectedRight.indexOf(true);
 
+      // If any other pair has the same target: remove it
       for (var i = 0; i < _pairs.length; i++) {
         if (_pairs[i].target == r) _pairs[i] = Pair(PairState.inactive, r);
       }
+      // Add the new pair
       _pairs[l] = Pair(PairState.active, r);
+      // Clear all selections
       _selectedLeft = List.filled(_selectedLeft.length, false);
       _selectedRight = List.filled(_selectedRight.length, false);
     }
