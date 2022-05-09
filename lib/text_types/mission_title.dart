@@ -8,10 +8,10 @@ class MissionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(),
+      margin: const EdgeInsets.only(top: 16),
       child: Text(
         text,
-        textAlign: TextAlign.left,
+        textAlign: TextAlign.center,
         style: const TextStyle(
             fontWeight: FontWeight.bold, color: Colors.black45, fontSize: 52),
       ),
