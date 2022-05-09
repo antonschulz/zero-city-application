@@ -82,6 +82,17 @@ class PairingProvider with ChangeNotifier {
       // Clear all selections
       _selectedLeft = List.filled(_selectedLeft.length, false);
       _selectedRight = List.filled(_selectedRight.length, false);
+    } else {
+      // Remove pair if selected is paired
+      if (side == Side.left && _pairs[index].state == PairState.active) {
+        _pairs[index] = const Pair(PairState.inactive, 0);
+      } else if (side == Side.right) {
+        for (var i = 0; i < _pairs.length; i++) {
+          if (_pairs[i].target == index) {
+            _pairs[i] = const Pair(PairState.inactive, 0);
+          }
+        }
+      }
     }
 
     notifyListeners();
