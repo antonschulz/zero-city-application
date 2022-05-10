@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/text_types/mission_body.dart';
-import 'package:zero_city/zones/city_port/city_port1.dart';
-import 'package:zero_city/zones/zone1/zone1_mission1.dart';
-import 'package:zero_city/zones/the-park/dansaFramParken.dart';
-import 'package:zero_city/zones/the-park/omvandlaParkeringsplats.dart';
-import 'package:zero_city/zones/the-park/introPage.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-  final String groupName = "Grupp 3"; // For now the group name is constant
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +31,7 @@ class MyHomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Text(
-                    'Välkomna $groupName!',
+                    'Välkomna Till Zero City!',
                     style: const TextStyle(
                         fontSize: 65,
                         fontWeight: FontWeight.bold,
