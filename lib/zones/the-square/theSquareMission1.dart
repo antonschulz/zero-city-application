@@ -4,7 +4,6 @@ import 'package:zero_city/state/the_square_state.dart';
 import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/missions/input.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/state/the_square_state.dart';
 import 'dart:async';

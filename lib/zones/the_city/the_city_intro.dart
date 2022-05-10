@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zero_city/text_types/zone_title.dart';
-import 'package:zero_city/text_types/zone_body.dart';
 import 'package:zero_city/utils/Graphics.dart';
 import 'package:zero_city/zones/the_city/the_city1.dart';
 import 'package:provider/src/provider.dart';

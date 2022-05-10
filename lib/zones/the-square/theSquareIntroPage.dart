@@ -3,8 +3,8 @@ import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/zones/the-square/theSquareMission1.dart';
 
-class introPageTheSquare extends StatelessWidget {
-  const introPageTheSquare({Key? key}) : super(key: key);
+class IntroPageTheSquare extends StatelessWidget {
+  const IntroPageTheSquare({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

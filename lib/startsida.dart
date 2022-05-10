@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/zones/city_port/city_port1.dart';
-import 'package:zero_city/zones/zone1/zone1_mission1.dart';
-import 'package:zero_city/zones/the-park/dansaFramParken.dart';
-import 'package:zero_city/zones/the-park/omvandlaParkeringsplats.dart';
-import 'package:zero_city/zones/the-park/introPage.dart';
+import 'package:zero_city/zones/the-park/the_park1.dart';
+import 'package:zero_city/zones/the-park/the_park2.dart';
+import 'package:zero_city/zones/the-park/the_park_intro.dart';
 import 'package:zero_city/exhibition_map/map.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -61,28 +60,14 @@ class MyHomePage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.bold)),
                     onPressed: () {
-                      //when pressed move to class "FirstRoute"
+                      //when pressed move to "Exhibition map"
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ExhibitionMap()),
+                            builder: (context) => const ExhibitionMap()),
                       );
                     },
                   ),
-
-                  //test uppdragssida - använd för att testa en uppdragssida
-                  /*  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CityPort1()));
-                      },
-                      child: const Text('Exempel uppgragssida',
-                          style: TextStyle(
-                              fontSize: 35, fontWeight: FontWeight.bold)))
-
-                 */
                 ],
               ),
             ),

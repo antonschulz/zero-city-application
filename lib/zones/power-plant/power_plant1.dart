@@ -4,16 +4,16 @@ import 'package:zero_city/exhibition_map/map_provider.dart';
 import 'package:zero_city/missions/pairing.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/zones/power-plant/mission2a.dart';
+import 'package:zero_city/zones/power-plant/power_plant2.dart';
 
-class Power_plant_Mission1a extends StatefulWidget {
-  const Power_plant_Mission1a({Key? key}) : super(key: key);
+class PowerPlant1 extends StatefulWidget {
+  const PowerPlant1({Key? key}) : super(key: key);
 
   @override
-  State<Power_plant_Mission1a> createState() => Power_plant_Mission1aState();
+  State<PowerPlant1> createState() => PowerPlant1State();
 }
 
-class Power_plant_Mission1aState extends State<Power_plant_Mission1a> {
+class PowerPlant1State extends State<PowerPlant1> {
   final List<String> left = [
     "Omvandlar rörelseenergin till ström",
     "Snurrar när det blåser",
@@ -50,7 +50,7 @@ Null Function() buttonTarget(BuildContext context) {
     context.read<ExhibitionMapProvider>().setCompleteMission("Power Plant");
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => mission2a()),
+      MaterialPageRoute(builder: (context) => const PowerPlant2()),
     );
   };
 }

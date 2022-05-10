@@ -7,8 +7,8 @@ import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 import 'package:zero_city/utils/Graphics.dart';
 
-class omvandlaParkering extends StatelessWidget {
-  const omvandlaParkering({Key? key}) : super(key: key);
+class ThePark2 extends StatelessWidget {
+  const ThePark2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

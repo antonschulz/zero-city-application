@@ -7,7 +7,6 @@ import 'package:zero_city/state/city_port_state.dart';
 import 'package:zero_city/state/planning_lab_state.dart';
 import 'package:zero_city/state/the_city_state.dart';
 import 'package:zero_city/state/the_park_state.dart';
-import 'package:zero_city/zones/zone1/zone1_mission1.dart';
 import 'package:zero_city/state/the_square_state.dart';
 
 import 'exhibition_map/map.dart';
@@ -40,7 +39,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(title: 'Zero City Interactive Tool'),
         '/map': (context) => ExhibitionMap(),
-        '/zone/1/mission/1': (context) => ZoneOneMissionOne(),
       },
       //theme: ThemeData(
       // This is the theme of your application.

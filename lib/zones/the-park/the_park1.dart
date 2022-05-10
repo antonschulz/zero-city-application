@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/zones/the-park/dansaFramParken.dart';
+import 'package:zero_city/zones/the-park/the_park2.dart';
 
-class introPageThePark extends StatelessWidget {
-  const introPageThePark({Key? key}) : super(key: key);
+class ThePark1 extends StatelessWidget {
+  const ThePark1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class introPageThePark extends StatelessWidget {
               child: Column(
             children: [
               const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-              MissionTitle("The Park"),
+              MissionTitle("Dansa fram staden!"),
               const Divider(
                 height: 50,
                 thickness: 5,
@@ -28,10 +28,9 @@ class introPageThePark extends StatelessWidget {
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
               MissionBody(
-                  "En stad är beroende av grönområden för att människorna som bor där ska trivas och må bra! I "
-                  "parker kan man umgås och växterna ger syre åt staden. Om en del av de platser som idag används "
-                  "till parkeringar och trafiklösningar för bilar kan omvandlas till grönområden, kan vi göra staden mer"
-                  " trivsam för alla som bor där?"),
+                  "Hittar ni dansmattorna? Bra! Nu är det dags att ta fram era bästa moves och dansa staden grön. Här "
+                  "handlar det inte om att hitta svaret på någon fråga eller så, bara att röra på sig. Let’s dance!"
+                  " (Tips: Ni måste nog hjälpas åt.)"),
               const Divider(
                 height: 100,
                 thickness: 5,
@@ -39,10 +38,6 @@ class introPageThePark extends StatelessWidget {
                 endIndent: 0,
                 color: Color.fromRGBO(241, 216, 234, 1),
               ),
-
-              //old button
-
-              /*
               ElevatedButton(
                 style: ButtonStyle(
                   fixedSize:
@@ -57,41 +52,13 @@ class introPageThePark extends StatelessWidget {
                 ),
                 child: const Text('Gå vidare',
                     style:
-                        TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-                onPressed: () {
-                  //when pressed move to class "FirstRoute"
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const dansaFramParken()),
-                  );
-                },
-              ),
-
-               */
-
-              //new button
-              ElevatedButton(
-                style: ButtonStyle(
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 80)),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromRGBO(152, 180, 187, 1)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                ),
-                child: const Text('Påbörja uppdrag',
-                    style:
                         TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                 onPressed: () {
                   //when pressed move to class "FirstRoute"
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const dansaFramParken()),
+                        builder: (context) => const ThePark2()),
                   );
                 },
               ),

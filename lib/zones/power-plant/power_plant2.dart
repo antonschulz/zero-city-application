@@ -3,8 +3,8 @@ import 'package:zero_city/exhibition_map/map.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
 
-class mission2a extends StatelessWidget {
-  const mission2a({Key? key}) : super(key: key);
+class PowerPlant2 extends StatelessWidget {
+  const PowerPlant2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

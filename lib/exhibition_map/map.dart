@@ -7,7 +7,7 @@ import 'package:zero_city/zones/garage/garage.dart';
 import 'package:zero_city/zones/main_street/main_street_intro.dart';
 import 'package:zero_city/zones/planning_lab/planning_lab_intro.dart';
 import 'package:zero_city/zones/power-plant/power_plant_intro.dart';
-import 'package:zero_city/zones/the-park/introPage.dart';
+import 'package:zero_city/zones/the-park/the_park_intro.dart';
 import 'package:zero_city/zones/the-square/theSquareIntroPage.dart';
 import 'package:zero_city/zones/the_city/the_city_intro.dart';
 
@@ -145,13 +145,13 @@ class ExhibitionMap extends StatelessWidget {
   static List<Mission> missions = [
     Mission("The Garage", 0, const Garage()),
     Mission("Planning Lab", 1, const PlanningLabIntro()),
-    Mission("The Park", 2, const introPageThePark()),
+    Mission("The Park", 2, const IntroPageThePark()),
     Mission("Power Plant", 3, const PowerPlantIntro()),
     Mission("City Port", 4, const CityPortIntro()),
     Mission("The City", 6, const TheCityIntro()),
     Mission("The Main Street", 5, const MainStreetIntro()),
     Mission("The Backstreet", 7, const BackstreetIntro()),
-    Mission("The Square", 8, const introPageTheSquare()),
+    Mission("The Square", 8, const IntroPageTheSquare()),
   ];
 
   // This section works, however to see changes, rerun the app

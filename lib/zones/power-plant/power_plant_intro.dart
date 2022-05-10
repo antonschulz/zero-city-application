@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_city/text_types/mission_body.dart';
 import 'package:zero_city/text_types/mission_title.dart';
-import 'package:zero_city/zones/power-plant/mission1a.dart';
+import 'package:zero_city/zones/power-plant/power_plant1.dart';
 
 // Stateless widget because nothing will be changed on this page
 class PowerPlantIntro extends StatelessWidget {
@@ -54,7 +54,7 @@ class PowerPlantIntro extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Power_plant_Mission1a(),
+                    builder: (context) => const PowerPlant1(),
                   ),
                 );
               },
