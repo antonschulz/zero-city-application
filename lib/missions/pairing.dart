@@ -8,6 +8,11 @@ enum PairState {
   complete,
 }
 
+enum Side {
+  left,
+  right,
+}
+
 class Pair {
   final PairState state;
   final int target;
@@ -41,14 +46,17 @@ class PairingProvider with ChangeNotifier {
     _pairs = List.filled(length, const Pair(PairState.inactive, 0));
   }
 
-  void setSelected(bool side, int index) {
+  void setSelected(Side side, int index) {
     // Updates a selected list to either set index i to true or everything to false
     // If side is "true", left is updated. If side is "false", right is updated.
     if (buttonIsCorrect(side, index)) {
       // If the selected button is already correct then don't make any changes
       return;
     }
-    List<bool> selected = side ? _selectedLeft : _selectedRight;
+
+    // If button is already selected, deselect it.
+    // Otherwise deselect all others and select it.
+    List<bool> selected = side == Side.left ? _selectedLeft : _selectedRight;
     if (selected[index]) {
       selected[index] = false;
     } else {
@@ -56,19 +64,35 @@ class PairingProvider with ChangeNotifier {
         selected[k] = k == index;
       }
     }
-    side ? _selectedLeft = selected : _selectedRight = selected;
+    // Set the new value to the correct list
+    side == Side.left ? _selectedLeft = selected : _selectedRight = selected;
 
+    // Handle pairs if one element on each side is selected
     if (_selectedLeft.any((element) => element) &&
         _selectedRight.any((element) => element)) {
       var l = _selectedLeft.indexOf(true);
       var r = _selectedRight.indexOf(true);
 
+      // If any other pair has the same target: remove it
       for (var i = 0; i < _pairs.length; i++) {
         if (_pairs[i].target == r) _pairs[i] = Pair(PairState.inactive, r);
       }
+      // Add the new pair
       _pairs[l] = Pair(PairState.active, r);
+      // Clear all selections
       _selectedLeft = List.filled(_selectedLeft.length, false);
       _selectedRight = List.filled(_selectedRight.length, false);
+    } else {
+      // Remove pair if selected is paired
+      if (side == Side.left && _pairs[index].state == PairState.active) {
+        _pairs[index] = const Pair(PairState.inactive, 0);
+      } else if (side == Side.right) {
+        for (var i = 0; i < _pairs.length; i++) {
+          if (_pairs[i].target == index) {
+            _pairs[i] = const Pair(PairState.inactive, 0);
+          }
+        }
+      }
     }
 
     notifyListeners();
@@ -90,8 +114,8 @@ class PairingProvider with ChangeNotifier {
 
   List<Pair> get pairs => _pairs;
 
-  bool isPaired(bool side, int index) {
-    if (side) {
+  bool isPaired(Side side, int index) {
+    if (side == Side.left) {
       return _pairs[index].state == PairState.active;
     } else {
       for (var pair in _pairs) {
@@ -105,8 +129,8 @@ class PairingProvider with ChangeNotifier {
     return _correct[index] == pairs[index];
   }
 
-  bool buttonIsCorrect(bool side, int index) {
-    if (side) {
+  bool buttonIsCorrect(Side side, int index) {
+    if (side == Side.left) {
       return isCorrect(index);
     } else {
       for (var i = 0; i < pairs.length; i++) {
@@ -149,7 +173,7 @@ class PairingProvider with ChangeNotifier {
 
 class _PairingColumnWidget extends StatelessWidget {
   final List<String> texts;
-  final bool side;
+  final Side side;
 
   const _PairingColumnWidget(this.texts, this.side);
 
@@ -168,7 +192,7 @@ class _PairingColumnWidget extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               primary: provider.buttonIsCorrect(side, i)
                   ? Graphics.GREEN
-                  : (side ? provider.left[i] : provider.right[i])
+                  : (side == Side.left ? provider.left[i] : provider.right[i])
                       ? Graphics.HEAVEN
                       : provider.isPaired(side, i)
                           ? Graphics.LILAC
@@ -188,11 +212,12 @@ class _PairingPainter extends CustomPainter {
   final PairingProvider provider;
   _PairingPainter(this.provider);
 
-  Offset calcOffset(Size size, bool side, int i) {
+  Offset calcOffset(Size size, Side side, int i) {
     // TODO: Make this less hardcoded and more adaptible
     // Will break if button sizes are changed or if one column has more
     // buttons than the other.
-    double xDiff = side ? -(size.width / 4) + 164 : (size.width / 4) - 164;
+    double xDiff =
+        side == Side.left ? -(size.width / 4) + 164 : (size.width / 4) - 164;
     double x = xDiff + size.width / 2;
     double y = 65.0 + 130 * i;
     return Offset(x, y);
@@ -204,8 +229,8 @@ class _PairingPainter extends CustomPainter {
       var pair = provider.pairs[l];
       for (var r = 0; r < provider.right.length; r++) {
         canvas.drawLine(
-          calcOffset(size, true, l),
-          calcOffset(size, false, r),
+          calcOffset(size, Side.left, l),
+          calcOffset(size, Side.right, r),
           Paint()
             ..strokeWidth = 5
             ..color = pair.state != PairState.inactive && pair.target == r
@@ -220,7 +245,7 @@ class _PairingPainter extends CustomPainter {
   bool shouldRepaint(oldDelegate) => false;
 }
 
-SnackBar snack = const SnackBar(
+SnackBar wrongAnswer = const SnackBar(
     backgroundColor: Colors.redAccent,
     content: Text(
       "Fel svar!",
@@ -230,12 +255,24 @@ SnackBar snack = const SnackBar(
         fontWeight: FontWeight.bold,
       ),
     ),
-    duration: Duration(seconds: 7));
+    duration: Duration(seconds: 3));
 
-class continueButtonWidget extends StatelessWidget {
+SnackBar rightAnswer = const SnackBar(
+    backgroundColor: Colors.green,
+    content: Text(
+      "Rätt svar!",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    duration: Duration(seconds: 3));
+
+class ContinueButtonWidget extends StatelessWidget {
   final Null Function() Function(BuildContext) buttonTarget;
 
-  continueButtonWidget(this.buttonTarget);
+  const ContinueButtonWidget(this.buttonTarget, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -244,9 +281,10 @@ class continueButtonWidget extends StatelessWidget {
         context.read<PairingProvider>().complete
             ? buttonTarget(context)()
             : context.read<PairingProvider>().testCorrect();
-        if (!context.read<PairingProvider>().complete) {
-          ScaffoldMessenger.of(context).showSnackBar(snack);
-        }
+        ScaffoldMessenger.of(context).showSnackBar(
+            context.read<PairingProvider>().complete
+                ? rightAnswer
+                : wrongAnswer);
       },
       child: context.watch<PairingProvider>().buttonText,
       style: ButtonStyle(
@@ -269,7 +307,9 @@ class PairingWidget extends StatefulWidget {
   final List<Pair> correct;
   final Null Function() Function(BuildContext) buttonTarget;
 
-  PairingWidget(this.left, this.right, this.correct, this.buttonTarget);
+  const PairingWidget(this.left, this.right, this.correct, this.buttonTarget,
+      {Key? key})
+      : super(key: key);
 
   @override
   _PairingWidgetState createState() => _PairingWidgetState();
@@ -288,12 +328,12 @@ class _PairingWidgetState extends State<PairingWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _PairingColumnWidget(widget.left, true),
-                _PairingColumnWidget(widget.right, false),
+                _PairingColumnWidget(widget.left, Side.left),
+                _PairingColumnWidget(widget.right, Side.right),
               ],
             ),
             const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
-            continueButtonWidget(widget.buttonTarget),
+            ContinueButtonWidget(widget.buttonTarget),
           ],
         ),
       ),
