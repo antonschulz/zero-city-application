@@ -35,12 +35,12 @@ class TheCity1State extends State<TheCity1> {
         margin: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           children: [
-            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 16),
             MissionTitle("Funktioner i staden"),
-            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 16),
             MissionBody(
                 "Vilka tycker ni är de fem viktigaste sakerna som ska finnas i en storstad?"),
-            const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 16),
             Column(
               // Generate a list of text input widgets
               children: List.generate(
@@ -49,29 +49,35 @@ class TheCity1State extends State<TheCity1> {
                 // Keep track of index
                 (index) {
                   // User text input widget
-                  return TextField(
-                    // Create some decoration for usability
-
-                    decoration: InputDecoration(
-                      // Hint text from _hints list with index
-                      hintText: _hints[index],
-                    ),
-                    onChanged: (String str) {
-                      context
-                          // See TheCityState comments on these functions
-                          .read<TheCityState>()
-                          .setImportantElements(index, str);
-                    },
-                    onSubmitted: (String str) {
-                      context
-                          .read<TheCityState>()
-                          .submitImportantElements(index, str);
-                    },
+                  return Column(
+                    children: [
+                      TextField(
+                        // Create some decoration for usability
+                        decoration: InputDecoration(
+                          // Hint text from _hints list with index
+                          hintText: _hints[index],
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50)),
+                        ),
+                        onChanged: (String str) {
+                          context
+                              // See TheCityState comments on these functions
+                              .read<TheCityState>()
+                              .setImportantElements(index, str);
+                        },
+                        onSubmitted: (String str) {
+                          context
+                              .read<TheCityState>()
+                              .submitImportantElements(index, str);
+                        },
+                      ),
+                      SizedBox(height: 10),
+                    ],
                   );
                 },
               ),
             ),
-            const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 16),
             Container(
               // Create some margin to the last text input
               margin: const EdgeInsets.only(top: 32.0),

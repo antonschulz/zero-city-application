@@ -23,13 +23,13 @@ class _TheCity2State extends State<TheCity2> {
         margin: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 16),
             MissionTitle("Elsparkcykeln"),
-            const Divider(height: 50, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 22),
             MissionBody(
                 "I dagens städer finns det nu många el-sparkcyklar. De är både älskade och hatade."
                 " Kom på två för- och nackdelar med dem."),
-            const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
+            const SizedBox(height: 16),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               // We need a row of two columns
@@ -51,8 +51,10 @@ class _TheCity2State extends State<TheCity2> {
                           ),
                         ),
                         TextField(
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Fördel 1: ",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50)),
                           ),
                           onChanged: (String str) {
                             context.read<TheCityState>().setPositives(0, str);
@@ -63,9 +65,12 @@ class _TheCity2State extends State<TheCity2> {
                                 .submitPositives(0, str);
                           },
                         ),
+                        SizedBox(height: 10),
                         TextField(
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Fördel 2: ",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50)),
                           ),
                           onChanged: (String str) {
                             context.read<TheCityState>().setPositives(1, str);
@@ -99,8 +104,10 @@ class _TheCity2State extends State<TheCity2> {
                           ),
                         ),
                         TextField(
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Nackdel 1: ",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50)),
                           ),
                           onChanged: (String str) {
                             context.read<TheCityState>().setNegatives(0, str);
@@ -111,9 +118,12 @@ class _TheCity2State extends State<TheCity2> {
                                 .submitNegatives(0, str);
                           },
                         ),
+                        SizedBox(height: 10),
                         TextField(
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Nackdel 2: ",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50)),
                           ),
                           onChanged: (String str) {
                             context.read<TheCityState>().setNegatives(1, str);
@@ -167,7 +177,7 @@ class _TheCity2State extends State<TheCity2> {
                       ),
                 style: ButtonStyle(
                   fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(250, 80)),
+                      MaterialStateProperty.all<Size>(const Size(350, 80)),
                   backgroundColor: MaterialStateProperty.all<Color>(
                       context.watch<TheCityState>().color),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

@@ -14,11 +14,10 @@ class MainStreet1 extends StatefulWidget {
 class MainStreetState1 extends State<MainStreet1> {
   final List<String> left = ["Polyesterklänning", "Jeans", "T-shirt av bomull"];
   final List<String> right = ["2 Kg CO2", "9 Kg CO2", "15 Kg CO2"];
-  // TODO Set this to correct values
   final List<Pair> correct = [
-    const Pair(PairState.complete, 0),
-    const Pair(PairState.complete, 1),
     const Pair(PairState.complete, 2),
+    const Pair(PairState.complete, 1),
+    const Pair(PairState.complete, 0),
   ];
 
   @override
@@ -31,7 +30,7 @@ class MainStreetState1 extends State<MainStreet1> {
           MissionTitle("Koldioxidutsläpp - Klädesplagg"),
           const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
           MissionBody(
-              "Dra ett strck mellan klädesplagget och det koldioxidutsläpp de skapar."),
+              "Dra ett streck mellan klädesplagget och det koldioxidutsläpp de skapar."),
           const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
           PairingWidget(left, right, correct, buttonTarget),
         ],

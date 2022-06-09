@@ -57,8 +57,7 @@ class ThePark1 extends StatelessWidget {
                   //when pressed move to class "FirstRoute"
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const ThePark2()),
+                    MaterialPageRoute(builder: (context) => const ThePark2()),
                   );
                 },
               ),

@@ -57,6 +57,7 @@ class _GarageState extends State<Garage> {
               },
               children: [
                 Container(
+                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(10),
                   color: Graphics.LIGHTGREEN,
                   child: Column(
@@ -83,6 +84,7 @@ class _GarageState extends State<Garage> {
                   ),
                 ),
                 Container(
+                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(10),
                   color: Graphics.PINK,
                   child: Column(
@@ -94,6 +96,7 @@ class _GarageState extends State<Garage> {
                   ),
                 ),
                 Container(
+                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(10),
                   color: Graphics.PINK,
                   child: Column(
@@ -109,6 +112,7 @@ class _GarageState extends State<Garage> {
                   ),
                 ),
                 Container(
+                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(10),
                   color: Graphics.PINK,
                   child: Column(
@@ -122,6 +126,7 @@ class _GarageState extends State<Garage> {
                   ),
                 ),
                 Container(
+                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(10),
                   color: Graphics.YELLOW,
                   child: Column(
@@ -138,6 +143,7 @@ class _GarageState extends State<Garage> {
                   ),
                 ),
                 Container(
+                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(10),
                   color: Graphics.LIGHTGREEN,
                   child: Column(

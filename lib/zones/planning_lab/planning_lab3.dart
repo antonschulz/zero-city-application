@@ -26,7 +26,7 @@ class _PlanningLab3State extends State<PlanningLab3> {
         fontWeight: FontWeight.bold,
       ),
     ),
-    duration: Duration(seconds: 7),
+    duration: Duration(seconds: 2),
   );
 
   @override

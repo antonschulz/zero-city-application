@@ -19,7 +19,7 @@ SnackBar snack = const SnackBar(
         fontWeight: FontWeight.bold,
       ),
     ),
-    duration: Duration(seconds: 7));
+    duration: Duration(seconds: 2));
 
 class LinePainter extends CustomPainter {
   List<double> positionx;

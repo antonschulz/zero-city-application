@@ -22,18 +22,6 @@ class TheCityState with ChangeNotifier {
     if (str != "") {
       importantElements[idx] = str;
     }
-
-    // Notify listeners so that all states/widgets are updated accordingly
-    notifyListeners();
-  }
-
-  // This function is implemented so that the machine running the app does not
-  // have to search through importantElements on each text change
-  // as this will result in a lot of calculations on each keyboard tap
-  void submitImportantElements(int idx, String str) {
-    // When the user presses enter on the keyboard, use setImportantElements
-    setImportantElements(idx, str);
-
     // Check if all text fields have been entered
     // If the list contains empty string, then the above isn't true
     if (importantElements.contains("")) {
@@ -45,7 +33,17 @@ class TheCityState with ChangeNotifier {
 
     canContinue = true;
     color = Graphics.GREEN;
+
+    // Notify listeners so that all states/widgets are updated accordingly
     notifyListeners();
+  }
+
+  // This function is implemented so that the machine running the app does not
+  // have to search through importantElements on each text change
+  // as this will result in a lot of calculations on each keyboard tap
+  void submitImportantElements(int idx, String str) {
+    // When the user presses enter on the keyboard, use setImportantElements
+    setImportantElements(idx, str);
   }
 
   // The user input from TheCity2 is stored here
@@ -67,12 +65,6 @@ class TheCityState with ChangeNotifier {
       positives[idx] = str;
     }
 
-    notifyListeners();
-  }
-
-  void submitPositives(int idx, String str) {
-    setPositives(idx, str);
-
     // Here we need to check both lists
     if (positives.contains("") || negatives.contains("")) {
       color = Graphics.GREY;
@@ -85,16 +77,14 @@ class TheCityState with ChangeNotifier {
     notifyListeners();
   }
 
+  void submitPositives(int idx, String str) {
+    setPositives(idx, str);
+  }
+
   void setNegatives(int idx, String str) {
     if (str != "") {
       negatives[idx] = str;
     }
-
-    notifyListeners();
-  }
-
-  void submitNegatives(int idx, String str) {
-    setNegatives(idx, str);
 
     if (negatives.contains("") || positives.contains("")) {
       color = Graphics.GREY;
@@ -105,6 +95,10 @@ class TheCityState with ChangeNotifier {
     canContinue = true;
     color = Graphics.GREEN;
     notifyListeners();
+  }
+
+  void submitNegatives(int idx, String str) {
+    setNegatives(idx, str);
   }
 
   // Reset the state variables, i.e. button color and continue boolean

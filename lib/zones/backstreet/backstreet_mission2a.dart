@@ -25,18 +25,18 @@ class Backstreet_Mission2aState extends State<Backstreet_Mission2a> {
             Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
             MissionTitle("Doftorgeln"),
             Divider(
-              height: 40,
+              height: 10,
               color: Color.fromRGBO(0, 0, 0, 0),
             ),
             MissionBody("Testa doftorgeln!\n"
                 "Vilken doft är gruppens favorit? Hur tror ni att det doftar i framtidens stad?"),
             Divider(
-              height: 40,
+              height: 10,
               color: Color.fromRGBO(0, 0, 0, 0),
             ),
             // svar grejer
             Container(
-              height: 100,
+              height: 75,
               width: 500,
               child: TextField(
                 decoration: InputDecoration(
@@ -50,7 +50,7 @@ class Backstreet_Mission2aState extends State<Backstreet_Mission2a> {
               ),
             ),
             Container(
-              height: 100,
+              height: 75,
               width: 500,
               child: TextField(
                 decoration: InputDecoration(

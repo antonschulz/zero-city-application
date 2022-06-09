@@ -90,8 +90,7 @@ class IntroPageThePark extends StatelessWidget {
                   //when pressed move to class "FirstRoute"
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const ThePark1()),
+                    MaterialPageRoute(builder: (context) => const ThePark1()),
                   );
                 },
               ),

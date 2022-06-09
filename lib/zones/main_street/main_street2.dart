@@ -24,7 +24,7 @@ class MainStreetState2 extends State<MainStreet2> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      duration: Duration(seconds: 7));
+      duration: Duration(seconds: 2));
 
   @override
   Widget build(BuildContext context) {

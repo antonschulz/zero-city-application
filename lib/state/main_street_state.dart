@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:zero_city/utils/Graphics.dart';
 
 class MainStreetState with ChangeNotifier {
   late String kgClothesThrown = "";
-  late Color color = Colors.grey;
-  String correctAnswer = "123";
+  late Color color = Graphics.GREY;
+  String correctAnswer = "11";
   bool isCorrectAnswer = false;
   bool displaySnackBar = false;
 
@@ -21,7 +22,7 @@ class MainStreetState with ChangeNotifier {
     isCorrectAnswer = str == correctAnswer;
     displaySnackBar = str != correctAnswer;
 
-    color = isCorrectAnswer ? Colors.green : Colors.grey;
+    color = isCorrectAnswer ? Graphics.GREEN : Graphics.GREY;
 
     notifyListeners();
   }
@@ -39,19 +40,19 @@ class MainStreetState with ChangeNotifier {
 
     for (int i = 0; i <= 2; i++) {
       if (smartThingsWithJeans[i] == "") {
-        color = Colors.grey;
+        color = Graphics.GREY;
         canContinue = false;
         return;
       }
     }
 
     canContinue = true;
-    color = Colors.green;
+    color = Graphics.GREEN;
     notifyListeners();
   }
 
   void resetColor() {
-    color = Colors.grey;
+    color = Graphics.GREY;
     notifyListeners();
   }
 }

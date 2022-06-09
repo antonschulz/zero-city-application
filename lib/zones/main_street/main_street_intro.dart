@@ -21,7 +21,7 @@ class MainStreetIntro extends StatelessWidget {
                   MissionTitle("The Main Street"),
                   const Divider(height: 40, color: Color.fromRGBO(0, 0, 0, 0)),
                   MissionBody(
-                      "En stor del av utsläppen kommer från vår konsumtion. Hur vi handlar har betydelse. Kan vi göra på"
+                      "En stor del av utsläppen kommer från vår konsumtion. Hur vi handlar har betydelse. Kan vi göra på "
                       "ett annat sätt? Hur kan vi tänka hållbart?"),
                   const Divider(height: 20, color: Color.fromRGBO(0, 0, 0, 0)),
                   ElevatedButton(
