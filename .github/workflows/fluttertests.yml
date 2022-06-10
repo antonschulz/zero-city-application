@@ -16,8 +16,7 @@ jobs:
   build:
     # Run on an up to date ubuntu vm
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout Repository
@@ -36,11 +35,3 @@ jobs:
         run: flutter format lib/** --set-exit-if-changed
       #- name: Run Flutter Tests
       #  run: flutter test --no-pub
-      - name: Build APK
-        run: flutter build apk --release
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-
-
